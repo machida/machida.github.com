@@ -1,0 +1,40 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"
+    = stylesheet_link_tag "application"
+    = stylesheet_link_tag "highlight"
+    = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
+    = javascript_include_tag  "//code.jquery.com/jquery-latest.min.js"
+    = javascript_include_tag  "all"
+    title
+      | Blog Title#{' - ' + current_article.title unless current_article.nil?}
+    = feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed"
+  body
+    header.header
+      .wrapper.header__wrapper
+        h1.header__site-title= link_to "Nolla", "/", class: "header__site-title-link"
+        h2.header__site-copy middleman blog theme.
+        i.fa.fa-bars.header__open-global-nav-icon.js-open-slide-nav
+        nav.header__global-nav.js-slide-nav
+          ul.header__global-nav-items
+            li.header__global-nav-item
+              = link_to "About", "/", class: "header__global-nav-link is-current"
+            - blog.tags.each do |tag, articles|
+              li.header__global-nav-item
+                = link_to tag, tag_path(tag), class: "header__global-nav-link"
+            li.header__global-nav-item
+              = link_to "/", class: "header__global-nav-link" do
+                i.fa.fa-github-alt.fa-lg
+
+    .body
+      - unless current_article.nil?
+        = partial "show"
+      - else
+        = yield
+    footer.footer#footer
+      .wrapper
+        .footer__wrapper
+          small.footer__copyright
+            | &copy; #{data.site.year} Fjord llc,. All rights reserved.
