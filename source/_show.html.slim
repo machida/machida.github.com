@@ -1,14 +1,17 @@
 article.article
   .wrapper.article__wrapper
-    .article__sub
-      p.article__created-at= current_article.date.strftime('%y/%m/%d')
-      .article__tags
-        ul.article__tags-items
-          - current_article.tags.each do |tag|
-            li.article__tags-item
-              = link_to tag, tag_path(tag), class: "article__tags-link"
-    .article__content
-      .article__header
-        h1.article__title= current_article.title
-      .article__body
-        = current_article.body
+    .row
+      .col-sm-2.col-xs-12
+        .article__sub
+          p.article__created-at= current_article.date.strftime('%Y/%m/%d')
+          .article__tags
+            ul.article__tags-items
+              - current_article.tags.each do |tag|
+                li.article__tags-item
+                  = link_to tag, tag_path(tag), class: "article__tags-link"
+      .col-sm-10.col-xs-12
+        .article__content
+          .article__header
+            h1.article__title= current_article.title
+          .article__body
+            = current_article.body
