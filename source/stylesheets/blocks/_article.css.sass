@@ -67,3 +67,32 @@
     $ms-base: 14px
     p
       +text-block($ms-base, 1.8, 1.4)
+  blockquote
+    +rem('padding-left', 52px)
+    +rem('padding-right', 22px)
+    +rem('margin-top', 48px)
+    +relative
+    +rem('margin-bottom', 40px)
+    +rem('padding-top', 12px)
+    +rem('padding-bottom', 12px)
+    +border(all, 2px, solid, $black)
+    font-style: italic
+    >*
+      margin-bottom: 0
+    &:before
+      +fa
+      content: "\f10d"
+      +absolute(left, 2px, top, 2px)
+      +rem('width', 28px)
+      +rem('height', 28px)
+      +text-block(16px, 28px, false, center)
+      color: $white
+      background-color: $black
+  h2
+    +text-block(26px, 1.6, .6, bold)
+    +devise-xs
+      +text-block(20px, 1.6, false, bold)
+  h3
+    +text-block(22px, 1.6, .6, bold)
+    +devise-xs
+      +text-block(18px, 1.6, false, bold)
