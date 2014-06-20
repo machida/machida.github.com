@@ -33,11 +33,12 @@
   +top(9px)
   +nowrap
   +devise-xs
-    +text-block(12px, 1, 24px, $black)
+    +text-block(12px, 1, 16px, $black)
+    +rem('padding', 3px 6px)
 .article__tags
   +devise-xs
     +inline-block(bottom)
-    +top(-4px)
+    +top(6px)
     +rem('margin-left', 8px)
 .article__tags-item
   display: block
@@ -68,26 +69,31 @@
     p
       +text-block($ms-base, 1.8, 1.4)
   blockquote
-    +rem('padding-left', 52px)
-    +rem('padding-right', 22px)
+    +rem('padding', 12px 22px 12px 40px)
     +rem('margin-top', 48px)
-    +relative
     +rem('margin-bottom', 40px)
-    +rem('padding-top', 12px)
-    +rem('padding-bottom', 12px)
+    +relative
     +border(all, 2px, solid, $black)
     font-style: italic
+    +devise-xs
+      +rem('padding', 8px 16px 8px 32px)
+      +rem('margin-top', 38px)
+      +rem('margin-bottom', 30px)
     >*
       margin-bottom: 0
     &:before
       +fa
       content: "\f10d"
-      +absolute(left, 2px, top, 2px)
+      +absolute(left, 0, top, 0)
       +rem('width', 28px)
       +rem('height', 28px)
       +text-block(16px, 28px, false, center)
       color: $white
       background-color: $black
+      +devise-xs
+        +text-block(14px, 22px, false, center)
+        +rem('width', 22px)
+        +rem('height', 22px)
   h2
     +text-block(26px, 1.6, .6, bold)
     +devise-xs
@@ -96,3 +102,18 @@
     +text-block(22px, 1.6, .6, bold)
     +devise-xs
       +text-block(18px, 1.6, false, bold)
+  >ul
+    +list(22px, 32px, fa, \f0c8)
+  >ol
+    +list(22px, 32px, decimal, outside)
+  li
+    +text-block(16px, 1.8, .8)
+    +relative
+    &:last-child
+      margin-bottom: 0
+    >ul
+      +list(32px, 32px, disc, outside)
+    >ul,
+    >ol
+      +rem('margin-top', 12px)
+      +rem('margin-left', 32px)

@@ -14,8 +14,8 @@ html
   body
     header.header
       .wrapper.header__wrapper
-        h1.header__site-title= link_to "Nolla", "/", class: "header__site-title-link"
-        h2.header__site-copy middleman blog theme.
+        h1.header__site-title= link_to data.site.title, "/", class: "header__site-title-link"
+        h2.header__site-copy= data.site.description
         i.fa.fa-bars.header__open-global-nav-icon.js-open-slide-nav
         nav.header__global-nav.js-slide-nav
           ul.header__global-nav-items
@@ -37,4 +37,4 @@ html
       .wrapper
         .footer__wrapper
           small.footer__copyright
-            | &copy; #{data.site.year} Fjord llc,. All rights reserved.
+            | &copy; #{data.site.year} #{data.site.author} All rights reserved.
