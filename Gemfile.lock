@@ -1,7 +1,7 @@
 PATH
   remote: ../middleman-oulu
   specs:
-    middleman-oulu (0.2.23)
+    middleman-oulu (0.2.24)
 
 GEM
   remote: http://rubygems.org/
