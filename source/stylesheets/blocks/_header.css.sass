@@ -5,6 +5,7 @@ body
   background-color: $white
   &.is-slided
     +rem('margin-left', 300px)
+    overflow: hidden
 .header
   +box-sizing(border-box)
   +rem('height', 360px)
@@ -38,13 +39,17 @@ body
     &.is-slided
       left: 0
 .header .header__open-global-nav-icon
-  display: none
-  +devise-xs
-    display: block
-    +text-block(32px, 50px)
-    +rem('width', 50px)
-    +rem('height', 50px)
-    +absolute(left, 20px, top, 0px)
+  display: block
+  +text-block(32px, 50px)
+  +rem('width', 50px)
+  +rem('height', 50px)
+  +absolute(left, 20px, top, 0px)
+.header .header__global-nav-close-icon
+  display: block
+  +absolute(right, 0, top, 0, 2)
+  +text-block(32px, 50px, false, $white, center)
+  +rem('width', 50px)
+  +rem('height', 50px)
 .header__global-nav-items
   +border(left, 2px, solid, $gray-l)
   +rem('padding-left', 24px)

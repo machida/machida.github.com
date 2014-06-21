@@ -3,34 +3,45 @@ html
   head
     meta charset="utf-8"
     meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"
+    meta name="viewport" content="width=device-width,initial-scale=1"
     = stylesheet_link_tag "application"
     = stylesheet_link_tag "highlight"
     = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css"
     = javascript_include_tag  "//code.jquery.com/jquery-latest.min.js"
     = javascript_include_tag  "all"
     title
-      | Blog Title#{' - ' + current_article.title unless current_article.nil?}
+      | #{data.site.title}#{' - ' + current_article.title unless current_article.nil?}
     = feed_tag :atom, "#{blog.options.prefix.to_s}/feed.xml", title: "Atom Feed"
   body
     header.header
       .wrapper.header__wrapper
         h1.header__site-title= link_to data.site.title, "/", class: "header__site-title-link"
         h2.header__site-copy= data.site.description
-        i.fa.fa-bars.header__open-global-nav-icon.js-open-slide-nav
+        i.fa.fa-bars.header__open-global-nav-icon.js-open-slide-nav.is-only-xs
         nav.header__global-nav.js-slide-nav
+          i.fa.fa-times.js-open-slide-nav.is-only-xs.header__global-nav-close-icon
           ul.header__global-nav-items
             li.header__global-nav-item
-              = link_to "About", "/", class: "header__global-nav-link is-current"
-            - blog.tags.each do |tag, articles|
-              li.header__global-nav-item
-                = link_to tag, tag_path(tag), class: "header__global-nav-link"
+              = link_to "/", class: (current_page.path == 'index.html' ? "header__global-nav-link is-current" : "header__global-nav-link") do
+                i.fa.fa-home.fa-lg
             li.header__global-nav-item
-              = link_to "/", class: "header__global-nav-link" do
-                i.fa.fa-github-alt.fa-lg
+              = link_to "About", "/", class: (current_page.path == 'about.html' ? "header__global-nav-link is-current" : "header__global-nav-link")
+            - if data.site.twitter_id
+              li.header__global-nav-item
+                = link_to "https://twitter.com/#{data.site.twitter_id}", class: "header__global-nav-link" do
+                  i.fa.fa-twitter.fa-lg
+            - if data.site.twitter_id
+              li.header__global-nav-item
+                = link_to "https://www.facebook.com/#{data.site.facebook_id}", class: "header__global-nav-link" do
+                  i.fa.fa-facebook.fa-lg
+            - if data.site.github_url
+              li.header__global-nav-item
+                = link_to data.site.github_url, class: "header__global-nav-link" do
+                  i.fa.fa-github-alt.fa-lg
 
     .body
       - unless current_article.nil?
-        = partial "show"
+        = partial("show", locals: {article: current_article})
       - else
         = yield
     footer.footer#footer
@@ -38,7 +49,18 @@ html
         .footer__wrapper
           .row
             .col-sm-8.col-xs-12
+              nav.tags-nav
+                h2.tags-nav__title
+                  i.fa.fa-calendar-o.tags-nav__title-icon
+                  | Tags
+                ul.tags-nav__items
+                  - blog.tags.each do |tag, articles|
+                    li.tags-nav__item
+                      = link_to tag, tag_path(tag), class: (current_page.url.include?(tag) ? "tags-nav__link is-current" : "tags-nav__link")
               nav.archives-nav
+                h2.archives-nav__title
+                  i.fa.fa-calendar-o.archives-nav__title-icon
+                  | Archives
                 ul.archives-nav__year-items
                   - blog.articles.group_by {|y| y.date.year }.each do |year, articles|
                     li.archives-nav__year-item

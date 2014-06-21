@@ -3,15 +3,15 @@ article.article
     .row
       .col-sm-2.col-xs-12
         .article__sub
-          p.article__created-at= current_article.date.strftime('%Y/%m/%d')
+          p.article__created-at= article.date.strftime('%Y/%m/%d')
           .article__tags
             ul.article__tags-items
-              - current_article.tags.each do |tag|
+              - article.tags.each do |tag|
                 li.article__tags-item
                   = link_to tag, tag_path(tag), class: "article__tags-link"
       .col-sm-10.col-xs-12
         .article__content
           .article__header
-            h1.article__title= current_article.title
+            h1.article__title= link_to article.title, article, class: "article__title-link"
           .article__body
-            = current_article.body
+            = article.body

@@ -5,32 +5,11 @@ per_page: 1
 header.page-header
   .wrapper.page-header__wrapper
     h1.page-header__title Articles tagged "#{tagname}"
-    - if paginate && num_pages > 1
-      p
-       | Page #{page_number} of #{num_pages}
 
-      - if prev_page
-        p
-          = link_to 'Previous page', prev_page
+= partial("pagenate", locals: {prev_page: prev_page, next_page: next_page, page_number: page_number, num_pages: num_pages})
+
 article.article
   - page_articles.each_with_index do |article, i|
-    .wrapper.article__wrapper
-      .row
-        .col-sm-2.col-xs-12
-          .article__sub
-            p.article__created-at= article.date.strftime('%Y/%m/%d')
-            .article__tags
-              ul.article__tags-items
-                - article.tags.each do |tag|
-                  li.article__tags-item
-                    = link_to tag, tag_path(tag), class: "article__tags-link"
-        .col-sm-10.col-xs-12
-          .article__content
-            .article__header
-              h1.article__title= link_to article.title, article, class: "article__title-link"
-            .article__body= article.body
+    = partial("show", locals: {article: article})
 
-- if paginate
-  - if next_page
-    p
-      = link_to 'Next page', next_page
+= partial("pagenate", locals: {prev_page: prev_page, next_page: next_page, page_number: page_number, num_pages: num_pages})
