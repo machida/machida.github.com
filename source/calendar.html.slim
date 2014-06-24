@@ -1,5 +1,6 @@
 ---
 pageable: true
+per_page: 1
 ---
 header.page-header
   .wrapper.page-header__wrapper
@@ -12,16 +13,11 @@ header.page-header
         = Date.new(year, month, 1).strftime(' %b %Y')
       - when 'year'
         | &nbsp;#{year}
-    - if paginate && num_pages > 1
-      p
-        | Page #{page_number} of #{num_pages}
-      - if prev_page
-        p= link_to 'Previous page', prev_page
+
+= partial("partials/pagenate", locals: {prev_page: prev_page, next_page: next_page, page_number: page_number, num_pages: num_pages})
 
 article.article
   - page_articles.each_with_index do |article, i|
-    = partial("show", locals: {article: article})
+    = partial("partials/article", locals: {article: article})
 
-- if paginate
-  - if next_page
-    p= link_to 'Next page', next_page
+= partial("partials/pagenate", locals: {prev_page: prev_page, next_page: next_page, page_number: page_number, num_pages: num_pages})

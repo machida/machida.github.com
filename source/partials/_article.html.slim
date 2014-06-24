@@ -4,6 +4,8 @@ article.article
       .col-sm-2.col-xs-12
         .article__sub
           p.article__created-at= article.date.strftime('%Y/%m/%d')
+          - if not articles?
+            = partial('partials/sns_buttons')
           .article__tags
             ul.article__tags-items
               - article.tags.each do |tag|

@@ -42,7 +42,7 @@ set :markdown, :fenced_code_blocks => true, :smartypants => true
 Time.zone = "Tokyo"
 
 activate :blog do |blog|
-  blog.prefix = "blog"
+  blog.prefix = "articles"
   # blog.permalink = ":year/:month/:day/:title.html"
   # blog.sources = ":year-:month-:day-:title.html"
   # blog.taglink = "tags/:tag.html"
@@ -105,4 +105,13 @@ configure :build do
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
+end
+
+helpers do
+  def articles?
+    current_article.nil?
+  end
+  def page?
+    current_page.url.include?('page')
+  end
 end
