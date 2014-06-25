@@ -30,6 +30,7 @@ footer.footer#footer
                           li.archives-nav__month-item
                             = link_to month_articles.first.date.strftime("%m"), blog_month_path(year, month), class: "archives-nav__month-link"
         .col-sm-4.col-xs-12
-          = partial 'partials/sns-links'
-          small.footer__copyright
-            | &copy; #{data.site.year} #{data.site.author} All rights reserved.
+          .footer__about-author
+            = partial 'partials/sns-links'
+            small.footer__copyright
+              | &copy; #{data.site.year} #{data.site.author} All rights reserved.

@@ -1,0 +1,22 @@
+.sns-links
+  text-align: right
+  +rem('margin-bottom', 16px)
+  +devise-xs
+    text-align: center
+    +rem('margin-bottom', 24px)
+.sns-links__item
+  +inline-block(bottom)
+  +rem('margin-right', 8px)
+  +relative
+  +devise-xs
+    +rem('margin-right', 4px)
+  &:last-child
+    margin-right: 0
+    +devise-xs
+      +rem('margin-right', 4px)
+.sns-links__link
+  display: block
+  background-color: $black
+  +text-block(14px, 28px, false, $white, center)
+  +size(28px, 28px)
+  +border-radius(50%)
