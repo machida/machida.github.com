@@ -25,6 +25,8 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 
 どんな小さな羽さえもそよがぬ 弱い息のお話をせがむとは！でもこの哀れな声一つ三つあわせた舌に逆らえましょうか？居丈だかなプリマがまずは唱えるその宣告は「おはじめなさい」すこし優しげに二番手の希望
 
+<img src="http://distilleryimage5.ak.instagram.com/4073b4ca38cd11e3bd9722000ae80ebd_8.jpg">
+
 - ああああああああああああああ
   - ああああああああああああああああああああ 
   - ああああああああああああああああああああ 
