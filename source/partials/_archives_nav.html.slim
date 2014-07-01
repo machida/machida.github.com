@@ -1,0 +1,8 @@
+ul.archives-nav__year-items.footer-nav__items
+  - blog.articles.group_by {|y| y.date.year }.each do |year, articles|
+    li.archives-nav__year-item.footer-nav__item
+      = link_to year, blog_year_path(year), class: "archives-nav__year-link"
+      ul.archives-nav__month-items
+        - articles.group_by {|a| a.date.month}.each do |month, month_articles|
+          li.archives-nav__month-item
+            = link_to month_articles.first.date.strftime("%m"), blog_month_path(year, month), class: "archives-nav__month-link"

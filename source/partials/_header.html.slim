@@ -11,3 +11,7 @@ header.header
             i.fa.fa-home.fa-lg
         li.header__global-nav-item
           = link_to "About", "/pages/about.html", class: (current_page.path == 'pages/about.html' ? "header__global-nav-link is-current" : "header__global-nav-link")
+        li.header__global-nav-item
+          = link_to "Tags", "/pages/tags.html", class: (current_page.path == 'pages/tags.html' ? "header__global-nav-link is-current" : "header__global-nav-link")
+        li.header__global-nav-item
+          = link_to "Archives", "/pages/archives.html", class: (current_page.path == 'pages/archives.html' ? "header__global-nav-link is-current" : "header__global-nav-link")

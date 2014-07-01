@@ -1,0 +1,5 @@
+ul.tags-nav__items.footer-nav__items
+  .row
+    - blog.tags.each do |tag, articles|
+      li.tags-nav__item.footer-nav__item
+        = link_to tag, tag_path(tag), class: (current_page.url.include?(tag) ? "tags-nav__link is-current" : "tags-nav__link")

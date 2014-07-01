@@ -112,6 +112,9 @@ helpers do
     current_article.nil?
   end
   def page?
-    current_page.url.include?('page')
+    current_page.url.include?('pages')
+  end
+  def nav_page?
+    current_page.url.include?('archives.html') or current_page.url.include?('tags.html')
   end
 end

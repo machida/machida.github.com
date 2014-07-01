@@ -15,6 +15,8 @@ gem "tzinfo-data", platforms: [:mswin, :mingw]
 
 gem "middleman-blog"
 
+gem "i18n", "0.6.9"
+
 gem "sass", "~> 3.3.8"
 gem "compass", "~> 1.0.0.alpha.19"
 gem "slim"
@@ -24,7 +26,7 @@ gem "redcarpet"
 
 # Use oulu
 gem 'middleman-oulu', path: '../middleman-oulu'
-# gem 'middleman-oulu', '~> 0.0.3', github: 'oulu/middleman-oulu'
+# gem 'middleman-oulu', '~> 0.3.05', github: 'oulu/middleman-oulu'
 
 gem "ceaser-easing"
 gem "compass-rgbapng"

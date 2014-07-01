@@ -1,7 +1,7 @@
 PATH
   remote: ../middleman-oulu
   specs:
-    middleman-oulu (0.3.05)
+    middleman-oulu (0.3.6)
 
 GEM
   remote: http://rubygems.org/
@@ -53,7 +53,7 @@ GEM
       uber (~> 0.0.4)
     htmlcompressor (0.1.1)
     http_parser.rb (0.6.0)
-    i18n (0.6.10)
+    i18n (0.6.9)
     json (1.8.1)
     kramdown (1.4.0)
     listen (1.1.6)
@@ -163,6 +163,7 @@ DEPENDENCIES
   ceaser-easing
   compass (~> 1.0.0.alpha.19)
   compass-rgbapng
+  i18n (= 0.6.9)
   middleman (~> 3.3.2)
   middleman-blog
   middleman-livereload (~> 3.1.0)
