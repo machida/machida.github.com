@@ -1,13 +1,15 @@
 header.header
   .wrapper.header__wrapper
-    h1.header__site-title= link_to data.site.title, "/", class: "header__site-title-link"
-    h2.header__site-copy= data.site.description
+    h1.header__site-title
+      = link_to data.site.title, "/", class: ("header__site-title-link #{data.site.title.ascii_only? ? 'is-en' : 'is-ja'}")
+    h2.header__site-copy class= "#{data.site.title.ascii_only? ? 'is-en' : 'is-ja'}"
+      = data.site.description
     i.fa.fa-bars.header__open-global-nav-icon.js-open-slide-nav.visible-xs-block
     nav.header__global-nav.js-slide-nav
       i.fa.fa-times.js-open-slide-nav.visible-xs-block.header__global-nav-close-icon
       ul.header__global-nav-items
         li.header__global-nav-item
-          = link_to "/", class: (current_page.path == 'index.html' ? "header__global-nav-link is-current" : "header__global-nav-link") do
+          = link_to "/", class: ("header__global-nav-link #{current_page.path == 'index.html' ? "is-current" : ""}") do
             i.fa.fa-home.fa-lg
         li.header__global-nav-item
           = link_to "About", "/pages/about.html", class: (current_page.path == 'pages/about.html' ? "header__global-nav-link is-current" : "header__global-nav-link")
