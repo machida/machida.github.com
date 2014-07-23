@@ -18,7 +18,7 @@ body
     +rem('padding-top', 32px)
 .header__site-title
   +text-block(72px, 1.4, false, center)
-  +tauri(bold)
+  +main-font
   +screen-xs
     +text-block(60px, 1.3)
 .header__site-title-link
@@ -26,7 +26,7 @@ body
   color: $black
 .header__site-copy
   +text-block(12px, 1.2, false, center)
-  +tauri(bold)
+  +main-font
   +screen-xs
     +text-block(10px, 1.2, false, center)
 .header__global-nav
@@ -65,7 +65,7 @@ body
   display: block
   +text-block(14px, 46px, false, $black)
   text-decoration: none
-  +tauri(bold)
+  +main-font
   &.is-current
     color: $blue
     +relative
