@@ -22,5 +22,8 @@ footer.footer#footer
         .col-sm-4.col-xs-12
           .footer__about-author
             small.footer__copyright
-              | &copy; #{data.site.year} #{data.site.author} All rights reserved.
+              | &copy;
+              = Time.now.year
+              span.footer__copyright-author class= "#{data.site.author.ascii_only? ? 'is-en' : 'is-ja'}" #{data.site.author}
+              | All rights reserved.
             = partial 'partials/sns-links'

@@ -2,7 +2,7 @@ header.header
   .wrapper.header__wrapper
     h1.header__site-title
       = link_to data.site.title, "/", class: ("header__site-title-link #{data.site.title.ascii_only? ? 'is-en' : 'is-ja'}")
-    h2.header__site-copy class= "#{data.site.title.ascii_only? ? 'is-en' : 'is-ja'}"
+    h2.header__site-copy class= "#{data.site.description.ascii_only? ? 'is-en' : 'is-ja'}"
       = data.site.description
     i.fa.fa-bars.header__open-global-nav-icon.js-open-slide-nav.visible-xs-block
     nav.header__global-nav.js-slide-nav

@@ -1,21 +1,21 @@
-body
-  +rem('font-size', 16px)
-  color: $black
-  background-color: $white
-  *
-    +transition(.2s)
-
-.wrapper
-  +rem('max-width', $wrapper-max-width)
-  +box-sizing(border-box)
-  +side-mg-auto
-  +rem('padding-left', $wrapper-padding)
-  +rem('padding-right', $wrapper-padding)
-  clear: both
-
 *::selection
   background: $black
   color: $white
 *::-moz-selection
   background: $black
   color: $white
+
+.wrapper
+  +rem('max-width', $wrapper-max-width)
+  +box-sizing(border-box)
+  +horizontal-mg(auto)
+  +rem('padding-left', $wrapper-padding)
+  +rem('padding-right', $wrapper-padding)
+  clear: both
+
+body
+  +rem('font-size', 16px)
+  color: $black
+  background-color: $white
+  a
+    +transition(.2s)
