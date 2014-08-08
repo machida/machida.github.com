@@ -111,10 +111,36 @@ helpers do
   def articles?
     current_article.nil?
   end
+
   def page?
     current_page.url.include?('pages')
   end
+
   def nav_page?
     current_page.url.include?('archives.html') or current_page.url.include?('tags.html')
   end
+
+  def lang_class(text)
+    case (text).ascii_only?
+    when true
+      return 'is-en'
+    end
+    return 'is-ja'
+  end
+
+  def is_current_page?(url)
+    case current_page.path == url
+    when true
+      return 'is-current'
+    end
+    false
+  end
+
+  def is_current_group?(url)
+    case current_page.url.include?(url)
+    when true
+      return 'is-current'
+    end
+  end
+
 end
