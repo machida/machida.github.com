@@ -12,8 +12,8 @@ header.header
           = link_to "/", class: ("header__global-nav-link #{is_current_page?('index.html')}") do
             i.fa.fa-home.fa-lg
         li.header__global-nav-item
-          = link_to "About", "/pages/about.html", class: ("header__global-nav-link #{is_current_page?('pages/about.html')}")
+          = link_to "About", "/pages/about.html", class: ("header__global-nav-link #{is_current_page?('pages/about.html')} #{lang_class('About')}")
         li.header__global-nav-item
-          = link_to "Tags", "/pages/tags.html", class: ("header__global-nav-link #{is_current_page?('pages/tags.html')} #{is_current_group?('articles/tags')}")
+          = link_to "Tags", "/pages/tags.html", class: ("header__global-nav-link #{is_current_page?('pages/tags.html')} #{is_current_group?('articles/tags')}  #{lang_class('Tags')}")
         li.header__global-nav-item
-          = link_to "Archives", "/pages/archives.html", class: ("header__global-nav-link #{is_current_page?('pages/archives.html')}")
+            = link_to "Archives", "/pages/archives.html", class: ("header__global-nav-link #{is_current_page?('pages/archives.html')} #{lang_class('Archives')}")

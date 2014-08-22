@@ -3,7 +3,8 @@ article.article
     .row
       .col-sm-2.col-xs-12
         .article__sub
-          p.article__created-at= article.date.strftime('%Y/%m/%d')
+          p.article__created-at class="#{lang_class(article.date.strftime('%Y/%m/%d'))}"
+            = article.date.strftime('%Y/%m/%d')
           - if not articles?
             = partial('partials/sns_buttons')
           .article__tags
