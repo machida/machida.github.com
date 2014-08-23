@@ -11,10 +11,10 @@ article.article
             ul.article__tags-items
               - article.tags.each do |tag|
                 li.article__tags-item
-                  = link_to tag, tag_path(tag), class: "article__tags-link #{tag.ascii_only? ? 'is-en' : 'is-ja'}"
+                  = link_to tag, tag_path(tag), class: "article__tags-link #{lang_class(tag)}"
       .col-sm-10.col-xs-12
         .article__content
           .article__header
-            h1.article__title= link_to article.title, article, class: "article__title-link #{article.title.ascii_only? ? 'is-en' : 'is-ja'}"
+            h1.article__title= link_to article.title, article, class: "article__title-link #{lang_class(article.title)}"
           .article__body
             = article.body
