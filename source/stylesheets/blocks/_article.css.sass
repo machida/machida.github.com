@@ -15,7 +15,7 @@
   +bold-ja
   +screen-xs
     +text-block(26px, 1.6, 16px, bold)
-    +border(bottom, 1px, solid, $black)
+    +border(bottom, 1px, solid, $main-color)
   &:after
     content: "\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d"
     display: block
@@ -23,19 +23,19 @@
     height: 0
 .article__title-link
   text-decoration: none
-  color: $black
+  color: $main-color
   +main-bold-font
 
 .article__created-at
   +inline-block(bottom)
-  +text-block(14px, 1, 32px, $black)
+  +text-block(14px, 1, 32px, $main-color)
   +rem('padding', 5px 8px)
-  +border(all, 2px, solid, $black)
+  +border(all, 2px, solid, $main-color)
   +main-font
   +top(9px)
   +nowrap
   +screen-xs
-    +text-block(12px, 1, 16px, $black)
+    +text-block(12px, 1, 16px, $main-color)
     +rem('padding', 3px 6px)
 .article__tags-item
   display: block
@@ -45,7 +45,7 @@
 .article__tags-link
   +inline-block(bottom)
   +relative
-  color: $black
+  color: $main-color
   +hover-link
   +text-block(16px, 1.6)
   +rem('margin-bottom', 12px)
@@ -64,7 +64,7 @@
   >*:last-child
     margin-bottom: 0
   .highlight
-    background-color: $black
+    background-color: $main-color
   p
     +text-block($ms-base, 1.9, 1.6)
   +screen-xs
@@ -80,7 +80,7 @@
     +rem('margin-top', 48px)
     +rem('margin-bottom', 40px)
     +relative
-    +border(all, 2px, solid, $black)
+    +border(all, 2px, solid, $main-color)
     font-style: italic
     +screen-xs
       +rem('padding', 8px 16px 8px 32px)
@@ -95,8 +95,8 @@
       +rem('width', 28px)
       +rem('height', 28px)
       +text-block(16px, 28px, false, center)
-      color: $white
-      background-color: $black
+      color: $base-color
+      background-color: $main-color
       +screen-xs
         +text-block(14px, 22px, false, center)
         +rem('width', 22px)
