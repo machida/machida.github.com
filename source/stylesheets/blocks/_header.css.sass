@@ -23,8 +23,8 @@ body
     +text-block(60px, 1.3)
 .header__site-title-link
   text-decoration: none
-  color: $main-color
   +main-font
+  +hover-color
 .header__site-copy
   +text-block(12px, 1.2, false, center)
   +main-font
@@ -64,9 +64,10 @@ body
   display: block
 .header__global-nav-link
   display: block
-  +text-block(14px, 46px, false, $main-color)
+  +text-block(14px, 46px)
   text-decoration: none
   +main-font
+  +hover-color
   &.is-current
     color: $accent-color
     +relative

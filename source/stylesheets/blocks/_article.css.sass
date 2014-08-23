@@ -23,9 +23,8 @@
     height: 0
 .article__title-link
   text-decoration: none
-  color: $main-color
   +main-bold-font
-
+  +hover-color
 .article__created-at
   +inline-block(bottom)
   +text-block(14px, 1, 32px, $main-color)
@@ -45,13 +44,12 @@
 .article__tags-link
   +inline-block(bottom)
   +relative
-  color: $main-color
-  +hover-link
   +text-block(16px, 1.6)
   +rem('margin-bottom', 12px)
+  text-decoration: none
   +nowrap
-  &.is-en
-    +tauri
+  +main-font
+  +hover-color
   &:before
     +fa
     content: "\f02b"
@@ -70,6 +68,9 @@
   +screen-xs
     p
       +text-block($ms-base, 1.8, 1.4)
+  a
+    color: $accent-color
+    +hover-link
   img
     max-width: 100%
     display: block

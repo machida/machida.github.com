@@ -2,10 +2,15 @@
   &.is-ja
     +sans-serif
   &.is-en
-    +tauri(bold)
+    +tauri(700)
 
 =main-bold-font
   &.is-ja
     +bold-ja
   &.is-en
     +tauri(bold)
+
+=hover-color
+  color: $main-color
+  &:hover
+    color: $accent-color
