@@ -131,3 +131,26 @@
     >ol
       +rem('margin-top', 12px)
       +rem('margin-left', 32px)
+  dl
+    +rem('margin-bottom', 32px)
+    +border(vertical, 2px, dotted, $main-color)
+    +vertical-pd(16px)
+    @extend .row
+  dt
+    +text-block(14px, 1.6, 8px, bold)
+    +rem('margin-top', 16px)
+    @extend .col-sm-4
+    +rem('padding-right', 8px)
+    &:first-child
+      margin-top: 0
+      &+dd
+        margin-top: 0
+    &+dd
+      +rem('margin-top', 16px)
+  dd
+    +text-block(14px, 1.6, 1)
+    @extend .col-sm-8
+    &+dd
+      @extend .col-sm-offset-4
+    &:last-child
+      margin-bottom: 0
