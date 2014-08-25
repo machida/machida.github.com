@@ -67,10 +67,19 @@
     +text-block($ms-base, 1.9, 1.6)
   +screen-xs
     p
-      +text-block($ms-base, 1.8, 1.4)
+      +text-block(14px, 1.8, 1.4)
   a
     color: $accent-color
-    +hover-link
+    +hover-link-reverse
+    &[target="_blank"]
+      &:after
+        +fa
+        content: "\f08e"
+        +rem('margin-left', 2px)
+        +rem('margin-right', 4px)
+    &:hover
+      img
+        +box-shadow($blue 0 0 0 1px)
   img
     max-width: 100%
     display: block
