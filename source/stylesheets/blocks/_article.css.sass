@@ -11,10 +11,11 @@
   +screen-xs
     +rem('margin-bottom', 8px)
 .article__title
-  +text-block(32px, 1.6, false, bold)
+  +text-block(32px, 1.4, false, bold)
   +bold-ja
   +screen-xs
-    +text-block(26px, 1.6, 16px, bold)
+    +text-block(20px, 1.3, 16px, bold)
+    +rem('padding-bottom', 6px)
     +border(bottom, 1px, solid, $main-color)
   &:after
     content: "\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d"
@@ -50,6 +51,8 @@
   +nowrap
   +main-font
   +hover-color
+  +screen-xs
+    +text-block(14px, 1.6)
   &:before
     +fa
     content: "\f02b"
@@ -80,6 +83,17 @@
     &:hover
       img
         +box-shadow($blue 0 0 0 1px)
+  hr
+    &:before
+      +fa
+      display: block
+      +text-block(14px, 14px, 36px, center)
+      +rem('margin-top', 36px)
+      content: "\f069\f069\f069"
+      +letter-spacing-center(2px)
+      +screen-xs
+        +text-block(12px, 14px, 24px, center)
+        +rem('margin-top', 24px)
   img
     max-width: 100%
     display: block
@@ -112,17 +126,17 @@
         +rem('width', 22px)
         +rem('height', 22px)
   h2
-    +text-block(26px, 1.6, .6, bold)
+    +text-block(26px, 1.3, .6, bold)
     +screen-xs
-      +text-block(20px, 1.6, false, bold)
+      +text-block(20px, 1.3, false, bold)
   h3
-    +text-block(22px, 1.6, .6, bold)
+    +text-block(22px, 1.3, .6, bold)
     +screen-xs
-      +text-block(18px, 1.6, false, bold)
+      +text-block(18px, 1.3, false, bold)
   h4
-    +text-block(18px, 1.6, .6, bold)
+    +text-block(18px, 1.3, .6, bold)
     +screen-xs
-      +text-block(16px, 1.6, false, bold)
+      +text-block(16px, 1.3, false, bold)
   >ul
     +list(22px, 32px, fa, \f0da, 14px, 7px, 20px)
   >ol
@@ -142,23 +156,32 @@
       +rem('margin-left', 32px)
   dl
     +rem('margin-bottom', 32px)
-    +border(vertical, 2px, dotted, $main-color)
-    +vertical-pd(16px)
+    +border(vertical, 1px, solid, $main-color)
+    +vertical-pd(24px)
     @extend .row
+    +screen-xs
+      +vertical-pd(16px)
   dt
     +text-block(14px, 1.6, 8px, bold)
     +rem('margin-top', 16px)
     @extend .col-sm-4
     +rem('padding-right', 8px)
+    +screen-xs
+      @extend .col-xs-12
     &:first-child
       margin-top: 0
       &+dd
         margin-top: 0
     &+dd
       +rem('margin-top', 16px)
+      +screen-xs
+        margin-top: 0
   dd
     +text-block(14px, 1.6, 1)
     @extend .col-sm-8
+    +screen-xs
+      @extend .col-xs-12
+      +text-block(12px, 1.6, 1)
     &+dd
       @extend .col-sm-offset-4
     &:last-child

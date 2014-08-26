@@ -10,7 +10,7 @@
   &.is-en
     +tauri(bold)
 
-=hover-color
-  color: $main-color
+=hover-color($link-color: $main-color, $hover-color: $accent-color)
+  color: $link-color
   &:hover
-    color: $accent-color
+    color: $hover-color
