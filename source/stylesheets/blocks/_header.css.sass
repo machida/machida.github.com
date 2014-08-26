@@ -9,13 +9,20 @@ body
 .header
   +box-sizing(border-box)
   +rem('height', 360px)
+  background-color: $main-color
+  +rem('margin-bottom', 32px)
   +screen-xs
-    +rem('height', 160px)
+    height: auto
+    +rem('margin-bottom', 16px)
 .header__wrapper
   +rem('padding-top', 116px)
   +relative
   +screen-xs
     +rem('padding-top', 48px)
+    @if $base-color == $main-color
+      +rem('padding-bottom', 36px)
+    @else
+      +rem('padding-bottom', 48px)
 .header__site-title
   +text-block(72px, 1.4, false, center)
   +main-font
@@ -34,7 +41,7 @@ body
   +absolute(left, 26px, top, 0)
   +screen-xs
     +rem('width', 300px)
-    background-color: $main-color
+    background-color: $text-color
     height: 100%
     +fixed(left, -300px, top, 0)
     +transition(.2s)
@@ -62,7 +69,7 @@ body
   +screen-xs
     +rem('margin-left', 20px)
     height: 100%
-    +border(left, 4px, solid, shade($main-color, 20%))
+    +border(left, 4px, solid, shade($text-color, 20%))
 .header__global-nav-item
   display: block
 .header__global-nav-link

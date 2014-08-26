@@ -3,17 +3,21 @@
   text-align: right
 .pagenate__item
   +inline-block(bottom)
+  +main-font
 .pagenate__link,
 .pagenate__current
   +main-font
   display: block
-  +border(all, 2px, solid, $main-color)
+  +border(all, 2px, solid, $text-color)
   +rem('width', 24px)
   +rem('height', 24px)
   +text-block(14px, 24px, false, center)
   text-decoration: none
+  &:hover
+    border-color: $accent-color
 .pagenate__link
-  color: $main-color
+  color: $text-color
+  +hover-color
 .pagenate__current
-  background-color: $main-color
+  background-color: $text-color
   color: $base-color

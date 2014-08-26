@@ -16,7 +16,7 @@
   +screen-xs
     +text-block(20px, 1.3, 16px, bold)
     +rem('padding-bottom', 6px)
-    +border(bottom, 1px, solid, $main-color)
+    +border(bottom, 1px, solid, $text-color)
   &:after
     content: "\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d"
     display: block
@@ -28,14 +28,14 @@
   +hover-color
 .article__created-at
   +inline-block(bottom)
-  +text-block(14px, 1, 32px, $main-color)
+  +text-block(14px, 1, 32px, $text-color)
   +rem('padding', 5px 8px)
-  +border(all, 2px, solid, $main-color)
+  +border(all, 2px, solid, $text-color)
   +main-font
   +top(9px)
   +nowrap
   +screen-xs
-    +text-block(12px, 1, 16px, $main-color)
+    +text-block(12px, 1, 16px, $text-color)
     +rem('padding', 3px 6px)
 .article__tags-item
   display: block
@@ -65,7 +65,7 @@
   >*:last-child
     margin-bottom: 0
   .highlight
-    background-color: $main-color
+    background-color: $text-color
   p
     +text-block($ms-base, 1.9, 1.6)
   +screen-xs
@@ -104,7 +104,7 @@
     +rem('margin-top', 48px)
     +rem('margin-bottom', 40px)
     +relative
-    +border(all, 2px, solid, $main-color)
+    +border(all, 2px, solid, $text-color)
     font-style: italic
     +screen-xs
       +rem('padding', 8px 16px 8px 32px)
@@ -120,7 +120,7 @@
       +rem('height', 28px)
       +text-block(16px, 28px, false, center)
       color: $base-color
-      background-color: $main-color
+      background-color: $text-color
       +screen-xs
         +text-block(14px, 22px, false, center)
         +rem('width', 22px)
@@ -156,7 +156,7 @@
       +rem('margin-left', 32px)
   dl
     +rem('margin-bottom', 32px)
-    +border(vertical, 1px, solid, $main-color)
+    +border(vertical, 1px, solid, $text-color)
     +vertical-pd(24px)
     @extend .row
     +screen-xs
