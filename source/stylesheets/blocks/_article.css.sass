@@ -65,14 +65,23 @@
   >*:last-child
     margin-bottom: 0
   .highlight
-    background-color: $text-color
+    @if luma-dark($base-color)
+      +rgba-background-inline(rgba(0 ,0 ,0 , luma($base-color)/20))
+    @else
+      @if luma-dark($text-color)
+        background-color: $text-color
+      @else
+        @if luma-dark($text-color)
+          +rgba-background-inline(rgba(0 ,0 ,0 , luma($text-color)/20))
+        @else
+          +rgba-background-inline(rgba(0 ,0 ,0 , luma($base-color)/200))
   p
     +text-block($ms-base, 1.9, 1.6)
   +screen-xs
     p
       +text-block(14px, 1.8, 1.4)
   a
-    color: $accent-color
+    +text-color-select($base-color, $accent-color, $main-color)
     +hover-link-reverse
     &[target="_blank"]
       &:after

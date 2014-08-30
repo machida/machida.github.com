@@ -1,8 +1,7 @@
-GIT
-  remote: git://github.com/oulu/middleman-oulu.git
-  revision: bdb288ed82200169387ebab174ae4cbf24f37942
+PATH
+  remote: ../middleman-oulu
   specs:
-    middleman-oulu (0.3.24)
+    middleman-oulu (0.4)
 
 GEM
   remote: http://rubygems.org/
@@ -169,7 +168,7 @@ DEPENDENCIES
   middleman-blog
   middleman-livereload (~> 3.1.0)
   middleman-minify-html
-  middleman-oulu (~> 0.3.24)!
+  middleman-oulu!
   middleman-syntax
   modular-scale
   redcarpet

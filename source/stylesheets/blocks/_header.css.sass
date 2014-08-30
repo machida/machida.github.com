@@ -29,12 +29,14 @@ body
   +screen-xs
     +text-block(48px, 1.3)
 .header__site-title-link
+  content: luma-contrast($base-color, $text-color)
   text-decoration: none
   +main-font
-  +hover-color
+  +text-color-select($main-color, $base-color, $text-color, $accent-color)
 .header__site-copy
   +text-block(12px, 1.2, false, center)
   +main-font
+  +text-color-select($main-color, $base-color, $text-color, $accent-color)
   +screen-xs
     +text-block(10px, 1.2, false, center)
 .header__global-nav
@@ -78,6 +80,7 @@ body
   text-decoration: none
   +main-font
   +hover-color
+  +text-color-select($main-color, $base-color, $text-color, $accent-color)
   &.is-current
     color: $accent-color
     +relative

@@ -14,3 +14,44 @@
   color: $link-color
   &:hover
     color: $hover-color
+
+=text-color-select($background-color, $candidate-color-1, $candidate-color-2, $candidate-color-3: false)
+  @if luma-contrast($background-color, $candidate-color-1)
+    @if luma-bright($background-color)
+      color: shade($candidate-color-1, reverse(percentage(luma-value($candidate-color-1)/100)))
+    @else
+      color: tint($candidate-color-1, reverse(percentage(luma-value($candidate-color-1)/100)))
+  @else if luma-contrast($background-color, $candidate-color-2)
+    @if luma-bright($background-color)
+      color: shade($candidate-color-2, reverse(percentage(luma-value($candidate-color-2)/100)))
+    @else
+      color: tint($candidate-color-2, reverse(percentage(luma-value($candidate-color-2)/100)))
+  @else
+    @if $candidate-color-3
+      @if luma-contrast($background-color, $candidate-color-3)
+        @if luma-bright($background-color)
+          color: shade($candidate-color-2, reverse(percentage(luma-value($candidate-color-3)/100)))
+        @else
+          color: tint($candidate-color-2, reverse(percentage(luma-value($candidate-color-3)/100)))
+      @else
+        @if luma-value($background-color, $candidate-color-1) > luma-value($background-color, $candidate-color-2)
+          @if luma-bright($background-color)
+            color: shade($candidate-color-1, reverse(percentage(luma-value($candidate-color-1)/100)))
+          @else
+            color: tint($candidate-color-1, reverse(percentage(luma-value($candidate-color-1)/100)))
+        @else
+          @if luma-bright($background-color)
+            color: shade($candidate-color-2, reverse(percentage(luma-value($candidate-color-2)/100)))
+          @else
+            color: tint($candidate-color-1, reverse(percentage(luma-value($candidate-color-2)/100)))
+    @else
+      @if luma-value($background-color, $candidate-color-1) > luma-value($background-color, $candidate-color-2)
+        @if luma-bright($background-color)
+          color: shade($candidate-color-1, reverse(percentage(luma-value($candidate-color-1)/100)))
+        @else
+          color: tint($candidate-color-1, reverse(percentage(luma-value($candidate-color-1)/100)))
+      @else
+        @if luma-bright($background-color)
+          color: shade($candidate-color-2, reverse(percentage(luma-value($candidate-color-2)/100)))
+        @else
+          color: tint($candidate-color-1, reverse(percentage(luma-value($candidate-color-2)/100)))
