@@ -68,8 +68,9 @@
   >*:last-child
     margin-bottom: 0
   .highlight
+    content: (100 - luma($base-color))/200
     @if luma-dark($base-color)
-      +rgba-background-inline(rgba(0 ,0 ,0 , luma($base-color)/20))
+      +rgba-background-inline(rgba(255 ,255 ,255 , (100 - luma($base-color))/400))
     @else
       @if luma-dark($text-color)
         background-color: $text-color
@@ -94,7 +95,7 @@
         +rem('margin-right', 4px)
     &:hover
       img
-        +box-shadow($blue 0 0 0 1px)
+        +box-shadow(text-color-select($base-color, $main-color, $accent-color) 0 0 0 2px)
   hr
     &:before
       +fa
