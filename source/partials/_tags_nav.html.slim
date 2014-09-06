@@ -1,5 +1,4 @@
 ul.tags-nav__items.footer-nav__items
-  .row
-    - blog.tags.each do |tag, articles|
-      li.tags-nav__item.footer-nav__item
-        = link_to tag, tag_path(tag), class: "#{is_current_group?(tag)} tags-nav__link #{lang_class(tag)}"
+  - blog.tags.each do |tag, articles|
+    li.tags-nav__item.footer-nav__item
+      = link_to tag, tag_path(tag), class: "#{is_current_group?(tag)} tags-nav__link #{lang_class(tag)}"

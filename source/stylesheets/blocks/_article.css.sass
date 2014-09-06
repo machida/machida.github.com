@@ -170,10 +170,12 @@
   dl
     +rem('margin-bottom', 32px)
     +border(vertical, 1px, solid, $text-color)
-    +vertical-pd(24px)
+    +vertical-pd(32px)
     @extend .row
     +screen-xs
-      +vertical-pd(16px)
+      +vertical-pd(24px)
+      +horizontal-mg(0)
+      +border(vertical, 1px, dotted, $text-color)
   dt
     +text-block(14px, 1.6, 8px, bold)
     +rem('margin-top', 16px)
@@ -181,6 +183,7 @@
     +rem('padding-right', 8px)
     +screen-xs
       @extend .col-xs-12
+      padding: 0
     &:first-child
       margin-top: 0
       &+dd
@@ -195,6 +198,7 @@
     +screen-xs
       @extend .col-xs-12
       +text-block(12px, 1.6, 1)
+      padding: 0
     &+dd
       @extend .col-sm-offset-4
     &:last-child

@@ -45,7 +45,15 @@
 =text-color-select($background-color, $candidate-color-1, $candidate-color-2, $candidate-color-3: false)
   color: text-color-select($background-color, $candidate-color-1, $candidate-color-2, $candidate-color-3)
 
-=hover-color($link-color: $text-color, $hover-color: text-color-select($background-color: $base-color, $candidate-color-1: $main-color, $candidate-color-2: $accent-color, $candidate-color-3: false))
+@function accent-color-select($background-color, $accent-color)
+  @if luma-contrast($background-color, $accent-color)
+    @return $accent-color
+  @else
+    @if luma-dark($background-color)
+      @return tint($accent-color, plus(reverse(percentage(luma-value($main-color, $accent-color) - $ruma-threshold))/40))
+    @else
+      @return shade($accent-color, percentage(plus(luma-value($background-color, $accent-color) - $ruma-threshold)/100))
+=hover-color($link-color: $text-color, $background-color: $base-color, $candidate-color-1: $main-color, $candidate-color-2: $accent-color, $candidate-color-3: false)
   color: $link-color
   &:hover
-    color: $hover-color
+    color: text-color-select($background-color, $candidate-color-1, $candidate-color-2, $candidate-color-3)
