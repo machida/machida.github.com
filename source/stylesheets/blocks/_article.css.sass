@@ -29,16 +29,17 @@
   text-decoration: none
   +main-bold-font
   +hover-color
+  color: luma-add-contrast($base-color, $text-color)
 .article__created-at
   +inline-block(bottom)
-  +text-block(14px, 1, 32px, $text-color)
+  +text-block(14px, 1, 32px, $fix-text-color)
   +rem('padding', 5px 8px)
-  +border(all, 2px, solid, $text-color)
+  +border(all, 2px, solid, $fix-text-color)
   +main-font
   +top(9px)
   +nowrap
   +screen-xs
-    +text-block(12px, 1, 16px, $text-color)
+    +text-block(12px, 1, 16px)
     +rem('padding', 3px 6px)
 .article__tags-item
   display: block
@@ -68,15 +69,14 @@
   >*:last-child
     margin-bottom: 0
   .highlight
-    content: (100 - luma($base-color))/200
     @if luma-dark($base-color)
       +rgba-background-inline(rgba(255 ,255 ,255 , (100 - luma($base-color))/400))
     @else
-      @if luma-dark($text-color)
-        background-color: $text-color
+      @if luma-dark($fix-text-color)
+        background-color: $fix-text-color
       @else
-        @if luma-dark($text-color)
-          +rgba-background-inline(rgba(0 ,0 ,0 , luma($text-color)/20))
+        @if luma-dark($fix-text-color)
+          +rgba-background-inline(rgba(0 ,0 ,0 , luma($fix-text-color)/20))
         @else
           +rgba-background-inline(rgba(0 ,0 ,0 , luma($base-color)/200))
   p
@@ -117,7 +117,7 @@
     +rem('margin-top', 48px)
     +rem('margin-bottom', 40px)
     +relative
-    +border(all, 2px, solid, $text-color)
+    +border(all, 2px, solid, $fix-text-color)
     font-style: italic
     +screen-xs
       +rem('padding', 8px 16px 8px 32px)
@@ -133,7 +133,7 @@
       +rem('height', 28px)
       +text-block(16px, 28px, false, center)
       color: $base-color
-      background-color: $text-color
+      background-color: $fix-text-color
       +screen-xs
         +text-block(14px, 22px, false, center)
         +rem('width', 22px)
@@ -169,13 +169,13 @@
       +rem('margin-left', 32px)
   dl
     +rem('margin-bottom', 32px)
-    +border(vertical, 1px, solid, $text-color)
+    +border(vertical, 1px, solid, $fix-text-color)
     +vertical-pd(32px)
     @extend .row
+    +horizontal-mg(0)
     +screen-xs
       +vertical-pd(24px)
-      +horizontal-mg(0)
-      +border(vertical, 1px, dotted, $text-color)
+      +border(vertical, 1px, dotted, $fix-text-color)
   dt
     +text-block(14px, 1.6, 8px, bold)
     +rem('margin-top', 16px)

@@ -42,7 +42,7 @@ body
   +absolute(left, 26px, top, 0)
   +screen-xs
     +rem('width', 300px)
-    background-color: $text-color
+    background-color: $fix-text-color
     height: 100%
     +fixed(left, -300px, top, 0)
     +transition(.2s)
@@ -64,24 +64,24 @@ body
   +rem('height', 50px)
   +hover-color($base-color, $text-color, $accent-color, $main-color)
 .header__global-nav-items
-  @if luma-dark($text-color)
-    +border(left, 2px, solid, tint($text-color, reverse(percentage(luma-value($text-color)/100))))
+  @if luma-dark($fix-text-color)
+    +border(left, 2px, solid, tint($fix-text-color, reverse(percentage(luma-value($fix-text-color)/100))))
   @else
-    +border(left, 2px, solid, shade($text-color, reverse(percentage(luma-value($text-color)/100))))
+    +border(left, 2px, solid, shade($fix-text-color, reverse(percentage(luma-value($fix-text-color)/100))))
   +rem('padding-left', 24px)
   +rem('padding-top', 16px)
   +rem('padding-bottom', 16px)
   +screen-xs
     +rem('margin-left', 20px)
     height: 100%
-    @if luma-dark($text-color)
-      +border(left, 4px, solid, tint($text-color, reverse(percentage(luma-value($text-color)/100))))
+    @if luma-dark($fix-text-color)
+      +border(left, 4px, solid, tint($fix-text-color, reverse(percentage(luma-value($fix-text-color)/100))))
     @else
-      +border(left, 4px, solid, shade($text-color, reverse(percentage(luma-value($text-color)/100))))
+      +border(left, 4px, solid, shade($fix-text-color, reverse(percentage(luma-value($fix-text-color)/100))))
 
 .header__global-nav-item
   display: block
-  content: fix-color($main-color, $accent-color)
+  content: luma-add-contrast($main-color, $accent-color)
 .header__global-nav-link
   display: block
   +text-block(14px, 46px)
@@ -90,22 +90,22 @@ body
   +hover-color($text-color, $main-color, $accent-color, $base-color, $text-color)
   +text-color-select($main-color, $base-color, $text-color, $accent-color)
   &.is-current
-    color: fix-color($main-color, $accent-color)
+    color: luma-add-contrast($main-color, $accent-color)
     +relative
     content: reverse(percentage(plus(luma-value($main-color, $accent-color) - $ruma-threshold)))/100
     +screen-xs
-      color: accent-color-select($text-color, $accent-color)
+      color: luma-add-contrast($fix-text-color, $accent-color)
     &:after
       content: ""
       display: block
       +rem('width', 8px)
       +rem('height', 8px)
       +border-radius(50%)
-      background-color: fix-color($main-color, $accent-color)
+      background-color: luma-add-contrast($main-color, $accent-color)
       +absolute(left, -29px, top, 50%)
       +rem('margin-top', -6px)
       +screen-xs
-        background-color: fix-color($text-color, $accent-color)
+        background-color: luma-add-contrast($fix-text-color, $accent-color)
   +screen-xs
     +text-block(18px, 54px, false, $base-color)
     &.is-current

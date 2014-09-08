@@ -8,7 +8,7 @@
 .pagenate__current
   +main-font
   display: block
-  +border(all, 2px, solid, $text-color)
+  +border(all, 2px, solid, $fix-text-color)
   +rem('width', 24px)
   +rem('height', 24px)
   +text-block(14px, 24px, false, center)
@@ -16,8 +16,8 @@
   &:hover
     border-color: text-color-select($base-color, $main-color, $accent-color)
 .pagenate__link
-  color: $text-color
+  color: $fix-text-color
   +hover-color
 .pagenate__current
-  background-color: $text-color
+  background-color: $fix-text-color
   color: $base-color

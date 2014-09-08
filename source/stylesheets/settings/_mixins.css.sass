@@ -10,52 +10,20 @@
   &.is-en
     +tauri(bold)
 
-@function text-color-select($background-color, $candidate-color-1, $candidate-color-2, $candidate-color-3: false)
+@function color-select($background-color, $candidate-color-1, $candidate-color-2: false, $candidate-color-3: false)
   @if luma-contrast($background-color, $candidate-color-1)
     @return $candidate-color-1
-  @else if luma-contrast($background-color, $candidate-color-2)
+  @else if $candidate-color-2 and luma-contrast($background-color, $candidate-color-2)
     @return $candidate-color-2
+  @if $candidate-color-3 and luma-contrast($background-color, $candidate-color-3)
+    @return $candidate-color-3
   @else
-    @if $candidate-color-3
-      @if luma-contrast($background-color, $candidate-color-3)
-        @return $candidate-color-3
-      @else
-        @if luma-value($background-color, $candidate-color-1) > luma-value($background-color, $candidate-color-2)
-          @if luma-bright($background-color)
-            @return shade($candidate-color-1, reverse(percentage(luma-value($candidate-color-1)/100)))
-          @else
-            @return tint($candidate-color-1, reverse(percentage(luma-value($candidate-color-1)/100)))
-        @else
-          @if luma-bright($background-color)
-            @return shade($candidate-color-2, reverse(percentage(luma-value($candidate-color-2)/100)))
-          @else
-            @return tint($candidate-color-1, reverse(percentage(luma-value($candidate-color-2)/100)))
-    @else
-      @if luma-value($background-color, $candidate-color-1) > luma-value($background-color, $candidate-color-2)
-        @if luma-bright($background-color)
-          @return shade($candidate-color-1, reverse(percentage(luma-value($candidate-color-1)/100)))
-        @else
-          @return tint($candidate-color-1, reverse(percentage(luma-value($candidate-color-1)/100)))
-      @else
-        @if luma-bright($background-color)
-          @return shade($candidate-color-2, reverse(percentage(luma-value($candidate-color-2)/100)))
-        @else
-          @return tint($candidate-color-1, reverse(percentage(luma-value($candidate-color-2)/100)))
+    @return luma-add-contrast($background-color, $candidate-color-1)
 
 =text-color-select($background-color, $candidate-color-1, $candidate-color-2, $candidate-color-3: false)
-  color: text-color-select($background-color, $candidate-color-1, $candidate-color-2, $candidate-color-3)
+  color: color-select($background-color, $candidate-color-1, $candidate-color-2, $candidate-color-3)
 
-=hover-color($link-color: $text-color, $background-color: $base-color, $candidate-color-1: $main-color, $candidate-color-2: $accent-color, $candidate-color-3: false)
+=hover-color($link-color: $fix-text-color, $background-color: $base-color, $candidate-color-1: $main-color, $candidate-color-2: $accent-color, $candidate-color-3: false)
   color: $link-color
   &:hover
-    color: text-color-select($background-color, $candidate-color-1, $candidate-color-2, $candidate-color-3)
-
-@function fix-color($background-color, $candidate-color)
-  @if luma-contrast($background-color, $candidate-color)
-    @return $candidate-color
-  @else
-    $contrast-value: luma-value($background-color, $candidate-color)
-    @if luma-dark($background-color)
-      @return tint($candidate-color, (100 - percentage($contrast-value/100))/(pi()/2))
-    @else
-      @return shade($candidate-color, (100 - percentage($contrast-value/100))/(pi()/2))
+    color: color-select($background-color, $candidate-color-1, $candidate-color-2, $candidate-color-3)
