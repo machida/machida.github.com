@@ -81,10 +81,7 @@ body
 
 .header__global-nav-item
   display: block
-  @if luma-contrast($main-color, $base-color)
-    content: true
-  @else
-    content: false
+  content: fix-color($main-color, $accent-color)
 .header__global-nav-link
   display: block
   +text-block(14px, 46px)
@@ -93,7 +90,7 @@ body
   +hover-color($text-color, $main-color, $accent-color, $base-color, $text-color)
   +text-color-select($main-color, $base-color, $text-color, $accent-color)
   &.is-current
-    color: accent-color-select($main-color, $accent-color)
+    color: fix-color($main-color, $accent-color)
     +relative
     content: reverse(percentage(plus(luma-value($main-color, $accent-color) - $ruma-threshold)))/100
     +screen-xs
@@ -104,11 +101,11 @@ body
       +rem('width', 8px)
       +rem('height', 8px)
       +border-radius(50%)
-      background-color: accent-color-select($main-color, $accent-color)
+      background-color: fix-color($main-color, $accent-color)
       +absolute(left, -29px, top, 50%)
       +rem('margin-top', -6px)
       +screen-xs
-        background-color: accent-color-select($text-color, $accent-color)
+        background-color: fix-color($text-color, $accent-color)
   +screen-xs
     +text-block(18px, 54px, false, $base-color)
     &.is-current

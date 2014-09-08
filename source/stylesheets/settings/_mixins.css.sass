@@ -45,15 +45,17 @@
 =text-color-select($background-color, $candidate-color-1, $candidate-color-2, $candidate-color-3: false)
   color: text-color-select($background-color, $candidate-color-1, $candidate-color-2, $candidate-color-3)
 
-@function accent-color-select($background-color, $accent-color)
-  @if luma-contrast($background-color, $accent-color)
-    @return $accent-color
-  @else
-    @if luma-dark($background-color)
-      @return tint($accent-color, plus(reverse(percentage(luma-value($main-color, $accent-color) - $ruma-threshold))/40))
-    @else
-      @return shade($accent-color, percentage(plus(luma-value($background-color, $accent-color) - $ruma-threshold)/100))
 =hover-color($link-color: $text-color, $background-color: $base-color, $candidate-color-1: $main-color, $candidate-color-2: $accent-color, $candidate-color-3: false)
   color: $link-color
   &:hover
     color: text-color-select($background-color, $candidate-color-1, $candidate-color-2, $candidate-color-3)
+
+@function fix-color($background-color, $candidate-color)
+  @if luma-contrast($background-color, $candidate-color)
+    @return $candidate-color
+  @else
+    $contrast-value: luma-value($background-color, $candidate-color)
+    @if luma-dark($background-color)
+      @return tint($candidate-color, (100 - percentage($contrast-value/100))/(pi()/2))
+    @else
+      @return shade($candidate-color, (100 - percentage($contrast-value/100))/(pi()/2))
