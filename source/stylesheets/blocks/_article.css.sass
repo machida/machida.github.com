@@ -86,6 +86,7 @@
       +text-block(14px, 1.8, 1.4)
   a
     +text-color-select($base-color, $accent-color, $main-color)
+    color: shade($accent-color, (100 - percentage(luma-value($base-color, $accent-color)/100))/pi())
     +hover-link-reverse
     &[target="_blank"]
       &:after

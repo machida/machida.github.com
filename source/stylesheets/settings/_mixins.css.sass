@@ -26,4 +26,21 @@
 =hover-color($link-color: $fix-text-color, $background-color: $base-color, $candidate-color-1: $main-color, $candidate-color-2: $accent-color, $candidate-color-3: false)
   color: $link-color
   &:hover
-    color: color-select($background-color, $candidate-color-1, $candidate-color-2, $candidate-color-3)
+    $hover-color: color-select($background-color, $candidate-color-1, $candidate-color-2, $candidate-color-3)
+    @if $link-color == $hover-color and $hover-color == $candidate-color-1
+      color: luma-add-contrast($background-color, $candidate-color-2)
+    @else if $link-color == $hover-color and $hover-color == $candidate-color-2
+      color: luma-add-contrast($background-color, $candidate-color-1)
+    @else
+      color: $hover-color
+
+=hover-background-color($link-color: $fix-text-color, $background-color: $base-color, $candidate-color-1: $main-color, $candidate-color-2: $accent-color, $candidate-color-3: false)
+  background-color: $link-color
+  &:hover
+    $hover-color: color-select($background-color, $candidate-color-1, $candidate-color-2, $candidate-color-3)
+    @if $link-color == $hover-color and $hover-color == $candidate-color-1
+      background-color: luma-add-contrast($background-color, $candidate-color-2)
+    @else if $link-color == $hover-color and $hover-color == $candidate-color-2
+      background-color: luma-add-contrast($background-color, $candidate-color-1)
+    @else
+      background-color: $hover-color
