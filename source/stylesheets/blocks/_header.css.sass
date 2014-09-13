@@ -3,6 +3,10 @@ body
   width: 100%
   +transition(.2s)
   background-color: $base-color
+  content: tint($accent-color, reverse(percentage((luma-value($base-color, $accent-color))*0.01)))
+  content: luma-value($base-color, $accent-color)
+  content: luma-value($base-color)
+  content: luma-value($accent-color)
   &.is-slided
     +rem('margin-left', 300px)
     overflow: hidden
@@ -31,11 +35,10 @@ body
 .header__site-title-link
   text-decoration: none
   +main-font
-  +text-color-select($main-color, $base-color, $text-color, $accent-color)
+  color: $header-text-color
 .header__site-copy
-  +text-block(12px, 1.2, false, center)
+  +text-block(12px, 1.2, false, center, $header-text-color)
   +main-font
-  +text-color-select($main-color, $base-color, $text-color, $accent-color)
   +screen-xs
     +text-block(10px, 1.2, false, center)
 .header__global-nav
@@ -54,8 +57,9 @@ body
   +rem('width', 50px)
   +rem('height', 50px)
   +absolute(left, 20px, top, 0px)
-  +hover-color
-  +hover-color($text-color, $main-color, $accent-color, $base-color)
+  color: $header-text-color
+  &:hover
+    color: $header-accent-color
 .header .header__global-nav-close-icon
   display: block
   +absolute(right, 0, top, 0, 2)
@@ -81,33 +85,31 @@ body
 
 .header__global-nav-item
   display: block
-  content: luma-add-contrast($main-color, $accent-color)
 .header__global-nav-link
   display: block
-  +text-block(14px, 46px)
+  +text-block(14px, 46px, false, $header-text-color)
   text-decoration: none
   +main-font
-  +hover-color($text-color, $main-color, $accent-color, $base-color, $text-color)
-  +text-color-select($main-color, $base-color, $text-color, $accent-color)
+  &:hover
+    color: $header-accent-color
   &.is-current
-    color: luma-add-contrast($main-color, $accent-color)
+    color: $header-accent-color
     +relative
-    content: reverse(percentage(plus(luma-value($main-color, $accent-color) - $ruma-threshold)))/100
     +screen-xs
-      color: luma-add-contrast($fix-text-color, $accent-color)
+      color: $xs-global-nav-accent-color
     &:after
       content: ""
       display: block
       +rem('width', 8px)
       +rem('height', 8px)
       +border-radius(50%)
-      background-color: luma-add-contrast($main-color, $accent-color)
+      background-color: $header-accent-color
       +absolute(left, -29px, top, 50%)
       +rem('margin-top', -6px)
       +screen-xs
-        background-color: luma-add-contrast($fix-text-color, $accent-color)
+        background-color: $xs-global-nav-accent-color
   +screen-xs
-    +text-block(18px, 54px, false, $base-color)
+    +text-block(18px, 54px, false, $xs-global-nav-text-color)
     &.is-current
       &:after
         +rem('width', 12px)

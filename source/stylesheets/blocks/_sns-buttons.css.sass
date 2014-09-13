@@ -6,16 +6,22 @@
     +inline-block(bottom)
     +bottom(-8px)
 .sns-buttons__item
+  width: 25%
   +inline-block(bottom)
-  +rem('margin-right', 8px)
   +relative
+  +box-sizing(border-box)
+  text-align: center
+$button-size: 28px
 .sns-buttons__entry-link
-  display: block
+  +inline-block(bottom)
   background-color: $fix-text-color
-  +text-block(14px, 28px, false, $base-color, center)
-  +size(28px, 28px)
+  +text-block(round($button-size/2.2), $button-size, false, $base-color, center)
+  +size($button-size)
   +border-radius(50%)
+  background-color: $fix-text-color
+  &:hover
+    background-color: $article-link-color
 .sns-buttons__search-link
   display: block
-  +text-block(9px, 14px, false, center, $fix-text-color)
+  +text-block(10px, 16px, false, center, $fix-text-color)
   text-decoration: none

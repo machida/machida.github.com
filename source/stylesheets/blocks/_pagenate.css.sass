@@ -14,10 +14,12 @@
   +text-block(14px, 24px, false, center)
   text-decoration: none
   &:hover
-    border-color: text-color-select($base-color, $main-color, $accent-color)
+    border-color: $article-link-color
 .pagenate__link
   color: $fix-text-color
-  +hover-color
+  color: $fix-text-color
+  &:hover
+    color: $article-link-color
 .pagenate__current
   background-color: $fix-text-color
   color: $base-color
