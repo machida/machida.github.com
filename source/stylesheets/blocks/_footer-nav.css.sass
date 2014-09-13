@@ -21,7 +21,9 @@
   +text-block(14px, 1.6, false, $fix-text-color)
   +hover-link
   +main-font
-  +hover-color
+  color: $fix-text-color
+  &:hover
+    color: $article-link-color
   &.is-current
     +text-color-select($base-color, $main-color, $accent-color)
   +screen-xs

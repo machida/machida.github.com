@@ -143,4 +143,19 @@ helpers do
     end
   end
 
+  def is_current_archives?
+    if current_page.url.include?('articles')
+      if not current_page.url.include?('tags')
+        return 'is-current'
+      end
+    end
+  end
+
+  def glitch
+    case data.site.glitch
+    when true
+      return 'is-glitch'
+    end
+  end
+
 end

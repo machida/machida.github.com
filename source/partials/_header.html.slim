@@ -1,7 +1,7 @@
 header.header
   .wrapper.header__wrapper
     h1.header__site-title
-      = link_to "/", data: {text: "#{data.site.title}"}, class: ("header__site-title-link #{lang_class(data.site.title)}") do
+      = link_to "/", data: {text: "#{data.site.title}"}, class: ("header__site-title-link #{lang_class(data.site.title)} #{glitch}") do
         = data.site.title
     h2.header__site-copy class= "#{lang_class(data.site.description)}"
       = data.site.description
@@ -17,4 +17,4 @@ header.header
         li.header__global-nav-item
           = link_to "Tags", "/pages/tags.html", class: ("header__global-nav-link #{is_current_page?('pages/tags.html')} #{is_current_group?('articles/tags')}  #{lang_class('Tags')}")
         li.header__global-nav-item
-            = link_to "Archives", "/pages/archives.html", class: ("header__global-nav-link #{is_current_page?('pages/archives.html')} #{lang_class('Archives')}")
+            = link_to "Archives", "/pages/archives.html", class: ("header__global-nav-link #{is_current_page?('pages/archives.html')} #{is_current_archives?} #{lang_class('Archives')}")
