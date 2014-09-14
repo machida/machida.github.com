@@ -68,20 +68,15 @@ body
   +rem('height', 50px)
   +hover-color($base-color, $text-color, $accent-color, $main-color)
 .header__global-nav-items
-  @if luma-dark($fix-text-color)
-    +border(left, 2px, solid, tint($fix-text-color, reverse(percentage(luma-value($fix-text-color)/100))))
-  @else
-    +border(left, 2px, solid, shade($fix-text-color, reverse(percentage(luma-value($fix-text-color)/100))))
+  content: reverse(percentage(luma-value($main-color)*0.01)*1.3)
+  +global-nav-border-color($main-color)
   +rem('padding-left', 24px)
   +rem('padding-top', 16px)
   +rem('padding-bottom', 16px)
   +screen-xs
     +rem('margin-left', 20px)
     height: 100%
-    @if luma-dark($fix-text-color)
-      +border(left, 4px, solid, tint($fix-text-color, reverse(percentage(luma-value($fix-text-color)/100))))
-    @else
-      +border(left, 4px, solid, shade($fix-text-color, reverse(percentage(luma-value($fix-text-color)/100))))
+    +global-nav-border-color($fix-text-color)
 
 .header__global-nav-item
   display: block
