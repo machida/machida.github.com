@@ -1,11 +1,11 @@
 url: http://
-title: Nolla
-description: Simple middleman blog theme.
+title: machida
+description: machida's blog 
 author: FJORD LLC.
 author_url: http://fjord.jp
 twitter_id: machida
 facebook_id: teppeimachida
-linkedin_url: http://www.linkedin.com/pub/teppei-machida/2b/797/7a
+linkedin_url: false
 github_url: https://github.com/machida/nolla
 disqus: false
 glitch: false
