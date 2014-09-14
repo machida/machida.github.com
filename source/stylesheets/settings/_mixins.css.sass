@@ -21,7 +21,7 @@
     @return luma-add-contrast($background-color, $candidate-color-1)
 
 @function article-link-color($base-color)
-  @if $text-color == $main-color
+  @if $text-color == $main-color or $base-color == $main-color
     @return color-select($base-color, $accent-color)
   @else if $text-color == $accent-color
     @return color-select($base-color, $main-color)
@@ -34,10 +34,16 @@
 =hover-color($link-color: $fix-text-color, $background-color: $base-color, $candidate-color-1: $main-color, $candidate-color-2: $accent-color, $candidate-color-3: false)
   color: $link-color
   &:hover
-    $hover-color: color-select($background-color, $candidate-color-1, $candidate-color-2, $candidate-color-3)
+    $hover-color: article-link-color($base-color)
     @if $link-color == $hover-color and $hover-color == $candidate-color-1
       color: luma-add-contrast($background-color, $candidate-color-2)
     @else if $link-color == $hover-color and $hover-color == $candidate-color-2
       color: luma-add-contrast($background-color, $candidate-color-1)
     @else
       color: $hover-color
+
+=global-nav-border-color($background-color)
+  @if luma-dark($main-color)
+    +border(left, 2px, solid, tint($main-color, plus(percentage(luma-value($background-color)*0.92)*0.01)))
+  @else
+    +border(left, 2px, solid, shade($main-color, plus(reverse(percentage((luma-value($background-color)*0.92)*0.01)))))
