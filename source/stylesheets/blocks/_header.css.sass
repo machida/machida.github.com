@@ -30,8 +30,14 @@ body
     @else
       +rem('padding-bottom', 48px)
 .header__site-title
-  +text-block(72px, 1.4, false, center)
+  +text-block(40px, 1.4, false, center)
   +site-title-font
+  &.is-sm
+    +rem('font-size', 72px)
+  &.is-md
+    +rem('font-size', 64px)
+  &.is-lg
+    +rem('font-size', 56px)
   +screen-xs
     +text-block(48px, 1.3)
 .header__site-title-link

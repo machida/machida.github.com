@@ -128,6 +128,18 @@ helpers do
     return 'is-ja'
   end
 
+  def text_size(text)
+    if (text).bytesize <= 6
+      return 'is-sm'
+    elsif (text).bytesize >= 7 && (text).bytesize <= 12
+      return 'is-md'
+    elsif (text).bytesize >= 13 && (text).bytesize <= 16
+      return 'is-lg'
+    else
+      return 'is-xl'
+    end
+  end
+
   def is_current_page?(url)
     case current_page.path == url
     when true
