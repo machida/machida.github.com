@@ -1,22 +1,29 @@
 .pagenate
   +rem('margin-bottom', 24px)
   text-align: right
+  +screen-xs
+    +rem('margin-bottom', 16px)
+    text-align: center
 .pagenate__item
   +inline-block(bottom)
-  +main-font
+  +pagenate-font
 .pagenate__link,
 .pagenate__current
-  +main-font
+  $pagenate-size: 24px
+  +pagenate-font
   display: block
   +border(all, 2px, solid, $fix-text-color)
-  +rem('width', 24px)
-  +rem('height', 24px)
-  +text-block(14px, 24px, false, center)
+  +size($pagenate-size)
+  +text-block(14px, $pagenate-size, false, center)
   text-decoration: none
   &:hover
     border-color: $article-link-color
+  +screen-xs
+    $pagenate-size: 36px
+    +size($pagenate-size)
+    +text-block(14px, $pagenate-size, false, center)
+
 .pagenate__link
-  color: $fix-text-color
   color: $fix-text-color
   &:hover
     color: $article-link-color

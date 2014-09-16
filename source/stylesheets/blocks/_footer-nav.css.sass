@@ -1,14 +1,13 @@
 .footer-nav
   +rem('margin-bottom', 24px)
   clear: both
-  +main-font
   &:last-child
     margin-bottom: 0
   +screen-xs
     +rem('margin-bottom', 8px)
 .footer-nav__title
   +text-block(16px, 1.6, 8px)
-  +main-font
+  +footer-nav-title-font
 .footer-nav__title-icon
   +rem('margin-right', 8px)
 .footer-nav__item
@@ -20,7 +19,7 @@
   +rem('margin-right', 24px)
   +text-block(14px, 1.6, false, $fix-text-color)
   +hover-link
-  +main-font
+  +tag-font
   color: $fix-text-color
   &:hover
     color: $article-link-color
