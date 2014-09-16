@@ -1,15 +1,3 @@
-=main-font
-  &.is-ja
-    +sans-serif
-  &.is-en
-    +tauri(700)
-
-=main-bold-font
-  &.is-ja
-    +bold-ja
-  &.is-en
-    +tauri(bold)
-
 @function color-select($background-color, $candidate-color-1, $candidate-color-2: false, $candidate-color-3: false)
   @if luma-contrast($background-color, $candidate-color-1)
     @return $candidate-color-1

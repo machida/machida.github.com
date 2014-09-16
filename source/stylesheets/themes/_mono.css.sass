@@ -1,8 +1,55 @@
 @charset "utf-8"
 
+///////////////////////
+// colors palette
+///////////////////////
+
 $white: #ffffff
+
+///////////////////////
+// setup colors
+///////////////////////
 
 $base-color: $white
 $main-color: $white
 $text-color: $white
 $accent-color: $white
+
+///////////////////////
+// setup fonts
+///////////////////////
+
+// You can choose
+// en +lato +montserrat +open-sans +tauri +roboto +podkova +old-standard +special-elite +ubuntu +satisfy
+// ja +sans-serif +serif +bold-ja
+
+=main-font
+  &.is-ja
+    +sans-serif
+  &.is-en
+    +tauri(700)
+
+=main-bold-font
+  &.is-ja
+    +bold-ja
+  &.is-en
+    +tauri(bold)
+
+=site-title-font
+  +main-bold-font
+=site-copy-font
+  +main-font
+=global-nav-font
+  +main-font
+=page-title-font
+  +main-font
+=tag-font
+  +main-font
+=date-font
+  +main-font
+=pagenate-font
+  +main-font
+=copyright-font
+  +main-font
+=footer-nav-title-font
+  +main-font
