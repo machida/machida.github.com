@@ -22,6 +22,7 @@ body
     +rem('margin-bottom', 16px)
 .header__wrapper
   +rem('padding-top', 116px)
+  text-align: center
   +relative
   +screen-xs
     +rem('padding-top', 48px)
@@ -29,21 +30,27 @@ body
       +rem('padding-bottom', 36px)
     @else
       +rem('padding-bottom', 48px)
-.header__site-title
-  +text-block(40px, 1.4, false, center)
-  +site-title-font
-  &.is-sm
-    +rem('font-size', 72px)
-  &.is-md
-    +rem('font-size', 64px)
-  &.is-lg
-    +rem('font-size', 56px)
-  +screen-xs
-    +text-block(48px, 1.3)
 .header__site-title-link
   text-decoration: none
   +site-title-font
   color: $header-text-color
+  &.is-sm
+    +text-block(72px, 1.4)
+  &.is-md
+    +text-block(64px, 1.4)
+  &.is-lg
+    +text-block(56px, 1.4)
+  &.is-xl
+    +text-block(40px, 1.4)
+  +screen-xs
+    &.is-sm
+      +text-block(48px, 1.3)
+    &.is-md
+      +text-block(36px, 1.3)
+    &.is-lg
+      +text-block(24px, 1.3)
+    &.is-xl
+      +text-block(12px, 1.3)
 .header__site-copy
   +text-block(12px, 1.2, false, center, $header-text-color)
   +site-copy-font
