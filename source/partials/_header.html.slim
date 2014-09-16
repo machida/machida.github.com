@@ -1,7 +1,7 @@
 header.header
   .wrapper.header__wrapper
     h1.header__site-title
-      = link_to "/", data: {text: "#{data.site.title}"}, class: ("header__site-title-link #{lang_class(data.site.title)} #{glitch}") do
+      = link_to "/", data: {text: "#{data.site.title}"}, class: ("header__site-title-link #{lang_class(data.site.title)} #{text_size(data.site.title)} #{glitch}") do
         = data.site.title
     h2.header__site-copy class= "#{lang_class(data.site.description)}"
       = data.site.description
