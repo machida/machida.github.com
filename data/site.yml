@@ -1,11 +1,11 @@
-url: http://
+url: http://localhost:4567/
 title: machida
-description: machida's blog 
-author: FJORD LLC.
-author_url: http://fjord.jp
+description: マチダのブログ
+author: machida
+author_url: https://twitter.com/machida
 twitter_id: machida
 facebook_id: teppeimachida
 linkedin_url: false
-github_url: https://github.com/machida/nolla
+github_url: https://github.com/machida
 disqus: false
 glitch: false
