@@ -22,7 +22,6 @@ body
     +rem('margin-bottom', 16px)
 .header__wrapper
   +rem('padding-top', 116px)
-  text-align: center
   +relative
   +screen-xs
     +rem('padding-top', 48px)
@@ -30,6 +29,8 @@ body
       +rem('padding-bottom', 36px)
     @else
       +rem('padding-bottom', 48px)
+.header__site-title
+  text-align: center
 .header__site-title-link
   text-decoration: none
   +site-title-font
@@ -110,8 +111,7 @@ body
     &:after
       content: ""
       display: block
-      +rem('width', 8px)
-      +rem('height', 8px)
+      +size(8px)
       +border-radius(50%)
       background-color: $header-accent-color
       +absolute(left, -29px, top, 50%)
@@ -122,7 +122,6 @@ body
     +text-block(18px, 54px, false, $xs-global-nav-text-color)
     &.is-current
       &:after
-        +rem('width', 12px)
-        +rem('height', 12px)
-        +absolute(left, -32px, top, 50%)
+        +size(8px)
+        +absolute(left, -29px, top, 50%)
         +rem('margin-top', -6px)
