@@ -34,7 +34,7 @@
 .article__created-at
   display: block
   +text-block(14px, 1, 32px, $fix-text-color, center)
-  +vertical-pd(5px)
+  +vertical-padding(5px)
   +border(all, 2px, solid, $fix-text-color)
   +top(9px)
   +nowrap
@@ -115,7 +115,7 @@
   img
     max-width: 100%
     display: block
-    +horizontal-mg-auto
+    +horizontal-margin-auto
     +rem('margin-bottom', 32px)
   blockquote
     +rem('padding', 12px 22px 12px 40px)
@@ -175,19 +175,19 @@
   dl
     +rem('margin-bottom', 32px)
     +border(vertical, 1px, solid, $fix-text-color)
-    +vertical-pd(32px)
+    +vertical-padding(32px)
     @extend .row
-    +horizontal-mg(0)
+    +horizontal-margin(0)
     +screen-xs
-      +vertical-pd(24px)
+      +vertical-padding(24px)
       +border(vertical, 1px, dotted, $fix-text-color)
   dt
     +text-block(14px, 1.6, 8px, bold)
     +rem('margin-top', 16px)
-    @extend .col-sm-4
     +rem('padding-right', 8px)
+    @extend .col-sm-4
+    @extend .col-xs-12
     +screen-xs
-      @extend .col-xs-12
       padding: 0
     &:first-child
       margin-top: 0
@@ -200,8 +200,8 @@
   dd
     +text-block(14px, 1.6, 1)
     @extend .col-sm-8
+    @extend .col-xs-12
     +screen-xs
-      @extend .col-xs-12
       +text-block(12px, 1.6, 1)
       padding: 0
     &+dd
