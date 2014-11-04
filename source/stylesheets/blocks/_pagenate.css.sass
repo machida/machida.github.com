@@ -12,16 +12,16 @@
   $pagenate-size: 24px
   +pagenate-font
   display: block
-  +border(all, 2px, solid, $fix-text-color)
+  +border(all, 2px solid $fix-text-color)
   +size($pagenate-size)
-  +text-block(14px, $pagenate-size, false, center)
+  +text-block(14px $pagenate-size, center)
   text-decoration: none
   &:hover
     border-color: $article-link-color
   +screen-xs
     $pagenate-size: 36px
     +size($pagenate-size)
-    +text-block(14px, $pagenate-size, false, center)
+    +text-block(14px $pagenate-size, center)
 
 .pagenate__link
   color: $fix-text-color

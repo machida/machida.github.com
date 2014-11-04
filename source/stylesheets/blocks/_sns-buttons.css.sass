@@ -15,13 +15,12 @@ $button-size: 28px
 .sns-buttons__entry-link
   +inline-block(bottom)
   background-color: $fix-text-color
-  +text-block(round($button-size/2.2), $button-size, false, $base-color, center)
+  +text-block(round($button-size/2.2) $button-size, $base-color center)
   +size($button-size)
   +border-radius(50%)
   background-color: $fix-text-color
   &:hover
     background-color: $article-link-color
 .sns-buttons__search-link
-  display: block
-  +text-block(10px, 16px, false, center, $fix-text-color)
-  text-decoration: none
+  +text-block(10px 16px, center $fix-text-color)
+  +block-link
