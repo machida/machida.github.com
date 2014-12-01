@@ -32,6 +32,6 @@
 
 =global-nav-border-color($background-color)
   @if luma-dark($main-color)
-    +border(left, 2px, solid, tint($main-color, plus(percentage(luma-value($background-color)*0.92)*0.01)))
+    +border(left, 2px solid tint($main-color, abs(percentage(luma-value($background-color)*0.92)*0.01)))
   @else
-    +border(left, 2px, solid, shade($main-color, plus(reverse(percentage((luma-value($background-color)*0.92)*0.01)))))
+    +border(left, 2px solid shade($main-color, abs(reverse(percentage((luma-value($background-color)*0.92)*0.01)))))

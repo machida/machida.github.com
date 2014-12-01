@@ -1,5 +1,5 @@
 .page-header__title
-  +text-block(32px, 1.4, 40px, center, $base-color)
+  +text-block(32px 1.4 40px, center $base-color)
   background-color: $fix-text-color
   +main-font
   @if $base-color == $main-color
@@ -7,5 +7,5 @@
   @else
     +rem('margin-top', 40px)
   +screen-xs
-    +text-block(14px, 1.5, 24px)
+    +text-block(14px 1.5 24px)
     +rem('padding', 8px 0)

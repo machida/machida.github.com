@@ -4,7 +4,7 @@
   +screen-xs
     +rem('margin-top', 24px)
 .footer__wrapper
-  +border(top, 1px, solid, $text-color)
+  +border(top, 1px solid $text-color)
   +rem('padding-top', 64px)
   +rem('margin-bottom', 64px)
   +relative
@@ -12,8 +12,8 @@
     +rem('padding-top', 32px)
     +rem('margin-bottom', 32px)
 .footer__about-author
-  +absolute(right, 0, bottom, 0)
-  +text-block(14px, 1, false, right)
+  +absolute(right 0, bottom 0)
+  +text-block(14px 1, right)
   +screen-xs
     +rem('padding-top', 24px)
     position: static
@@ -27,7 +27,7 @@
 .footer__copyright-year
   +copyright-font
 .footer__copyright-author
-  +horizontal-margin(4px)
+  +margin(horizontal, 4px)
   +copyright-font
 .footer__copyright-reserved
   +copyright-font
