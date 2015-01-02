@@ -3,10 +3,6 @@ body
   width: 100%
   +transition(.2s)
   background-color: $base-color
-  content: tint($accent-color, reverse(percentage((luma-value($base-color, $accent-color))*0.01)))
-  content: luma-value($base-color, $accent-color)
-  content: luma-value($base-color)
-  content: luma-value($accent-color)
   &.is-slided
     +rem('margin-left', 300px)
     overflow: hidden
