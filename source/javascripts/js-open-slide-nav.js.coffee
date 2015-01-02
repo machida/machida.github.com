@@ -4,7 +4,7 @@ $ ->
     $('.js-slide-nav').toggleClass('is-slided')
 
   $(".highlight").click ->
-    leftSpase = $('.wrapper').width() - $('.article__body').width()
+    leftSpase = $('.container').width() - $('.article__body').width()
     if $(this).hasClass("is-expanded")
       $(this).css('margin-left', '0')
       $(this).removeClass "is-expanded"
