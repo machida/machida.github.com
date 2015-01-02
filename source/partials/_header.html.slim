@@ -1,5 +1,5 @@
 header.header
-  .wrapper.header__wrapper
+  .container.header__container
     h1.header__site-title
       = link_to "/", data: {text: "#{data.site.title}"}, class: ("header__site-title-link #{lang_class(data.site.title)} #{text_size(data.site.title)} #{glitch}") do
         = data.site.title
