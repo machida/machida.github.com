@@ -1,0 +1,16 @@
+nav.previous-next-nav
+  ul.previous-next-nav__items
+    li.previous-next-nav__item.is-previous
+      - prev_article = current_article.previous_article
+      - if prev_article
+        = link_to prev_article.url, rel: "prev", title: "Previous article: #{prev_article.title}", class: "previous-next-nav__link" do
+          i.fa.fa-angle-left.previous-next-nav__icon.is-previous
+          span.hidden-xs= prev_article.title
+        span.previous-next-nav__label.is-en.hidden-sm PREV
+    li.previous-next-nav__item.is-next
+      - next_article = current_article.next_article
+      - if next_article
+        = link_to next_article.url, rel: "next", title: "Next article: #{next_article.title}", class: "previous-next-nav__link" do
+          span.hidden-xs= next_article.title
+          i.fa.fa-angle-right.previous-next-nav__icon.is-next
+        span.previous-next-nav__label.is-en.hidden-sm NEXT
