@@ -28,6 +28,8 @@
 # proxy "/this-page-has-no-template.html", "/template-file.html", :locals => {
 #  :which_fake_page => "Rendering a fake page with a local variable" }
 
+activate :i18n
+
 ###
 # Helpers
 ###
@@ -82,9 +84,7 @@ end
 # end
 
 set :css_dir, 'stylesheets'
-
 set :js_dir, 'javascripts'
-
 set :images_dir, 'images'
 
 
@@ -108,6 +108,18 @@ configure :build do
 end
 
 helpers do
+  def image_url(source)
+    image_path(source)
+  end
+
+  def home?
+    current_page.url == 'index.html' or current_page.url == '/'
+  end
+
+  def article?
+    current_article
+  end
+
   def articles?
     current_article.nil?
   end
@@ -140,6 +152,14 @@ helpers do
     end
   end
 
+  def is_current_home?
+    case home?
+    when true
+      return 'is-current'
+    end
+    false
+  end
+
   def is_current_page?(url)
     case current_page.path == url
     when true
@@ -170,4 +190,27 @@ helpers do
     end
   end
 
+  def meta_title
+    unless current_article.nil?
+      current_article.title + ' - ' + data.site.title
+    else
+      data.site.title
+    end
+  end
+
+  def meta_description
+    if article? && current_article.data.description
+      truncate(strip_tags(current_article.data.description), :length => 120).gsub(/[\r\n]/,'')
+    elsif article?
+      truncate(strip_tags(current_article.body), :length => 120).gsub(/[\r\n]/,'')
+    elsif page? && current_page.data.description
+      truncate(strip_tags(current_page.data.description), :length => 120).gsub(/[\r\n]/,'')
+    elsif home?
+      data.site.home_meta_descritpion
+    elsif articles? && current_page.data.description
+      truncate(strip_tags(current_page.data.description), :length => 120).gsub(/[\r\n]/,'')
+    elsif articles?
+      "articles"
+    end
+  end
 end

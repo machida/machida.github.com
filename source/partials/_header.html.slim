@@ -10,7 +10,7 @@ header.header
       i.fa.fa-times.js-open-slide-nav.visible-xs-block.header__global-nav-close-icon
       ul.header__global-nav-items
         li.header__global-nav-item
-          = link_to "/", class: ("header__global-nav-link #{is_current_page?('index.html')}") do
+          = link_to "/", class: ("header__global-nav-link #{is_current_home?}") do
             i.fa.fa-home.fa-lg
         li.header__global-nav-item
           = link_to "About", "/pages/about.html", class: ("header__global-nav-link #{is_current_page?('pages/about.html')} #{lang_class('About')}")

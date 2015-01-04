@@ -18,7 +18,7 @@ $spacer: "\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d
   +text-block(32px 1.4, bold)
   +bold-ja
   +screen-xs
-    +text-block(20px 1.3 16px, bold)
+    +text-block(24px 1.3 16px, bold)
     +rem('padding-bottom', 6px)
     +border(bottom, 1px solid $text-color)
   &:after
@@ -32,6 +32,11 @@ $spacer: "\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d
   color: $fix-text-color
   &:hover
     color: $article-link-color
+.article__sub
+  +rem('max-width', 176px)
+  +screen-xs
+    +relative
+    max-width: 100%
 .article__created-at
   display: block
   +text-block(14px 1 32px, $fix-text-color center 9px)
@@ -41,9 +46,12 @@ $spacer: "\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d
   +box-sizing(border-box)
   +date-font
   +screen-xs
-    +inline-block(bottom)
-    +text-block(12px 1 20px)
+    +absolute(left 0, top 0)
+    +text-block(12px 1 0)
     +rem('padding', 5px 8px)
+.article__tags
+  +screen-xs
+    +rem('padding-top', 36px)
 .article__tags-item
   display: block
   +screen-xs
@@ -63,7 +71,7 @@ $spacer: "\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d
   &:hover
     color: $article-link-color
   +screen-xs
-    +text-block(14px 1.6)
+    +text-block(12px 1.6)
   &:before
     +fa
     content: "\f02b"

@@ -1,11 +1,14 @@
 url: http://
 title: Nolla
 description: Simple middleman blog theme.
-author: FJORD LLC.
-author_url: http://fjord.jp
-twitter_id: machida
-facebook_id: teppeimachida
-linkedin_url: http://www.linkedin.com/pub/teppei-machida/2b/797/7a
-github_url: https://github.com/machida/nolla
+author: Oulu Project
+author_url: http://xxxxx.com
+author_email: xxxxx@gmail.com
+twitter_id: xxxxx
+facebook_id: xxxxx
+linkedin_url: http://www.linkedin.com/pub/xxxxx/2b/797/7a
+github_url: https://github.com/xxxxx
+ga_tracking_id: UA-00000000-1
 disqus: false
 glitch: false
+home_meta_descritpion: about site.
