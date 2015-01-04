@@ -23,6 +23,9 @@ gem "middleman-syntax"
 gem "redcarpet"
 gem 'middleman-deploy'
 
+# For feed.xml.builder
+gem "builder", "~> 3.0"
+
 # Use oulu
 #gem 'middleman-oulu', path: '../middleman-oulu'
 gem 'middleman-oulu'

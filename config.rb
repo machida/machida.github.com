@@ -63,6 +63,8 @@ activate :blog do |blog|
   blog.page_link = "page/:num"
 end
 
+page "/feed.xml", layout: false
+
 Slim::Engine.set_default_options :pretty => true
 
 Slim::Engine.set_default_options :shortcut => {

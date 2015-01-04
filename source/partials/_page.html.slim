@@ -1,0 +1,9 @@
+article.article.is-page
+  .container.article__container
+    .row
+      .col-sm-8.col-xs-12.col-sm-offset-2
+        header.page__header
+          h1.page__title class="#{lang_class(page.data.title)}"
+            = page.data.title
+        div class=(nav_page? ? 'nav-page__body':'article__body')
+          = yield
