@@ -2,7 +2,7 @@
   .row
     .col-sm-3.col-xs-12
       .article__sub
-        p.article__created-at class="#{lang_class(article.date.strftime('%Y/%m/%d'))}"
+        time.article__created-at class="#{lang_class(article.date.strftime('%Y/%m/%d'))}"
           = article.date.strftime('%Y/%m/%d')
         - if not articles?
           = partial('partials/sns_buttons')
@@ -19,3 +19,6 @@
           = article.body
         - if data.site.disqus && article?
           = partial('partials/disqus')
+    - if article?
+      .col-sm-12.col-xs-12
+        = partial('partials/previous_next_nav')

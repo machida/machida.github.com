@@ -1,0 +1,37 @@
+.previous-next-nav
+  clear: both
+  +rem('padding-bottom', 40px)
+  +clearfix
+  +screen-xs
+    +rem('margin-top', -16px)
+    +rem('padding-bottom', 24px)
+.previous-next-nav__item
+  max-width: 50%
+  &.is-previous
+    float: left
+    text-align: left
+  &.is-next
+    float: right
+    text-align: right
+.previous-next-nav__link
+  +block-link
+  +text-block(14px 24px, $text-color)
+  +screen-xs
+    background-color: $text-color
+    +text-block(16px 32px, $base-color center)
+    +size(36px)
+.previous-next-nav__icon
+  +rem('font-size', 14px)
+  &.is-previous
+    +rem('margin-right', 8px)
+    +screen-xs
+      margin: 0
+  &.is-next
+    +rem('margin-left', 8px)
+    +screen-xs
+      margin: 0
+.previous-next-nav__label
+  display: block
+  +text-block(12px 1, center)
+  +rem('width', 36px)
+  +rem('padding-top', 4px)
