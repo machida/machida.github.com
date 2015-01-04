@@ -65,16 +65,16 @@ body
       left: 0
 .header .header__open-global-nav-icon
   display: block
-  +text-block(32px 50px)
+  +text-block(26px 50px, center)
   +size(50px)
-  +absolute(left 20px, top 0px)
+  +absolute(left 0, top 0px)
   color: $header-text-color
   &:hover
     color: $header-accent-color
 .header .header__global-nav-close-icon
   display: block
   +absolute(right 0, top 0, 2)
-  +text-block(32px 50px, $base-color center)
+  +text-block(26px 50px, $base-color center)
   +size(50px)
   +hover-color($base-color, $text-color, $accent-color, $main-color)
 .header__global-nav-items
