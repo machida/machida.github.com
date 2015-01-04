@@ -21,6 +21,7 @@ gem "slim"
 gem 'middleman-minify-html'
 gem "middleman-syntax"
 gem "redcarpet"
+gem 'middleman-deploy'
 
 # Use oulu
 #gem 'middleman-oulu', path: '../middleman-oulu'
