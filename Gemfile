@@ -22,6 +22,9 @@ gem 'middleman-minify-html'
 gem "middleman-syntax"
 gem "redcarpet"
 
+# For feed.xml.builder
+gem "builder", "~> 3.0"
+
 # Use oulu
 #gem 'middleman-oulu', path: '../middleman-oulu'
 gem 'middleman-oulu'
