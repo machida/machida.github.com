@@ -17,5 +17,5 @@
           h1.article__title= link_to article.title, article, class: "article__title-link #{lang_class(article.title)}"
         .article__body
           = article.body
-        - if data.site.disqus
+        - if data.site.disqus && article?
           = partial('partials/disqus')
