@@ -1,13 +1,13 @@
-url: http://localhost:4567/
+url: http://machida.github.io/
 title: machida
 description: マチダのブログ
 author: machida
-author_url: https://twitter.com/machida
+author_url: http://machida.github.io/
 twitter_id: machida
 facebook_id: teppeimachida
 linkedin_url: false
 github_url: https://github.com/machida
 ga_tracking_id: UA-58200227-1
-disqus: false
+disqus: machidagithubio
 glitch: false
 home_meta_descritpion: about site.
