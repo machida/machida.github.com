@@ -110,6 +110,12 @@ $spacer: "\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d
     &:hover
       img
         +box-shadow(text-color-select($base-color, $main-color, $accent-color) 0 0 0 2px)
+  code
+    +inline-block(false)
+    +padding(horizontal, 6px)
+    +border(all, 1px dotted $fix-text-color)
+    +rem('line-height', 24px)
+    background-color: tint($fix-text-color, 92%)
   hr
     &:before
       +fa
@@ -161,18 +167,22 @@ $spacer: "\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d
     +screen-xs
       +text-block(16px 1.3, bold)
   >ul
-    +list(8px 32px, fa '\f111', 6px 14px 10px)
+    +list(8px 32px, fa '\f111', 6px 12px 10px)
+    +screen-xs
+      +list(4px 24px, fa '\f111', 4px 12px 8px)
   >ol
     +list(8px 32px, decimal outside)
+    +screen-xs
+      +list(4px 24px)
   li
-    +text-block(16px 1.8 .8em)
+    +text-block(16px 1.7 6px)
     +relative
     +screen-xs
-      +text-block(14px 1.8 .8em)
+      +text-block(14px 1.7 4px)
     &:last-child
       margin-bottom: 0
     >ul
-      +list(8px 32px, fa '\f10c', 6px 14px 10px)
+      +list(8px 32px, fa '\f10c', 6px 12px 10px)
     >ul,
     >ol
       +rem('margin-top', 12px)
