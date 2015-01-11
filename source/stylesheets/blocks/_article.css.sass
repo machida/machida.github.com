@@ -113,9 +113,9 @@ $spacer: "\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d
   code
     +inline-block(false)
     +padding(horizontal, 6px)
-    +border(all, 1px dotted $fix-text-color)
     +rem('line-height', 24px)
     background-color: tint($fix-text-color, 92%)
+    +rem('font-size', 14px)
   hr
     &:before
       +fa
@@ -175,10 +175,10 @@ $spacer: "\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d
     +screen-xs
       +list(4px 24px)
   li
-    +text-block(16px 1.7 6px)
+    +text-block(16px 1.7 8px)
     +relative
     +screen-xs
-      +text-block(14px 1.7 4px)
+      +text-block(14px 1.7 6px)
     &:last-child
       margin-bottom: 0
     >ul
