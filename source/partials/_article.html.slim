@@ -1,12 +1,12 @@
-.container.article__container
+.container.article__container(itemprop="blogPost" itemscope="" itemtype="http://schema.org/BlogPosting")
   .row
     .col-sm-3.col-xs-12
       .article__sub
-        time.article__created-at class="#{lang_class(article.date.strftime('%Y/%m/%d'))}"
+        time.article__created-at(itemprop="dateCreated" class="#{lang_class(article.date.strftime('%Y/%m/%d'))}")
           = article.date.strftime('%Y/%m/%d')
         - if not articles?
           = partial('partials/sns_buttons')
-        .article__tags
+        .article__tags(itemprop="keywords")
           ul.article__tags-items
             - article.tags.each do |tag|
               li.article__tags-item
@@ -14,8 +14,9 @@
     .col-sm-9.col-xs-12
       .article__content
         .article__header
-          h1.article__title= link_to article.title, article, class: "article__title-link #{lang_class(article.title)}"
-        .article__body
+          h1.article__title(itemprop="headline")
+            = link_to article.title, article, class: "article__title-link #{lang_class(article.title)}"
+        .article__body(itemprop="articleBody")
           = article.body
         - if data.site.disqus && article?
           = partial('partials/disqus')
