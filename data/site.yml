@@ -8,7 +8,7 @@ twitter_id: xxxxx
 facebook_id: xxxxx
 linkedin_url: http://www.linkedin.com/pub/xxxxx/2b/797/7a
 github_url: https://github.com/xxxxx
-ga_tracking_id: UA-00000000-1
+ga_tracking_id: false
 disqus: false
 glitch: false
 home_meta_descritpion: about site.

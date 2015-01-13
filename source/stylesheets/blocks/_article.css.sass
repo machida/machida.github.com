@@ -84,6 +84,7 @@ $spacer: "\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d
   >*:last-child
     margin-bottom: 0
   .highlight
+    +source-code-pro
     @if luma-dark($base-color)
       +rgba-background-inline(rgba(255 ,255 ,255 , (100 - luma($base-color))/400))
     @else
@@ -111,6 +112,7 @@ $spacer: "\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d
       img
         +box-shadow(text-color-select($base-color, $main-color, $accent-color) 0 0 0 2px)
   code
+    +source-code-pro
     +inline-block(false)
     +padding(horizontal, 6px)
     +rem('line-height', 24px)
