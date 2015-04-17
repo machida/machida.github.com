@@ -42,8 +42,8 @@ $spacer: "\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d
   +text-block(14px 1 32px, $fix-text-color center 9px)
   +padding(vertical, 5px)
   +border(all, 2px solid $fix-text-color)
-  +nowrap
-  +box-sizing(border-box)
+  white-space: nowrap
+  box-sizing: border-box
   +date-font
   +screen-xs
     +absolute(left 0, top 0)
@@ -63,7 +63,7 @@ $spacer: "\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d
   +text-block(16px 1.6)
   +rem('margin-bottom', 12px)
   text-decoration: none
-  +nowrap
+  white-space: nowrap
   +tag-font
   color: $fix-text-color
   +screen-xs
@@ -84,6 +84,7 @@ $spacer: "\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d
   >*:last-child
     margin-bottom: 0
   .highlight
+    +source-code-pro
     @if luma-dark($base-color)
       +rgba-background-inline(rgba(255 ,255 ,255 , (100 - luma($base-color))/400))
     @else
@@ -111,11 +112,12 @@ $spacer: "\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d
       img
         +box-shadow(text-color-select($base-color, $main-color, $accent-color) 0 0 0 2px)
   code
+    +source-code-pro
     +inline-block(false)
     +padding(horizontal, 6px)
-    +border(all, 1px dotted $fix-text-color)
     +rem('line-height', 24px)
     background-color: tint($fix-text-color, 92%)
+    +rem('font-size', 14px)
   hr
     &:before
       +fa
@@ -175,10 +177,10 @@ $spacer: "\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d\002d
     +screen-xs
       +list(4px 24px)
   li
-    +text-block(16px 1.7 6px)
+    +text-block(16px 1.7 8px)
     +relative
     +screen-xs
-      +text-block(14px 1.7 4px)
+      +text-block(14px 1.7 6px)
     &:last-child
       margin-bottom: 0
     >ul
