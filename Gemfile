@@ -11,7 +11,7 @@ gem 'middleman-minify-html'
 gem "middleman-syntax"
 gem 'middleman-deploy', git: 'https://github.com/middleman-contrib/middleman-deploy', branch: 'master'
 gem "middleman-livereload"
-#gem 'sassc'
+gem 'sassc'
 gem "builder", "~> 3.0"
-gem 'oulu', "~> 0.11.2"
-#gem 'oulu', path: '../oulu'
+#gem 'oulu', "~> 0.11.2"
+gem 'oulu', path: '../oulu'

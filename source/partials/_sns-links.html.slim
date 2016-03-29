@@ -16,3 +16,7 @@ nav.sns-links
       li.sns-links__item
         = link_to data.site.github_url, class: "sns-links__link" do
           i.fa.fa-github-alt
+    - if data.site.amazon_wishlist_url
+      li.sns-links__item
+        = link_to data.site.amazon_wishlist_url, class: "sns-links__link" do
+          i.fa.fa-amazon
