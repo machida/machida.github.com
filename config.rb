@@ -214,15 +214,6 @@ page "/feed.xml", layout: false
 #   end
 # end
 
-# Build-specific configuration
-configure :build do
-  # Minify CSS on build
-  activate :minify_css
-
-  # Minify Javascript on build
-  activate :minify_javascript
-end
-
 activate :deploy do |deploy|
   deploy.deploy_method = :git
   deploy.branch = 'master'
