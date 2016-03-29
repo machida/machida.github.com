@@ -9,7 +9,7 @@ gem "builder", "~> 3.0"
 gem "slim"
 gem 'middleman-minify-html'
 gem "middleman-syntax"
-gem 'middleman-deploy'
+gem 'middleman-deploy', git: 'https://github.com/middleman-contrib/middleman-deploy', branch: 'master' 
 gem "middleman-livereload"
 gem 'sassc'
 gem "builder", "~> 3.0"
