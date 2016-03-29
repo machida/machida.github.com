@@ -1,3 +1,5 @@
-//= require_tree .
-//= require oulu
-//= require js-open-slide-nav
+var $ = require('jquery');
+var $ = require('openSlideNav.js');
+var $ = require('expandHighlight.js');
+var $ = require('footerFixed.js');
+var $ = require('targetBlank.js');

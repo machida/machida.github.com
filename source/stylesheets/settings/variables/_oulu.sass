@@ -1,0 +1,113 @@
+/////////////////
+// positions
+////////////////
+
+$all: top right bottom left !default
+$horizontal: left right !default
+$vertical: top bottom !default
+
+/////////////////
+// layout
+////////////////
+
+$container-class-name: container !default
+$container-max-width: 960px
+$container-horizontal-padding: 20px
+
+/////////////////
+// selection
+////////////////
+
+$selection-bg-color: black !default
+$selection-tx-color: white !default
+$input-selection-bg-color: lightgray !default
+$input-selection-tx-color: black !default
+
+/////////////////
+// text-color
+////////////////
+
+$bright-text-color: white !default
+$dark-text-color: black !default
+
+/////////////////
+// grids
+////////////////
+
+// 横一列の最大カラム数
+$grid-columns: 12 !default
+// カラムとカラムの間のスペース
+$grid-gutter-width: 32px
+
+/////////////////
+// font
+////////////////
+
+$fw: 400 !default
+
+$basic-sans-serif: "NotoSansCJKjp", Roboto, "Droid Sans", "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "游ゴシック", YuGothic, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", Helvetica, Arial, Verdana, sans-serif !default
+$basic-legacy-ie-sans-serif: "ＭＳ Ｐゴシック", "Lucida Sans Unicode", sans-serif !default
+$basic-bold-sans-serif: "ヒラギノ角ゴ StdN", "Hiragino Kaku Gothic StdN", "メイリオ", Meiryo, Roboto, "Droid Sans", "游ゴシック", YuGothic, "ヒラギノ角ゴ ProN", "Hiragino Kaku Gothic ProN", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", Helvetica, Arial, Verdana, sans-serif, "ＭＳ Ｐゴシック", Helvetica, Arial, Verdana, sans-serif !default
+$basic-serif: "Times New Roman", "ヒラギノ明朝 ProN", "Hiragino Mincho ProN", "HGS明朝E", "游明朝", YuMincho,'ＭＳ Ｐ明朝','MS PMincho', serif !default
+$basic-mono: Osaka-mono, "MS Gothic", monospace !default
+$basic-maru: "Varela Round", "Lucida Grande", "Lucida Sans Unicode", Roboto, "Droid Sans", "HG丸ゴシックM-PRO", "Hiragino Maru Gothic Pro", "游ゴシック", YuGothic, "メイリオ", Meiryo, "ＭＳ Ｐゴシック", Helvetica, Arial, Verdana, sans-serif !default
+$basic-fonts: $basic-sans-serif !default
+$basic-legacy-ie-fonts: $basic-legacy-ie-sans-serif !default
+
+/////////////////
+// UI colors
+////////////////
+
+$default: #ffffff !default
+$primary: #337AB7 !default
+$success: #5CB85C !default
+$info: #5BC0DE !default
+$warning: #F0AD4E !default
+$danger: #D9534F !default
+
+$text-color: #333333 !default
+$default-text-reversal: #ffffff !default
+
+/////////////////
+// SNS colors
+////////////////
+
+$twitter: #55acee
+$facebook: #3b5998
+$hatena: #008FDE
+$pocket: #f23c53
+
+$default-text: black !default
+$reversal-text: white !default
+
+// luma contrast color
+$luma-contrast-bright-color: $default-text !global
+$luma-contrast-dark-color: $reversal-text !global
+
+/////////////////
+// sanitize.css
+////////////////
+
+$root-background-color: #FFFFFF !default
+$root-box-sizing: border-box !default
+$root-color: #000000 !default
+$root-cursor: default !default
+$root-font-family: $basic-sans-serif !default
+$root-font-size: 100% !default
+$root-line-height: 1.5 !default
+$root-text-rendering: optimizeLegibility !default
+
+$anchor-text-decoration: none !default
+$background-repeat: no-repeat !default
+$form-element-background-color: transparent !default
+$form-element-min-height: if(unitless($root-line-height), #{$root-line-height}em, if(unit($root-line-height) != "%", $root-line-height, null)) !default
+$media-element-vertical-align: middle !default
+$monospace-font-family: $basic-mono !default
+$nav-list-style: none !default
+$selection-background-color: #B3D4FC !default
+$selection-color: #ffffff !default
+$selection-text-shadow: none !default
+$small-font-size: 75% !default
+$table-border-collapse: collapse !default
+$table-border-spacing: 0 !default
+$textarea-resize: vertical !default

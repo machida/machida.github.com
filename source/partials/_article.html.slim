@@ -4,7 +4,7 @@
       .article__sub
         time.article__created-at(itemprop="dateCreated" class="#{lang_class(article.date.strftime('%Y/%m/%d'))}")
           = article.date.strftime('%Y/%m/%d')
-        - if not articles?
+        - unless articles?
           = partial('partials/sns_buttons')
         .article__tags(itemprop="keywords")
           ul.article__tags-items
@@ -16,7 +16,7 @@
         .article__header
           h1.article__title(itemprop="headline")
             = link_to article.title, article, class: "article__title-link #{lang_class(article.title)}"
-        .article__body(itemprop="articleBody")
+        .article__body.post-body.js-target-blank(itemprop="articleBody")
           = article.body
         - if data.site.disqus && article?
           = partial('partials/disqus')

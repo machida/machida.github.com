@@ -4,8 +4,8 @@ head
   meta name="viewport" content="width=device-width,initial-scale=1"
   = stylesheet_link_tag "application"
   = stylesheet_link_tag "highlight"
-  = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"
-  = javascript_include_tag  "//code.jquery.com/jquery-latest.min.js"
+  = stylesheet_link_tag "//fonts.googleapis.com/earlyaccess/notosansjapanese.css"
+  = stylesheet_link_tag "//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
   = javascript_include_tag  "application"
   title= meta_title
   meta content="#{meta_description}" name="description"
@@ -13,11 +13,8 @@ head
   meta content="article" property="og:type"
   meta content="#{meta_title}" property="og:title"
   meta content="#{meta_description}" property="og:description"
-  meta content="#{current_page.url}" property="og:url"
-  - if article? && current_article.data.og_image
-    meta content="#{image_url(current_article.data.og_image)}" property="og:image"
-  - else
-    meta content="#{image_url('og-image.png')}" property="og:image"
+  meta content="#{data.site.url}#{current_page.url}" property="og:url"
+  meta content="#{meta_image}" property="og:image"
   meta content="#{data.site.title} #{data.site.description}" property="og:site_name"
   - if data.site.author_email
     meta content="#{data.site.author_email}" property="og:email"
@@ -27,9 +24,6 @@ head
   meta content="@#{data.site.twitter_id}" name="twitter:creator"
   meta content="#{meta_title}" name="twitter:title"
   meta content="#{meta_description}" name="twitter:description"
-  - if article? && current_article.data.og_image
-    meta content="#{image_url(current_article.data.og_image)}" name="twitter:image:src"
-  - else
-    meta content="#{image_url('og-image.png')}" property="og:image"
+  meta content="#{meta_image}" name="twitter:image:src"
   // feed
   = feed_tag :atom, "/feed.xml", title: "Atom Feed"

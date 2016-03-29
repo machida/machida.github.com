@@ -4,38 +4,17 @@
 // colors palette
 ///////////////////////
 
-// https://github.com/mrmrs/colors/blob/master/sass/_variables.scss
-
-// Cool
-$aqua: #7FDBFF
-$blue: #0074D9
-$navy: #001F3F
-$teal: #39CCCC
-$green: #2ECC40
-$olive: #3D9970
-$lime: #01FF70
-
-// Warm
-$yellow: #FFDC00
-$orange: #FF851B
-$red: #FF4136
-$fuchsia: #F012BE
-$purple: #B10DC9
-$maroon: #85144B
-
-// Gray Scale
-$white: #fff
-$silver: #ddd
-$gray: #aaa
-$black: #111
+$white: #ffffff
+$black: #3d3d3d
+$blue: #0e9ee9
 
 ///////////////////////
 // setup colors
 ///////////////////////
 
-$base-color: $silver
-$main-color: $teal
-$accent-color: $yellow
+$base-color: $white
+$main-color: $white
+$accent-color: $blue
 $text-color: $black
 $header-image: false
 
@@ -51,13 +30,13 @@ $header-image: false
   &.is-ja
     +sans-serif
   &.is-en
-    +tauri(700)
+    +lato(700)
 
 =main-bold-font
   &.is-ja
     +bold-ja
   &.is-en
-    +tauri(bold)
+    +lato(900)
 
 =site-title-font
   +main-bold-font
@@ -66,7 +45,7 @@ $header-image: false
 =global-nav-font
   +main-font
 =page-title-font
-  +main-font
+  +main-bold-font
 =tag-font
   +main-font
 =date-font

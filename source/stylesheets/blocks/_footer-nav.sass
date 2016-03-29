@@ -1,23 +1,22 @@
 .footer-nav
-  +rem('margin-bottom', 24px)
+  margin-bottom: 1.5rem
   clear: both
   &:last-child
     margin-bottom: 0
-  +screen-xs
-    +rem('margin-bottom', 8px)
+  +media-breakpoint-down(xs)
+    margin-bottom: .5rem
 .footer-nav__title
-  +text-block(16px 1.6 8px)
+  +text-block(1rem 1.6 .5rem)
   +footer-nav-title-font
 .footer-nav__title-icon
-  +rem('margin-right', 8px)
+  margin-right: .5rem
 .footer-nav__item
-  +rem('margin-bottom', 16px)
+  margin-bottom: 1rem
 .tags-nav__item
   +inline-block(bottom)
 .tags-nav__link
-  float: left
-  +rem('margin-right', 24px)
-  +text-block(14px 1.6, $fix-text-color)
+  margin-right: 1.5rem
+  +text-block(.9rem 1.6, $fix-text-color)
   +hover-link
   +tag-font
   color: $fix-text-color
@@ -25,6 +24,6 @@
     color: $article-link-color
   &.is-current
     +text-color-select($base-color, $main-color, $accent-color)
-  +screen-xs
-    +rem('margin-bottom', 8px)
+  +media-breakpoint-down(xs)
+    margin-bottom: .5rem
     display: block

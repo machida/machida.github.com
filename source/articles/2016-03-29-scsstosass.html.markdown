@@ -1,0 +1,42 @@
+---
+title: ブラウザ上で「scss記法」を「sass記法」に変換する方法
+tags: sass
+---
+
+普段、僕はsass記法を使っています。「sass記法 vs. scss記法」の話は「Vim vs. Emacs」みたいなややこしいことになりそうなので、ここであまり多くを書かないですが、僕はsass記法派というより、なんでscss記法があるのかわからない派、ってくらい圧倒的sass記法派。だって、sass記法の方が短く書けるし、見やすいし、誰が書いてもスペースやインデントは同じになるし....。デメリットは、ネット上にあるSassのtipsなんかの例のほとんどがscss記法で書かれてるので、それを毎回脳内でsass記法に変換しなくてはいけない、という手間があるくらい？
+
+さてさて、「sass記法 vs. scss記法」の話はどうでもいいんだけど、普段sass記法を使ってるので、`.scss` を `.sass` に変換したくなるときがたまにあります。例えば、scss記法で書かれたCSSフレームワークのコードを読むときに、sass記法の方が慣れてるから読みやすいので変換したりなど。
+
+Sassが使える環境でコマンドラインを使って、
+
+```shell
+$ sass-convert {変換したいファイル "例:test.scss"} {変換して生成するファイル名 "例:test.sass"}
+```
+
+とやれば、`.scss` を `.sass` に変換することができるんだけど、ブラウザで見てるGithub上のコードなんかをいちいちローカルに持ってきて変換するのは面倒。
+
+ブラウザからそれを出来るWebサービスはないかなぁ、と探していたところ、ブラウザ上でSassをCSSに変換できるサービス、[SassMeister](http://www.sassmeister.com/)で出来ました。SassMeister を使って `.scss` を `.sass` に変換するってのはイレギュラーな使い方なのですが、便利なのでその手順を紹介。
+
+## 手順 1
+
+![image](https://lh3.googleusercontent.com/GCfPkKN26PMSD86YdxLHB758m8GyN1ktfkdiFW6PXTpGglIYNL-btyI04g2yiTdf4W4k942qLJ4UAPsEZ7nk97imPXY79PtNv1UjiSCjbWdt0r0HIl68CCiCfCALwPHp7vqJPfpCdUfQ_cRmV3ocvWk6ZRUDiQWLOFajPqXWbunF1FDUuUJrc03ug082FKzwInPpR6nLOtJ2K9UCP_mwVKCweccSx6TstgZZPo964bTMVSItt_e3i21v2NDY8k-Ib1DLYgRFQZY06OUSLLCoMRFL22flfWMd-hHoQO8LQpsggXU30M4v8zZafKm38e1zbgBHGcjo8A6G3C4_tgHa--nWPDLKRnLy_WTAyY-P1M0-0b3Ya0zB90AlUtCfnKiD-38nF5vXtj4MTa3i3CraO_YUHMtCdazRKn2hBcxstp_EEurUFKoxwjnxNipRwPcf3DC1Tc2ZCwvr5EVGC8H0tesca_a-M7hIZgVvdBjukEMeiLUtoMaGNTYGwjH8mwZyUcAVSoaM0fsF7GM3pgB6rgig113yRyX_USVxVh28vJnuk3imLayFXAOEdKGP1TI--a4J=w970-h589-no)
+
+Options > Syntax > **SCSS** を選択。
+
+## 手順 2
+
+![image](https://lh3.googleusercontent.com/D3sNCvtQCw3cE1lGxyBFaIUwVhNFSTNQQAsWQLWuFKDQ0NIdevOuj2NqBKLJZGxXmxrpyq3VoTqQ6yPGihKTyLnav8kRDGhw0OyN-W8Ekgp4OWX8mm2cH-0aje1iHcp4oOzsxg2dwIJn7MJXTvxZksZGFozfbxn5aCxLBuWGWEC5BjdONlFBbsxKf8935kZD0ioBiDgUW6g0-B4VEcaMQus_fGdwtacZSR6tq-jQIxVKvSfZAOlBwjA3dUC9ma6QxOHrW3pH9tncAkecd5AOUIRvE31C1-GMJKCJtHcIokTTb98EV0Wue2Rb2XSuiG5J2sH9UPiVRYrEuVYZgHjtdilaJ4Bi4fifiRM3tVeysSITKEp3QPb1nOTin2hQ3a08f5mcjvujnf0oHQEj0djptDFeWRWwkGDFmfz6ZvAvAAPshhtmu4jmxO_bS-6DPj-fNHJfZEHXBzPUqnaDsmzzn1MVcsvtzX-EWWRJq0FlKubPQyhyVMql4O833PQAfDK6cClOkORgJupIKaHBfB-XJ6aszsHAz1K_4AZKKr8CJcQmJIn1bH8DezCVy-E3DtkXi5NM=w1228-h551-no)
+
+左側に変換したい `.scss` のコードをコピペ。
+
+## 手順 3
+
+![image](https://lh3.googleusercontent.com/Ud4R7yVvytqQe1gbvy82tW6GFoASG61yegUrV-x4eZSbLVeej2UyxvnZWfEJfSlWdDuxQiayyI2CL-1JXoowPBGpLIIbcQtaL173FDQm5kuMlmInjR7w_14hAqI4POOV8YltvivTWJyKT9avmkarDot2CsJwCuTdn-OKX2h_MVP6qrY3eLVqVrHmULMqaRpwGpzYf2Uq4Cuy3_NMV_Kw42xyophpF7lUZ0oIJxF2YvjQw2mB93cYd3FJixhuOHzTa28sb7wdR398j34HYEynIXu_ygc2sbxVc9RGDCPjW9RDr1Jg-mBDP6cHssWqT_ZuQyt_qQywnXVkMS1l1rZ4xQokKq-efljcecSvAIuBD49DULWURTz5FkzDuqW-knB8oY4TCAaEKU9xJ-7NnVLD51GsHKrNjNUMYwhidpSwik89wvkl6geO_Gs3oUXFKp34A1ZJHyNZc2NHi6fQuYuaKLFbvKsLhKFfkvwXjbPHE9LqpkzZTdrVeOL-ooXLgXQ94LTO-62zpWMGVZcvPyciTEG_fhkXP7pUYzy92W2PcNp8cCpFkw-5k50V_zmFcMAGT8AR=w970-h589-no)
+
+Options > Syntax > **SASS** に変更する。
+
+## 完成！
+
+![image](https://lh3.googleusercontent.com/8k-TWPUIn9ItMoM2An3-usYaqpNV0m70zuSvvSn4HBsSYAp0SmYUe5H9zwuCqZvhgGAPOMYgQr--FJALkEDoZ8lgAiLN22bvzAE2WwPUGoD_TSDnadIblKGIB5W8FJGBdx6V8HfKCsEGpvqV8E0G8Qop9L1sxF6MF3suXULVwF6NbcZpUs84x7oUGq3NFYEitOaCseVzxWKS0JGacpCTD2XPxSGBez9ajJUE1fcJ-IFBAX-kHqSa8ElfHFHbuaxSjVvTWWyRcno_Ko5S67kni-gqHs56zqUgy5sbNPzrEk_QzVqRkBCSs2Jr29ralXr-cZPjaBS-d6lhaMWTEOfHSvdRHK5t8Zz1f1Dv3ZRYLjaz5H1WpjiU7Y1QjLM1PEt7hZPbtFLjZCDhqNQTSPP-5Rm6tYv512pBWWze0joQcnEsqk5spvgtvaykSMiHPiYgW8wl9IxQZDHdc4pA06qeR7Su-31NAFoRVV1fXfBNMhPWrL1VTW00mHEXy5o26aBvA92PcnycTB1OH9R3oKyfQhOlKsZ8CIpF1DhXEpx_rtbY30qeWy04X5GB2pRdU8nDeYti=w795-h458-no)
+
+sass記法に変換されました。

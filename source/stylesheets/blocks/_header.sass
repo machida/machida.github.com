@@ -1,0 +1,114 @@
+.header
+  height: 22.5rem
+  background-color: $main-color
+  margin-bottom: 2rem
+  @if $header-image
+    background-color: $main-color
+    background-image: image_url("#{$header-image}")
+    background-repeat: no-repeat
+    background-size: cover
+  +media-breakpoint-down(xs)
+    height: auto
+    margin-bottom: 1rem
+.header__container
+  padding-top: 7.25rem
+  +relative
+  +media-breakpoint-down(xs)
+    padding-top: 3rem
+    @if $base-color == $main-color
+      padding-bottom: 2rem
+    @else
+      padding-bottom: 3rem
+.header__site-title
+  text-align: center
+.header__site-title-link
+  text-decoration: none
+  +site-title-font
+  color: $header-text-color
+  &.is-sm
+    +text-block(4.5rem 1.4)
+  &.is-md
+    +text-block(4rem 1.4)
+  &.is-lg
+    +text-block(3.5rem 1.4)
+  &.is-xl
+    +text-block(2.5rem 1.4)
+  +media-breakpoint-down(xs)
+    &.is-sm
+      +text-block(3rem 1.3)
+    &.is-md
+      +text-block(2.25rem 1.3)
+    &.is-lg
+      +text-block(1.5rem 1.3)
+    &.is-xl
+      +text-block(.8rem 1.3)
+.header__site-copy
+  +text-block(.8rem 1.2, center $header-text-color)
+  +site-copy-font
+  +media-breakpoint-down(xs)
+    +text-block(.625 1.2, center)
+.header__global-nav
+  +position(absolute, left 0, top 0)
+  +media-breakpoint-down(xs)
+    width: 300px
+    background-color: $fix-text-color
+    height: 100%
+    +position(fixed, left -300px, top 0)
+    transition: left .2s
+    &.is-slided
+      left: 0
+.header .header__open-global-nav-icon
+  display: block
+  +text-block(1.125rem 50px, center)
+  +size(50px)
+  +position(absolute, left -.75rem, top 0)
+  color: $header-text-color
+  &:hover
+    color: $header-accent-color
+.header .header__global-nav-close-icon
+  display: block
+  +position(absolute, right 0, top 0, 2)
+  +text-block(1.625rem 50px, $base-color center)
+  +size(50px)
+  +hover-color($base-color, $text-color, $accent-color, $main-color)
+.header__global-nav-items
+  content: reverse(percentage(luma-value($main-color)*0.01)*1.3)
+  +global-nav-border-color($main-color)
+  padding-left: 1.5rem
+  +padding(vertical, 1rem)
+  +media-breakpoint-down(xs)
+    margin-left: 1.25rem
+    height: 100%
+    +global-nav-border-color($fix-text-color)
+
+.header__global-nav-item
+  display: block
+.header__global-nav-link
+  display: block
+  +text-block(.9rem 46px, $header-text-color)
+  text-decoration: none
+  +global-nav-font
+  &:hover
+    color: $header-accent-color
+  &.is-current
+    color: $header-accent-color
+    +position(relative)
+    +media-breakpoint-down(xs)
+      color: $xs-global-nav-accent-color
+    &:after
+      content: ""
+      display: block
+      +size(.5rem)
+      +border-radius(50%)
+      background-color: $header-accent-color
+      +position(absolute, left -29px, top 50%)
+      margin-top: -.25rem
+      +media-breakpoint-down(xs)
+        background-color: $xs-global-nav-accent-color
+  +media-breakpoint-down(xs)
+    +text-block(1.125rem 54px, $xs-global-nav-text-color)
+    &.is-current
+      &:after
+        +size(8px)
+        +position(absolute, left -29px, top 50%)
+        margin-top: -6px

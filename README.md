@@ -1,4 +1,0 @@
-nolla
-=====
-
-middleman blog theme.

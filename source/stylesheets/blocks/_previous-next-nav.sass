@@ -1,10 +1,10 @@
 .previous-next-nav
   clear: both
-  +rem('padding-bottom', 40px)
+  padding-bottom: 2.5rem
   +clearfix
-  +screen-xs
-    +rem('margin-top', -16px)
-    +rem('padding-bottom', 24px)
+  +media-breakpoint-down(xs)
+    margin-top: -1rem
+    padding-bottom: 1.5rem
 .previous-next-nav__item
   max-width: 50%
   &.is-previous
@@ -15,26 +15,26 @@
     text-align: right
 .previous-next-nav__link
   +block-link
-  +text-block(14px 24px, $text-color)
-  +screen-xs
+  +text-block(.9rem 1.5rem, $text-color)
+  +media-breakpoint-down(xs)
     background-color: $text-color
-    +text-block(16px 32px, $base-color center)
+    +text-block(1rem 2rem, $base-color center)
     +size(36px)
 .previous-next-nav__icon
-  +rem('font-size', 14px)
+  font-size: 14px
   &.is-previous
-    +rem('margin-right', 8px)
-    +screen-xs
+    margin-right: .5rem
+    +media-breakpoint-down(xs)
       margin: 0
   &.is-next
-    +rem('margin-left', 8px)
-    +screen-xs
+    margin-left: .5rem
+    +media-breakpoint-down(xs)
       margin: 0
 .previous-next-nav__label
   display: none
-  +text-block(12px 1, center)
-  +rem('width', 36px)
-  +rem('padding-top', 6px)
+  +text-block(.8rem 1, center)
+  width: 2rem
+  padding-top: 6px
   +pagenate-font
-  +screen-xs
+  +media-breakpoint-down(xs)
     display: block

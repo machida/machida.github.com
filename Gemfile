@@ -1,31 +1,17 @@
-# If you have OpenSSL installed, we recommend updating
-# the following line to use "https"
-source 'http://rubygems.org'
-
-gem "middleman", "~>3.3.2"
-
-# Live-reloading plugin
-gem "middleman-livereload", "~> 3.1.0"
-
-# For faster file watcher updates on Windows:
-gem "wdm", "~> 0.1.0", :platforms => [:mswin, :mingw]
-
-# Windows does not come with time zone data
-gem "tzinfo-data", platforms: [:mswin, :mingw]
-
+source 'https://rubygems.org'
+gem 'wdm', '~> 0.1.0', platforms: [:mswin, :mingw]
+gem 'tzinfo-data', platforms: [:mswin, :mingw, :jruby]
+gem "middleman", "~> 4.0.0"
 gem "middleman-blog"
-
-gem "i18n", "0.6.9"
-
+gem 'middleman-autoprefixer'
+gem 'redcarpet', '~> 3.3', '>= 3.3.3'
+gem "builder", "~> 3.0"
 gem "slim"
 gem 'middleman-minify-html'
 gem "middleman-syntax"
-gem "redcarpet"
 gem 'middleman-deploy'
-
-# For feed.xml.builder
+gem "middleman-livereload"
+gem 'sassc'
 gem "builder", "~> 3.0"
-
-# Use oulu
-#gem 'middleman-oulu', path: '../middleman-oulu'
-gem 'middleman-oulu'
+gem 'oulu', "~> 0.11.2"
+#gem 'oulu', path: '../oulu'

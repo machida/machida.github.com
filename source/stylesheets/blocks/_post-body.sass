@@ -1,0 +1,180 @@
+.post-body
+  margin-bottom: 5rem
+  +media-breakpoint-down(xs)
+    margin-bottom: 2.5rem
+  >*:last-child
+    margin-bottom: 0
+  .highlight
+    +source-code-pro
+    @if luma-dark($base-color)
+      background-color: rgba(white, (100 - luma($base-color))/400)
+    @else
+      @if luma-dark($fix-text-color)
+        background-color: $fix-text-color
+      @else
+        @if luma-dark($fix-text-color)
+          background-color: rgba(black, luma($fix-text-color)/20)
+        @else
+          background-color: rgba(black , luma($base-color)/200)
+  p
+    +text-block(1rem 2.15 1.4em)
+    +media-breakpoint-down(xs)
+      +text-block(.9rem 1.8 1.4em)
+  a
+    color: $article-link-color
+    +hover-link-reverse
+    &[target="_blank"]
+      &:after
+        +fa('\f08e')
+        +margin(horizontal, 2px 4px)
+    &:hover
+      img
+        box-shadow: color-select($base-color, $main-color, $accent-color) 0 0 0 2px
+  code
+    +source-code-pro
+    display: inline-block
+    +padding(horizontal, 4px)
+    +text-block(.9rem 1.125rem)
+    letter-spacing: 0
+    background-color: tint($fix-text-color, 92%)
+  hr
+    &:before
+      +fa('\f069\f069\f069')
+      display: block
+      +text-block(.9rem 14px, center)
+      +margin(vertical, 36px)
+      +letter-spacing-center(4px)
+      +media-breakpoint-down(xs)
+        +text-block(.8rem 14px, center)
+        +margin(vertical, 1.5rem)
+  img
+    max-width: 100%
+    display: block
+    +margin(horizontal, auto)
+    border: .4rem solid rgba($fix-text-color, .1)
+  blockquote
+    padding: 1rem 1.375rem 1rem 3rem
+    +margin(vertical, 1.5rem 2.5rem)
+    +position(relative)
+    border: 2px solid $fix-text-color
+    font-style: italic
+    +media-breakpoint-down(xs)
+      padding: .75rem 1rem .75rem 2rem
+      +margin(vertical, 38px 30px)
+    p + &
+      +margin(vertical, 3rem 2.5rem)
+    p
+      line-height: 1.8
+    >ul
+    >ol
+    >*:last-child
+      margin-bottom: 0 !important
+    &:before
+      +fa('\f10d')
+      +position(absolute, left 0, top 0)
+      +size(1.75rem)
+      +text-block(1rem 1.75rem, center $base-color)
+      background-color: $fix-text-color
+      +media-breakpoint-down(xs)
+        +text-block(.8rem 1.375rem, center)
+        +size(1.375rem)
+  h2
+    +text-block(1.625rem 1.4 1.25rem, bold)
+    +bold-ja
+    letter-spacing: .5px
+    padding-bottom: .5rem
+    border-bottom: 2px solid $fix-text-color
+    +media-breakpoint-down(xs)
+      +text-block(1.25rem 1.3, bold)
+  * + h2
+    margin-top: 1.5rem
+  h3
+    +text-block(1.375rem 1.4 1.125rem, bold)
+    +bold-ja
+    +media-breakpoint-down(xs)
+      +text-block(1.125rem 1.3, bold)
+  h4
+    +text-block(1.125rem 1.3 1.25rem, bold)
+    +bold-ja
+    +media-breakpoint-down(xs)
+      +text-block(1rem 1.3, bold)
+  >ul
+    list-style-type: disc
+  >ol
+    list-style-type: decimal
+  li
+    ul,
+    ol
+      margin-top: 1em
+    >ul
+      list-style-type: circle
+      >li
+        >ul
+          list-style-type: square
+  ul,
+  ol
+    list-style-position: outside
+    margin-left: 1.75em
+    margin-bottom: 1.4em
+  li
+    +text-block(1rem 1.9 .5em)
+    &:last-child
+      margin-bottom: 0
+  p + ul,
+  p + ol
+    margin-top: 1rem
+
+  dl
+    margin-bottom: 2rem
+    +border(vertical, 1px solid $fix-text-color)
+    +padding(vertical, 2rem)
+    @extend .row
+    +margin(horizontal, 0)
+    +media-breakpoint-down(xs)
+      +padding(vertical, 1.5rem)
+      +border(vertical, 1px dotted $fix-text-color)
+  dt
+    +text-block(.9rem 1.6 .5rem, bold)
+    margin-top: 1rem
+    padding-right: .5rem
+    @extend .col-sm-4
+    @extend .col-xs-12
+    +media-breakpoint-down(xs)
+      padding: 0
+    &:first-child
+      margin-top: 0
+      &+dd
+        margin-top: 0
+    &+dd
+      margin-top: 1rem
+      +media-breakpoint-down(xs)
+        margin-top: 0
+  dd
+    +text-block(.9rem 1.6 1em)
+    @extend .col-sm-8
+    @extend .col-xs-12
+    +media-breakpoint-down(xs)
+      +text-block(.8rem 1.6 1em)
+      padding: 0
+    &+dd
+      @extend .offset-sm-4
+    &:last-child
+      margin-bottom: 0
+  label
+    +text-block(1rem 1.5 .2rem, bold block)
+  textarea,
+  input[type="text"]
+    display: block
+    border: 1px solid $fix-text-color
+    width: 100%
+    margin-bottom: 1.5rem
+    padding: .5rem
+    +text-block(1rem 1.8 $fix-text-color)
+  input[type="submit"]
+    border: 1px solid $fix-text-color
+    padding: .5rem 1rem
+    margin-bottom: 1.5rem
+  .amazlet-box:last-child
+    margin-top: 4rem
+    .amazlet-image img
+      width: 10rem

@@ -1,0 +1,32 @@
+.footer
+  clear: both
+  +clearfix
+  +media-breakpoint-down(xs)
+    margin-top: 1.5rem
+.footer__container
+  border-top: 1px solid $text-color
+  padding-top: 2rem
+  margin-bottom: 64px
+  +position(relative)
+  +media-breakpoint-down(xs)
+    padding-top: 2rem
+    margin-bottom: 2rem
+.footer__about-author
+  +text-block(.9rem 1, right)
+  +media-breakpoint-down(xs)
+    padding-top: 1.5rem
+    text-align: center
+.footer__copyright
+  display: block
+  +copyright-font
+  margin-bottom: 1.5rem
+  font-size: 14px
+.footer__copyright-copy
+  +copyright-font
+.footer__copyright-year
+  +copyright-font
+.footer__copyright-author
+  +margin(horizontal, 4px)
+  +copyright-font
+.footer__copyright-reserved
+  +copyright-font

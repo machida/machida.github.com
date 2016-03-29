@@ -1,0 +1,30 @@
+doctype html
+html
+  head
+    meta charset="utf-8"
+    meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"
+    meta name="viewport" content="width=device-width,initial-scale=1"
+    = stylesheet_link_tag "application"
+    = javascript_include_tag  "application"
+    title= meta_title
+    meta content="#{meta_description}" name="description"
+    // og
+    meta content="article" property="og:type"
+    meta content="#{meta_title}" property="og:title"
+    meta content="#{meta_description}" property="og:description"
+    meta content="#{data.site.url}#{current_page.url}" property="og:url"
+    meta content="#{meta_image}" property="og:image"
+    meta content="#{data.site.title} #{data.site.description}" property="og:site_name"
+    - if data.site.author_email
+      meta content="#{data.site.author_email}" property="og:email"
+    // twitter
+    meta content="summary_large_image" name="twitter:card"
+    meta content="@#{data.site.twitter_id}" name="twitter:site"
+    meta content="@#{data.site.twitter_id}" name="twitter:creator"
+    meta content="#{meta_title}" name="twitter:title"
+    meta content="#{meta_description}" name="twitter:description"
+    meta content="#{meta_image}" name="twitter:image:src"
+  body(itemscope="" itemtype="http://schema.org/Blog")
+    .body
+      = yield
+    = partial 'partials/google_analytics'
