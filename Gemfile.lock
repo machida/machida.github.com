@@ -18,13 +18,6 @@ GIT
       middleman-core (>= 4.0.0)
       tzinfo (>= 0.3.0)
 
-PATH
-  remote: ../oulu
-  specs:
-    oulu (0.11.3)
-      rake
-      thor (~> 0.19)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -127,6 +120,9 @@ GEM
     net-ssh (3.1.1)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    oulu (0.11.4)
+      rake
+      thor (~> 0.19)
     padrino-helpers (0.13.1)
       i18n (~> 0.6, >= 0.6.7)
       padrino-support (= 0.13.1)
@@ -146,10 +142,6 @@ GEM
     redcarpet (3.3.4)
     rouge (1.10.1)
     sass (3.4.22)
-    sassc (1.8.5)
-      bundler
-      ffi (~> 1.9.6)
-      sass (>= 3.3.0)
     slim (3.0.6)
       temple (~> 0.7.3)
       tilt (>= 1.3.3, < 2.1)
@@ -177,9 +169,8 @@ DEPENDENCIES
   middleman-livereload
   middleman-minify-html
   middleman-syntax
-  oulu!
+  oulu (~> 0.11.4)
   redcarpet (~> 3.3, >= 3.3.3)
-  sassc
   slim
   tzinfo-data
   wdm (~> 0.1.0)

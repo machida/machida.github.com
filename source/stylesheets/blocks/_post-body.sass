@@ -52,6 +52,8 @@
     display: block
     +margin(horizontal, auto)
     border: .4rem solid rgba($fix-text-color, .1)
+    +media-breakpoint-down(xs)
+      max-width: 100% !important
     &.is-xs
       max-width: 10rem
     &.is-sm

@@ -48,11 +48,10 @@
   +media-breakpoint-down(xs)
     +text-block(.625 1.2, center)
 .header__global-nav
-  +position(absolute, left 0, top 0)
+  +position(absolute, left 0, top 0, 1)
   +media-breakpoint-down(xs)
-    width: 300px
+    +size(300px 100%)
     background-color: $fix-text-color
-    height: 100%
     +position(fixed, left -300px, top 0)
     transition: left .2s
     &.is-slided
@@ -102,7 +101,6 @@
       +border-radius(50%)
       background-color: $header-accent-color
       +position(absolute, left -29px, top 50%)
-      margin-top: -.25rem
       +media-breakpoint-down(xs)
         background-color: $xs-global-nav-accent-color
   +media-breakpoint-down(xs)
