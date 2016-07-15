@@ -5,18 +5,18 @@
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
     <link href="/stylesheets/application.css" rel="stylesheet" /><link href="/stylesheets/highlight.css" rel="stylesheet" /><link href="//fonts.googleapis.com/earlyaccess/notosansjapanese.css" rel="stylesheet" /><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" /><script src="/javascripts/application.js"></script><title>machida</title>
-    <meta content="about site." name="description" />
+    <meta content="articles" name="description" />
     <meta content="article" property="og:type" />
     <meta content="machida" property="og:title" />
-    <meta content="about site." property="og:description" />
-    <meta content="http://machida.github.io//" property="og:url" />
+    <meta content="articles" property="og:description" />
+    <meta content="http://machida.github.io//articles/tags/github/" property="og:url" />
     <meta content="shared/og-image.png" property="og:image" />
     <meta content="machida マチダのブログ" property="og:site_name" />
     <meta content="summary_large_image" name="twitter:card" />
     <meta content="@machida" name="twitter:site" />
     <meta content="@machida" name="twitter:creator" />
     <meta content="machida" name="twitter:title" />
-    <meta content="about site." name="twitter:description" />
+    <meta content="articles" name="twitter:description" />
     <meta content="shared/og-image.png" name="twitter:image:src" />
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
   </head>
@@ -34,14 +34,14 @@
           <nav class="header__global-nav js-slide-nav">
             <i class="fa fa-times js-open-slide-nav is-visible-xs-down-block header__global-nav-close-icon"></i>
             <ul class="header__global-nav-items">
-              <li class="header__global-nav-item"><a class="header__global-nav-link is-current" href="/">
+              <li class="header__global-nav-item"><a class="header__global-nav-link false" href="/">
                             <i class="fa fa-home fa-lg"></i></a>
               </li>
               <li class="header__global-nav-item">
                 <a class="header__global-nav-link false is-en" href="/pages/about/">About</a>
               </li>
               <li class="header__global-nav-item">
-                <a class="header__global-nav-link false   is-en" href="/pages/tags/">Tags</a>
+                <a class="header__global-nav-link false is-current  is-en" href="/pages/tags/">Tags</a>
               </li>
               <li class="header__global-nav-item">
                 <a class="header__global-nav-link false  is-en" href="/pages/archives/">Archives</a>
@@ -51,148 +51,23 @@
         </div>
       </div>
     </header>
-    <div class="body">
-<article class="article"><div class="container article__container" itemprop="blogPost" itemscope="" itemtype="http://schema.org/BlogPosting">
-  <div class="row">
-    <div class="col-sm-3 col-xs-12">
-      <div class="article__sub">
-        <time class="article__created-at is-en" itemprop="dateCreated">2016/07/14</time>
-        <div class="article__tags" itemprop="keywords">
-          <ul class="article__tags-items">
-            <li class="article__tags-item">
-              <a class="article__tags-link is-en" href="/articles/tags/middleman/">middleman</a>
-            </li>
-            <li class="article__tags-item">
-              <a class="article__tags-link is-en" href="/articles/tags/google-photo/">Google Photo</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-9 col-xs-12">
-      <div class="article__content">
-        <div class="article__header">
-          <h1 class="article__title" itemprop="headline"><a class="article__title-link is-ja" href="/articles/20160714-middleman-googlephoto/">
-                        Google Photo の画像が middleman で作ったブログのローカルで表示されなくなった</a>
-          </h1>
-        </div>
-        <div class="article__body post-body js-target-blank" itemprop="articleBody"><p>このブログは middleman で作ってて、画像は Google Photo に保存した画像を貼ってます。いつものようにローカルで middleman を立ちあげてブログを書いてたら、突然画像が表示されなくなってしまいました。それの回避方法の説明です（Mac のみ）。</p>
-
-<p>Google Photo を表示させる方法を一言で言うと、<code>http://localhost:4567</code> でローカルの middleman をブラウザで表示しているのを <code>http://192.168.xx.xx:4567</code> とプライベート IP アドレスで接続すれば表示されるようになります。</p>
-
-<p>これだけなのですが、せっかくなのでプライベート IP アドレスの調べかたも書いておきます。</p>
-
-<h2>プライベート IP アドレスを調べる方法</h2>
-
-<p>ターミナルに <code>ifconfig</code> と打つと、</p>
-<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>$ ifconfig
-</pre></td></tr></tbody></table>
-</div>
-
-<p>ドバーっと文字が出てきます。その中から「192.168.xx.xx」という数字を探します。MacBookPro 、MacBookAir を使っていて wifi でネットにつないでる場合は <code>en0:</code> のブロックにその数字があります（機種によって異なります）。</p>
-
-<p><img alt="IPを検索" src="https://lh3.googleusercontent.com/0doG95IUCWjhZknnp_RMUsAHVvngHdJN5DQqsKaXytiWNQntuy6w5mJ5Pa_22TJtOR7TTMaWeoKS5q41QGkl6Ef1z1ofxfbtD4MtOeHKCZOOknbhy1838KedhdQuyqJSkod8-uE1C8E8PSsq4-mIiBEGWangx8EttVd_va6TMcAirK_xmdlhr4ItTwFMdyZJJdo8REjKiPRjxr3fgYVm4axI7gW2AwLOn5h5-lOhL9s6X10o8zPUQFI1qMuKZ30QgxPZK8G5c9Z6JHcmxj0pskFksvwvxQa0Atnu3lq49-qH2Z1-6vikNPrk9tFMCwS_I25Ck3a2UqcE2eQYExJpX7PSce4aWkp9WaZs3Mfd0AsK4yyOOPfnnI9sz46Lq-6oGi5OnkkXAl2RADQtuJOUOEeH42trUFeL30-wK6f_a14qFA8rUkGYb-9E2PleuxCEsr0nLnvl_RSUrDWjCUhA1GSubauay3IWzejenhM51hb-lfr3CLVbnDobPxRzHYPH2sz8dz5YRSx-fhc2kdJSCDbzS5ND6jcJwrl3BAvVLb4TQwFmg7-uQvlx8zadkxeirzXUF6jG7WOCzOQyeqgrJrga9_BP2k2s=w1924-h1210-no" /></p>
-
-<p><code>http://192.168.xx.xx:4567</code> にブラウザからアクセスすると、Google Photo の画像が表示されてるはず。</p>
-
-<p>ちなみに、先ほども書きましたが、MacBookPro 、MacBookAir を使っていて wifi でネットにつないでる場合は <code>en0:</code> のブロックにその数字があるので、</p>
-<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>$ ipconfig getifaddr en0
-</pre></td></tr></tbody></table>
-</div>
-
-<p>と、ターミナルに打つと、</p>
-<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>192.168.xx.xx
-</pre></td></tr></tbody></table>
-</div>
-
-<p>こんな風にプライベート IPアドレスが表示されます。</p>
-
-<h2>システム環境設定から IP アドレスを調べる方法</h2>
-
-<p>プライベート IP アドレスを調べるもう一つの方法として、ターミナルを使わないで Mac のシステム環境設定から調べる方法があります。</p>
-
-<h3>システム環境設定</h3>
-
-<p>システム環境設定を開いて、「ネットワーク」を選択。</p>
-
-<p><img alt="システム環境設定 image md" src="https://lh3.googleusercontent.com/IeRXM-7VegVjhc1ONkRB7zaZSZmb0dm0fshDrf9yvY_-uu1yneFt5G68-M-fUy5AWe1EF6SDjibK-lHZDhhW2kaPH0dTVarsUL56VXBkbNWmtX0oUhe9qlt9F5hV3Bxbv4lSCvxTTwHak6WEvlbnkaQtQ7Hr_0KxmO5EC-UdPCPTZS1Q9_ldbu4JQT8_DwIQyfwSfnHUHCJDOgo6fJDF3apUNINFM6fV0Mb6_nRa_7k0IUxTVifaZGkZFCqjBJdz4nTaIgqi1Oxp9gaQUlBdqbCky9_STKjgM5-73rBZXTaLDoCNGSGjZC6ORfkZRFgBtsEy8xC5pyEin9hj2WMpvWS5aQVTREVMqO2ytTmVeRK7rV5nm6_0FuyF9So-opNC9FGloyAAq9rhc6fBR7ziTQz9namTa9culaJKLx9zNUUSXZMXbhLBFr2D90QuR2zVaqwJca5mEp6cXudZSs0IVtErv8_O_S9GrRSEzKhoRIJz0RLBTuVx2WMjdo66_a-DPXdB2wJzelmGJ78nqgh6ppdp59UPxuyPssWaXSRtwVkDLJWNaD10nF9EF3KouoKeZ0gR7Ip0oR3WU8vG-JBS4V3vT3Z2petW=w1336-h1196-no" /></p>
-
-<h3>ネットワーク</h3>
-
-<p>「ネットワーク」の画面の中の、今ネットをつないでいる接続方法のところを見ると（キャプチャでは wifi）、そこにプライベート IP アドレスが表示されています。</p>
-
-<p><img alt="ネットワーク IP" src="https://lh3.googleusercontent.com/2OvANq2Yo3fCWoFjxyDWh62WT0HgoWY7ZBiWMUO_kzbtz_z-4hUiRbwuCD_OqLztJcH3Ehfb-kgrqFqJJfqP_3NtbiBXACBRy3H370IZUDkus3LxmMT830LIhoV4bJE665ms0JMReetXidZJNyAbVuvfGs0n3JNhakaT309Ym-J2o1Zy5S29sgmVyxfpWi3jesRAfxAB_nlwmigt7UApc9mQoDeqS-EwXcQgeIcp87M5bBq9XKlItpvYOifp-Co0k_m9DaR_ypu95JkKbTGDlgjoVl0InEZebOB9zENbVLIvo6_EAIURLJ14IVH3-vLNeb0olviwGgZ4oUlijgSGtXECMKfrrZlS_sAA-dHXcjPIqDJFK4ZIUF-TxTVkD7BrP-AW6Sj8nvWFrrOTSuBRWHBEOMSKN298MlPohPMcBD9HVFwRWPVKgvO-yULCDksxWKeLPDBMuSOcWd4--PCBOzfQUTsE0EEEmfpXBufdv11rQDsIyyv9ie-oeuf6h9ZSeCHce7nbx8Lz4z4scNR5MTffczbbdys7yKCdJ73yIbmzMmMJnEiafz4bfz9atof81SkWOmGtYResATKDt1hyEBuP70qjqpAk=w1336-h1126-no" /></p>
-
-<h2>ちなみに</h2>
-
-<p><code>http://192.168.xx.xx:4567</code> の URL で同じ LAN 内のスマホや、VirtualBox や VMware や Parallels Desktop で入れてる Mac の中の Windows からもアクセスできますので、middleman を実機確認するときにも便利。</p>
-
-<div class="amazlet-box" style="margin-bottom:0px;"><div class="amazlet-image" style="float:left;margin:0px 12px 1px 0px;"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4872333055/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51l92yOfebL._SL160_.jpg" alt="電波系" style="border: none;" /></a></div><div class="amazlet-info" style="line-height:120%; margin-bottom: 10px"><div class="amazlet-name" style="margin-bottom:10px;line-height:120%"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4872333055/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank">電波系</a><div class="amazlet-powered-date" style="font-size:80%;margin-top:5px;line-height:120%">posted with <a href="http://www.amazlet.com/" title="amazlet" target="_blank">amazlet</a> at 16.07.15</div></div><div class="amazlet-detail">根本 敬 村崎 百郎 <br />太田出版 <br />売り上げランキング: 132,434<br /></div><div class="amazlet-sub-info" style="float: left;"><div class="amazlet-link" style="margin-top: 5px"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4872333055/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank">Amazon.co.jpで詳細を見る</a></div></div></div><div class="amazlet-footer" style="clear: left"></div></div>
-
-        </div>
-      </div>
-    </div>
+    <div class="body"><header class="page-header">
+  <div class="container page-header__container">
+    <h1 class="page-header__title is-en">
+      Articles tagged "<span class="page-header__title-tag-name is-en">GitHub</span>"
+    </h1>
+  </div>
+</header>
+<div class="pagenate">
+  <div class="pagenate__container container">
+    <ul class="pagenate__items">
+      <li class="pagenate__item is-en is-hidden"><span>Prev</span>
+      </li>
+      <li class="pagenate__item is-en is-hidden"><span>Next</span>
+      </li>
+    </ul>
   </div>
 </div>
-</article>
-<article class="article"><div class="container article__container" itemprop="blogPost" itemscope="" itemtype="http://schema.org/BlogPosting">
-  <div class="row">
-    <div class="col-sm-3 col-xs-12">
-      <div class="article__sub">
-        <time class="article__created-at is-en" itemprop="dateCreated">2016/07/12</time>
-        <div class="article__tags" itemprop="keywords">
-          <ul class="article__tags-items">
-            <li class="article__tags-item">
-              <a class="article__tags-link is-en" href="/articles/tags/rails/">rails</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-9 col-xs-12">
-      <div class="article__content">
-        <div class="article__header">
-          <h1 class="article__title" itemprop="headline"><a class="article__title-link is-ja" href="/articles/20160712-anchorlink/">
-                        Rails でアンカー付きのリンクの書き方</a>
-          </h1>
-        </div>
-        <div class="article__body post-body js-target-blank" itemprop="articleBody"><p>Rails の <code>link_to</code> を使って、<code>&lt;a href=&quot;/page#content&quot;&gt;&lt;/a&gt;</code> のように、ページの途中にリンクを貼る方法をよく忘れるのでメモ。</p>
-
-<h2>書きかた</h2>
-
-<h3>erb</h3>
-<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="o">&lt;</span><span class="sx">%= link_to 'aタグのアンカーテキスト', リンク先のページのpath(anchor: 'リンク先のページの途中のID'), class: 'aタグのクラス名' %&gt;
-</span></pre></td></tr></tbody></table>
-</div>
-
-<h4>例</h4>
-<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="o">&lt;</span><span class="sx">%= link_to '通知設定変更', edit_user_registration_path(anchor: 'notifications'), class: 'edit-notification__link' %&gt;
-</span></pre></td></tr></tbody></table>
-</div>
-
-<h3>haml、slim</h3>
-<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="o">=</span> <span class="n">link_to</span> <span class="s1">'aタグのアンカーテキスト'</span><span class="p">,</span> <span class="err">リンク先のページの</span><span class="n">path</span><span class="p">(</span><span class="ss">anchor: </span><span class="s1">'リンク先のページの途中のID'</span><span class="p">),</span> <span class="ss">class: </span><span class="s1">'aタグのクラス名'</span>
-</pre></td></tr></tbody></table>
-</div>
-
-<h4>例</h4>
-<div class="highlight haml"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="p">=</span> <span class="n">link_to</span> <span class="s1">'通知設定変更'</span><span class="p">,</span> <span class="n">edit_user_registration_path</span><span class="p">(</span><span class="ss">anchor: </span><span class="s1">'notifications'</span><span class="p">),</span> <span class="ss">class: </span><span class="s1">'edit-notification__link'</span>
-</pre></td></tr></tbody></table>
-</div>
-
-<h2>出力されるHTML</h2>
-<div class="highlight html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/users/edit#notifications"</span> <span class="na">class=</span><span class="s">"edit-notification__link"</span><span class="nt">&gt;</span>通知設定変更<span class="nt">&lt;/a&gt;</span>
-</pre></td></tr></tbody></table>
-</div>
-
-<div class="amazlet-box" style="margin-bottom:0px;"><div class="amazlet-image" style="float:left;margin:0px 12px 1px 0px;"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B00R3VL3WI/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51BfSkGma-L._SL160_.jpg" alt="人生解毒波止場 (幻冬舎文庫)" style="border: none;" /></a></div><div class="amazlet-info" style="line-height:120%; margin-bottom: 10px"><div class="amazlet-name" style="margin-bottom:10px;line-height:120%"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B00R3VL3WI/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank">人生解毒波止場 (幻冬舎文庫)</a><div class="amazlet-powered-date" style="font-size:80%;margin-top:5px;line-height:120%">posted with <a href="http://www.amazlet.com/" title="amazlet" target="_blank">amazlet</a> at 16.07.15</div></div><div class="amazlet-detail">幻冬舎 (2014-12-26)<br />売り上げランキング: 16,664<br /></div><div class="amazlet-sub-info" style="float: left;"><div class="amazlet-link" style="margin-top: 5px"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B00R3VL3WI/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank">Amazon.co.jpで詳細を見る</a></div></div></div><div class="amazlet-footer" style="clear: left"></div></div>
-
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</article>
 <article class="article"><div class="container article__container" itemprop="blogPost" itemscope="" itemtype="http://schema.org/BlogPosting">
   <div class="row">
     <div class="col-sm-3 col-xs-12">
@@ -401,73 +276,16 @@
   </div>
 </div>
 </article>
-<article class="article"><div class="container article__container" itemprop="blogPost" itemscope="" itemtype="http://schema.org/BlogPosting">
-  <div class="row">
-    <div class="col-sm-3 col-xs-12">
-      <div class="article__sub">
-        <time class="article__created-at is-en" itemprop="dateCreated">2016/03/29</time>
-        <div class="article__tags" itemprop="keywords">
-          <ul class="article__tags-items">
-            <li class="article__tags-item">
-              <a class="article__tags-link is-en" href="/articles/tags/sass/">sass</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-sm-9 col-xs-12">
-      <div class="article__content">
-        <div class="article__header">
-          <h1 class="article__title" itemprop="headline"><a class="article__title-link is-ja" href="/articles/20160329-scsstosass/">
-                        ブラウザ上で<span class="is-brackets_ja is-start">「</span>scss 記法<span class="is-brackets_ja is-end">」</span>を<span class="is-brackets_ja is-start">「</span>sass 記法<span class="is-brackets_ja is-end">」</span>に変換する方法</a>
-          </h1>
-        </div>
-        <div class="article__body post-body js-target-blank" itemprop="articleBody"><p>普段、僕は sass 記法を使っています。「sass 記法 vs. scss 記法」の話は「Vim vs. Emacs」みたいなややこしいことになりそうなので、ここであまり多くを書かないですが、僕は sass 記法派というより、なんで scss 記法があるのかわからない派、ってくらい圧倒的 sass 記法派。だって、sass 記法の方が短く書けるし、見やすいし、誰が書いてもスペースやインデントは同じになるし&hellip;。デメリットは、ネット上にある Sass の tips なんかの例のほとんどが scss 記法で書かれてるので、それを毎回脳内で sass 記法に変換しなくてはいけない、という手間があるくらい？</p>
-
-<p>さてさて、「sass 記法 vs. scss 記法」の話はどうでもいいんだけど、普段 sass 記法を使ってるので、 <code>.scss</code> を <code>.sass</code> に変換したくなるときがたまにあります。例えば、scss 記法で書かれたCSSフレームワークのコードを読むときに、sass記法の方が慣れてるから読みやすいので変換したりなど。</p>
-
-<p>Sassが使える環境でコマンドラインを使って、</p>
-<div class="highlight shell"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="gp">$ </span>sass-convert <span class="o">{</span>変換したいファイル <span class="s2">"例:test.scss"</span><span class="o">}</span> <span class="o">{</span>変換して生成するファイル名 <span class="s2">"例:test.sass"</span><span class="o">}</span>
-</pre></td></tr></tbody></table>
-</div>
-
-<p>とやれば、 <code>.scss</code> を <code>.sass</code> に変換することができるんだけど、ブラウザで見てる GitHub 上のコードなんかをいちいちローカルに持ってきて変換するのは面倒。</p>
-
-<p>ブラウザからそれを出来るWebサービスはないかなぁ、と探していたところ、ブラウザ上でSassをCSSに変換できるサービス、<a href="http://www.sassmeister.com/">SassMeister</a> で出来ました。 SassMeister を使って <code>.scss</code> を <code>.sass</code> に変換するってのはイレギュラーな使い方なのですが、便利なのでその手順を紹介。</p>
-
-<h2>手順 1</h2>
-
-<p>Options &gt; Syntax &gt; <strong>SCSS</strong> を選択。</p>
-
-<p><img alt="Options &gt; Syntax &gt; **SCSS** を選択。 image md" src="https://lh3.googleusercontent.com/GCfPkKN26PMSD86YdxLHB758m8GyN1ktfkdiFW6PXTpGglIYNL-btyI04g2yiTdf4W4k942qLJ4UAPsEZ7nk97imPXY79PtNv1UjiSCjbWdt0r0HIl68CCiCfCALwPHp7vqJPfpCdUfQ_cRmV3ocvWk6ZRUDiQWLOFajPqXWbunF1FDUuUJrc03ug082FKzwInPpR6nLOtJ2K9UCP_mwVKCweccSx6TstgZZPo964bTMVSItt_e3i21v2NDY8k-Ib1DLYgRFQZY06OUSLLCoMRFL22flfWMd-hHoQO8LQpsggXU30M4v8zZafKm38e1zbgBHGcjo8A6G3C4_tgHa--nWPDLKRnLy_WTAyY-P1M0-0b3Ya0zB90AlUtCfnKiD-38nF5vXtj4MTa3i3CraO_YUHMtCdazRKn2hBcxstp_EEurUFKoxwjnxNipRwPcf3DC1Tc2ZCwvr5EVGC8H0tesca_a-M7hIZgVvdBjukEMeiLUtoMaGNTYGwjH8mwZyUcAVSoaM0fsF7GM3pgB6rgig113yRyX_USVxVh28vJnuk3imLayFXAOEdKGP1TI--a4J=w970-h589-no" /></p>
-
-<h2>手順 2</h2>
-
-<p>左側に変換したい <code>.scss</code> のコードをコピペ。</p>
-
-<p><img alt="左側に変換したい `.scss` のコードをコピペ。 image md" src="https://lh3.googleusercontent.com/D3sNCvtQCw3cE1lGxyBFaIUwVhNFSTNQQAsWQLWuFKDQ0NIdevOuj2NqBKLJZGxXmxrpyq3VoTqQ6yPGihKTyLnav8kRDGhw0OyN-W8Ekgp4OWX8mm2cH-0aje1iHcp4oOzsxg2dwIJn7MJXTvxZksZGFozfbxn5aCxLBuWGWEC5BjdONlFBbsxKf8935kZD0ioBiDgUW6g0-B4VEcaMQus_fGdwtacZSR6tq-jQIxVKvSfZAOlBwjA3dUC9ma6QxOHrW3pH9tncAkecd5AOUIRvE31C1-GMJKCJtHcIokTTb98EV0Wue2Rb2XSuiG5J2sH9UPiVRYrEuVYZgHjtdilaJ4Bi4fifiRM3tVeysSITKEp3QPb1nOTin2hQ3a08f5mcjvujnf0oHQEj0djptDFeWRWwkGDFmfz6ZvAvAAPshhtmu4jmxO_bS-6DPj-fNHJfZEHXBzPUqnaDsmzzn1MVcsvtzX-EWWRJq0FlKubPQyhyVMql4O833PQAfDK6cClOkORgJupIKaHBfB-XJ6aszsHAz1K_4AZKKr8CJcQmJIn1bH8DezCVy-E3DtkXi5NM=w1228-h551-no" /></p>
-
-<h2>手順 3</h2>
-
-<p>Options &gt; Syntax &gt; <strong>SASS</strong> に変更する。</p>
-
-<p><img alt="Options &gt; Syntax &gt; **SASS** に変更する。 image md" src="https://lh3.googleusercontent.com/Ud4R7yVvytqQe1gbvy82tW6GFoASG61yegUrV-x4eZSbLVeej2UyxvnZWfEJfSlWdDuxQiayyI2CL-1JXoowPBGpLIIbcQtaL173FDQm5kuMlmInjR7w_14hAqI4POOV8YltvivTWJyKT9avmkarDot2CsJwCuTdn-OKX2h_MVP6qrY3eLVqVrHmULMqaRpwGpzYf2Uq4Cuy3_NMV_Kw42xyophpF7lUZ0oIJxF2YvjQw2mB93cYd3FJixhuOHzTa28sb7wdR398j34HYEynIXu_ygc2sbxVc9RGDCPjW9RDr1Jg-mBDP6cHssWqT_ZuQyt_qQywnXVkMS1l1rZ4xQokKq-efljcecSvAIuBD49DULWURTz5FkzDuqW-knB8oY4TCAaEKU9xJ-7NnVLD51GsHKrNjNUMYwhidpSwik89wvkl6geO_Gs3oUXFKp34A1ZJHyNZc2NHi6fQuYuaKLFbvKsLhKFfkvwXjbPHE9LqpkzZTdrVeOL-ooXLgXQ94LTO-62zpWMGVZcvPyciTEG_fhkXP7pUYzy92W2PcNp8cCpFkw-5k50V_zmFcMAGT8AR=w970-h589-no" /></p>
-
-<h2>変換完了！</h2>
-
-<p>sass記法に変換されました。<br>
-逆に <code>.sass</code> から <code>.sass</code> に変換もできます。</p>
-
-<p><img alt="sass記法に変換されました。 image md" src="https://lh3.googleusercontent.com/8k-TWPUIn9ItMoM2An3-usYaqpNV0m70zuSvvSn4HBsSYAp0SmYUe5H9zwuCqZvhgGAPOMYgQr--FJALkEDoZ8lgAiLN22bvzAE2WwPUGoD_TSDnadIblKGIB5W8FJGBdx6V8HfKCsEGpvqV8E0G8Qop9L1sxF6MF3suXULVwF6NbcZpUs84x7oUGq3NFYEitOaCseVzxWKS0JGacpCTD2XPxSGBez9ajJUE1fcJ-IFBAX-kHqSa8ElfHFHbuaxSjVvTWWyRcno_Ko5S67kni-gqHs56zqUgy5sbNPzrEk_QzVqRkBCSs2Jr29ralXr-cZPjaBS-d6lhaMWTEOfHSvdRHK5t8Zz1f1Dv3ZRYLjaz5H1WpjiU7Y1QjLM1PEt7hZPbtFLjZCDhqNQTSPP-5Rm6tYv512pBWWze0joQcnEsqk5spvgtvaykSMiHPiYgW8wl9IxQZDHdc4pA06qeR7Su-31NAFoRVV1fXfBNMhPWrL1VTW00mHEXy5o26aBvA92PcnycTB1OH9R3oKyfQhOlKsZ8CIpF1DhXEpx_rtbY30qeWy04X5GB2pRdU8nDeYti=w795-h458-no" /></p>
-
-<div class="amazlet-box" style="margin-bottom:0px;"><div class="amazlet-image" style="float:left;margin:0px 12px 1px 0px;"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4584181519/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51ep0rd8R9L._SL160_.jpg" alt="因果鉄道の旅―根本敬の人間紀行 (ワニの本)" style="border: none;" /></a></div><div class="amazlet-info" style="line-height:120%; margin-bottom: 10px"><div class="amazlet-name" style="margin-bottom:10px;line-height:120%"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4584181519/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank">因果鉄道の旅―根本敬の人間紀行 (ワニの本)</a><div class="amazlet-powered-date" style="font-size:80%;margin-top:5px;line-height:120%">posted with <a href="http://www.amazlet.com/" title="amazlet" target="_blank">amazlet</a> at 16.07.15</div></div><div class="amazlet-detail">根本 敬 <br />ベストセラーズ <br />売り上げランキング: 102,374<br /></div><div class="amazlet-sub-info" style="float: left;"><div class="amazlet-link" style="margin-top: 5px"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4584181519/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank">Amazon.co.jpで詳細を見る</a></div></div></div><div class="amazlet-footer" style="clear: left"></div></div>
-
-        </div>
-      </div>
-    </div>
+<div class="pagenate">
+  <div class="pagenate__container container">
+    <ul class="pagenate__items">
+      <li class="pagenate__item is-en is-hidden"><span>Prev</span>
+      </li>
+      <li class="pagenate__item is-en is-hidden"><span>Next</span>
+      </li>
+    </ul>
   </div>
 </div>
-</article>
     </div>
     <footer class="footer" id="footer">
       <div class="container">

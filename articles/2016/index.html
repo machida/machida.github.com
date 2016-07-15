@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
     <meta content="width=device-width,initial-scale=1" name="viewport" />
-    <link href="/stylesheets/application.css" rel="stylesheet" /><link href="/stylesheets/highlight.css" rel="stylesheet" /><link href="//fonts.googleapis.com/earlyaccess/notosansjapanese.css" rel="stylesheet" /><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" /><script src="/javascripts/application.js"></script><title>machida</title>
+    <link href="/stylesheets/application.css" rel="stylesheet" /><link href="/stylesheets/highlight.css" rel="stylesheet" /><link href="//fonts.googleapis.com/earlyaccess/notosansjapanese.css" rel="stylesheet" /><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" /><script src="/javascripts/application.js"></script><title>machida</title>
     <meta content="aaa" name="description" />
     <meta content="article" property="og:type" />
     <meta content="machida" property="og:title" />
@@ -20,7 +20,7 @@
     <meta content="shared/og-image.png" name="twitter:image:src" />
     <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
   </head>
-  <body itemscope="" itemtype="http://schema.org/Blog">
+  
     <header class="header">
       <div class="container">
         <div class="header__container">
@@ -72,6 +72,349 @@
   <div class="row">
     <div class="col-sm-3 col-xs-12">
       <div class="article__sub">
+        <time class="article__created-at is-en" itemprop="dateCreated">2016/07/14</time>
+        <div class="article__tags" itemprop="keywords">
+          <ul class="article__tags-items">
+            <li class="article__tags-item">
+              <a class="article__tags-link is-en" href="/articles/tags/middleman/">middleman</a>
+            </li>
+            <li class="article__tags-item">
+              <a class="article__tags-link is-en" href="/articles/tags/google-photo/">Google Photo</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-9 col-xs-12">
+      <div class="article__content">
+        <div class="article__header">
+          <h1 class="article__title" itemprop="headline"><a class="article__title-link is-ja" href="/articles/20160714-middleman-googlephoto/">
+                        Google Photo の画像が middleman で作ったブログのローカルで表示されなくなった</a>
+          </h1>
+        </div>
+        <div class="article__body post-body js-target-blank" itemprop="articleBody"><p>このブログは middleman で作ってて、画像は Google Photo に保存した画像を貼ってます。いつものようにローカルで middleman を立ちあげてブログを書いてたら、突然画像が表示されなくなってしまいました。それの回避方法の説明です（Mac のみ）。</p>
+
+<p>Google Photo を表示させる方法を一言で言うと、<code>http://localhost:4567</code> でローカルの middleman をブラウザで表示しているのを <code>http://192.168.xx.xx:4567</code> とプライベート IP アドレスで接続すれば表示されるようになります。</p>
+
+<p>これだけなのですが、せっかくなのでプライベート IP アドレスの調べかたも書いておきます。</p>
+
+<h2>プライベート IP アドレスを調べる方法</h2>
+
+<p>ターミナルに <code>ifconfig</code> と打つと、</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>$ ifconfig
+</pre></td></tr></tbody></table>
+</div>
+
+<p>ドバーっと文字が出てきます。その中から「192.168.xx.xx」という数字を探します。MacBookPro 、MacBookAir を使っていて wifi でネットにつないでる場合は <code>en0:</code> のブロックにその数字があります（機種によって異なります）。</p>
+
+<p><img alt="IPを検索" src="https://lh3.googleusercontent.com/0doG95IUCWjhZknnp_RMUsAHVvngHdJN5DQqsKaXytiWNQntuy6w5mJ5Pa_22TJtOR7TTMaWeoKS5q41QGkl6Ef1z1ofxfbtD4MtOeHKCZOOknbhy1838KedhdQuyqJSkod8-uE1C8E8PSsq4-mIiBEGWangx8EttVd_va6TMcAirK_xmdlhr4ItTwFMdyZJJdo8REjKiPRjxr3fgYVm4axI7gW2AwLOn5h5-lOhL9s6X10o8zPUQFI1qMuKZ30QgxPZK8G5c9Z6JHcmxj0pskFksvwvxQa0Atnu3lq49-qH2Z1-6vikNPrk9tFMCwS_I25Ck3a2UqcE2eQYExJpX7PSce4aWkp9WaZs3Mfd0AsK4yyOOPfnnI9sz46Lq-6oGi5OnkkXAl2RADQtuJOUOEeH42trUFeL30-wK6f_a14qFA8rUkGYb-9E2PleuxCEsr0nLnvl_RSUrDWjCUhA1GSubauay3IWzejenhM51hb-lfr3CLVbnDobPxRzHYPH2sz8dz5YRSx-fhc2kdJSCDbzS5ND6jcJwrl3BAvVLb4TQwFmg7-uQvlx8zadkxeirzXUF6jG7WOCzOQyeqgrJrga9_BP2k2s=w1924-h1210-no" /></p>
+
+<p><code>http://192.168.xx.xx:4567</code> にブラウザからアクセスすると、Google Photo の画像が表示されてるはず。</p>
+
+<p>ちなみに、先ほども書きましたが、MacBookPro 、MacBookAir を使っていて wifi でネットにつないでる場合は <code>en0:</code> のブロックにその数字があるので、</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>$ ipconfig getifaddr en0
+</pre></td></tr></tbody></table>
+</div>
+
+<p>と、ターミナルに打つと、</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>192.168.xx.xx
+</pre></td></tr></tbody></table>
+</div>
+
+<p>こんな風にプライベート IPアドレスが表示されます。</p>
+
+<h2>システム環境設定から IP アドレスを調べる方法</h2>
+
+<p>プライベート IP アドレスを調べるもう一つの方法として、ターミナルを使わないで Mac のシステム環境設定から調べる方法があります。</p>
+
+<h3>システム環境設定</h3>
+
+<p>システム環境設定を開いて、「ネットワーク」を選択。</p>
+
+<p><img alt="システム環境設定 image md" src="https://lh3.googleusercontent.com/IeRXM-7VegVjhc1ONkRB7zaZSZmb0dm0fshDrf9yvY_-uu1yneFt5G68-M-fUy5AWe1EF6SDjibK-lHZDhhW2kaPH0dTVarsUL56VXBkbNWmtX0oUhe9qlt9F5hV3Bxbv4lSCvxTTwHak6WEvlbnkaQtQ7Hr_0KxmO5EC-UdPCPTZS1Q9_ldbu4JQT8_DwIQyfwSfnHUHCJDOgo6fJDF3apUNINFM6fV0Mb6_nRa_7k0IUxTVifaZGkZFCqjBJdz4nTaIgqi1Oxp9gaQUlBdqbCky9_STKjgM5-73rBZXTaLDoCNGSGjZC6ORfkZRFgBtsEy8xC5pyEin9hj2WMpvWS5aQVTREVMqO2ytTmVeRK7rV5nm6_0FuyF9So-opNC9FGloyAAq9rhc6fBR7ziTQz9namTa9culaJKLx9zNUUSXZMXbhLBFr2D90QuR2zVaqwJca5mEp6cXudZSs0IVtErv8_O_S9GrRSEzKhoRIJz0RLBTuVx2WMjdo66_a-DPXdB2wJzelmGJ78nqgh6ppdp59UPxuyPssWaXSRtwVkDLJWNaD10nF9EF3KouoKeZ0gR7Ip0oR3WU8vG-JBS4V3vT3Z2petW=w1336-h1196-no" /></p>
+
+<h3>ネットワーク</h3>
+
+<p>「ネットワーク」の画面の中の、今ネットをつないでいる接続方法のところを見ると（キャプチャでは wifi）、そこにプライベート IP アドレスが表示されています。</p>
+
+<p><img alt="ネットワーク IP" src="https://lh3.googleusercontent.com/2OvANq2Yo3fCWoFjxyDWh62WT0HgoWY7ZBiWMUO_kzbtz_z-4hUiRbwuCD_OqLztJcH3Ehfb-kgrqFqJJfqP_3NtbiBXACBRy3H370IZUDkus3LxmMT830LIhoV4bJE665ms0JMReetXidZJNyAbVuvfGs0n3JNhakaT309Ym-J2o1Zy5S29sgmVyxfpWi3jesRAfxAB_nlwmigt7UApc9mQoDeqS-EwXcQgeIcp87M5bBq9XKlItpvYOifp-Co0k_m9DaR_ypu95JkKbTGDlgjoVl0InEZebOB9zENbVLIvo6_EAIURLJ14IVH3-vLNeb0olviwGgZ4oUlijgSGtXECMKfrrZlS_sAA-dHXcjPIqDJFK4ZIUF-TxTVkD7BrP-AW6Sj8nvWFrrOTSuBRWHBEOMSKN298MlPohPMcBD9HVFwRWPVKgvO-yULCDksxWKeLPDBMuSOcWd4--PCBOzfQUTsE0EEEmfpXBufdv11rQDsIyyv9ie-oeuf6h9ZSeCHce7nbx8Lz4z4scNR5MTffczbbdys7yKCdJ73yIbmzMmMJnEiafz4bfz9atof81SkWOmGtYResATKDt1hyEBuP70qjqpAk=w1336-h1126-no" /></p>
+
+<h2>ちなみに</h2>
+
+<p><code>http://192.168.xx.xx:4567</code> の URL で同じ LAN 内のスマホや、VirtualBox や VMware や Parallels Desktop で入れてる Mac の中の Windows からもアクセスできますので、middleman を実機確認するときにも便利。</p>
+
+<div class="amazlet-box" style="margin-bottom:0px;"><div class="amazlet-image" style="float:left;margin:0px 12px 1px 0px;"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4872333055/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51l92yOfebL._SL160_.jpg" alt="電波系" style="border: none;" /></a></div><div class="amazlet-info" style="line-height:120%; margin-bottom: 10px"><div class="amazlet-name" style="margin-bottom:10px;line-height:120%"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4872333055/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank">電波系</a><div class="amazlet-powered-date" style="font-size:80%;margin-top:5px;line-height:120%">posted with <a href="http://www.amazlet.com/" title="amazlet" target="_blank">amazlet</a> at 16.07.15</div></div><div class="amazlet-detail">根本 敬 村崎 百郎 <br />太田出版 <br />売り上げランキング: 132,434<br /></div><div class="amazlet-sub-info" style="float: left;"><div class="amazlet-link" style="margin-top: 5px"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4872333055/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank">Amazon.co.jpで詳細を見る</a></div></div></div><div class="amazlet-footer" style="clear: left"></div></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div><div class="container article__container" itemprop="blogPost" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <div class="row">
+    <div class="col-sm-3 col-xs-12">
+      <div class="article__sub">
+        <time class="article__created-at is-en" itemprop="dateCreated">2016/07/12</time>
+        <div class="article__tags" itemprop="keywords">
+          <ul class="article__tags-items">
+            <li class="article__tags-item">
+              <a class="article__tags-link is-en" href="/articles/tags/rails/">rails</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-9 col-xs-12">
+      <div class="article__content">
+        <div class="article__header">
+          <h1 class="article__title" itemprop="headline"><a class="article__title-link is-ja" href="/articles/20160712-anchorlink/">
+                        Rails でアンカー付きのリンクの書き方</a>
+          </h1>
+        </div>
+        <div class="article__body post-body js-target-blank" itemprop="articleBody"><p>Rails の <code>link_to</code> を使って、<code>&lt;a href=&quot;/page#content&quot;&gt;&lt;/a&gt;</code> のように、ページの途中にリンクを貼る方法をよく忘れるのでメモ。</p>
+
+<h2>書きかた</h2>
+
+<h3>erb</h3>
+<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="o">&lt;</span><span class="sx">%= link_to 'aタグのアンカーテキスト', リンク先のページのpath(anchor: 'リンク先のページの途中のID'), class: 'aタグのクラス名' %&gt;
+</span></pre></td></tr></tbody></table>
+</div>
+
+<h4>例</h4>
+<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="o">&lt;</span><span class="sx">%= link_to '通知設定変更', edit_user_registration_path(anchor: 'notifications'), class: 'edit-notification__link' %&gt;
+</span></pre></td></tr></tbody></table>
+</div>
+
+<h3>haml、slim</h3>
+<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="o">=</span> <span class="n">link_to</span> <span class="s1">'aタグのアンカーテキスト'</span><span class="p">,</span> <span class="err">リンク先のページの</span><span class="n">path</span><span class="p">(</span><span class="ss">anchor: </span><span class="s1">'リンク先のページの途中のID'</span><span class="p">),</span> <span class="ss">class: </span><span class="s1">'aタグのクラス名'</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<h4>例</h4>
+<div class="highlight haml"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="p">=</span> <span class="n">link_to</span> <span class="s1">'通知設定変更'</span><span class="p">,</span> <span class="n">edit_user_registration_path</span><span class="p">(</span><span class="ss">anchor: </span><span class="s1">'notifications'</span><span class="p">),</span> <span class="ss">class: </span><span class="s1">'edit-notification__link'</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<h2>出力されるHTML</h2>
+<div class="highlight html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"/users/edit#notifications"</span> <span class="na">class=</span><span class="s">"edit-notification__link"</span><span class="nt">&gt;</span>通知設定変更<span class="nt">&lt;/a&gt;</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<div class="amazlet-box" style="margin-bottom:0px;"><div class="amazlet-image" style="float:left;margin:0px 12px 1px 0px;"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B00R3VL3WI/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51BfSkGma-L._SL160_.jpg" alt="人生解毒波止場 (幻冬舎文庫)" style="border: none;" /></a></div><div class="amazlet-info" style="line-height:120%; margin-bottom: 10px"><div class="amazlet-name" style="margin-bottom:10px;line-height:120%"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B00R3VL3WI/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank">人生解毒波止場 (幻冬舎文庫)</a><div class="amazlet-powered-date" style="font-size:80%;margin-top:5px;line-height:120%">posted with <a href="http://www.amazlet.com/" title="amazlet" target="_blank">amazlet</a> at 16.07.15</div></div><div class="amazlet-detail">幻冬舎 (2014-12-26)<br />売り上げランキング: 16,664<br /></div><div class="amazlet-sub-info" style="float: left;"><div class="amazlet-link" style="margin-top: 5px"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B00R3VL3WI/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank">Amazon.co.jpで詳細を見る</a></div></div></div><div class="amazlet-footer" style="clear: left"></div></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div><div class="container article__container" itemprop="blogPost" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <div class="row">
+    <div class="col-sm-3 col-xs-12">
+      <div class="article__sub">
+        <time class="article__created-at is-en" itemprop="dateCreated">2016/07/09</time>
+        <div class="article__tags" itemprop="keywords">
+          <ul class="article__tags-items">
+            <li class="article__tags-item">
+              <a class="article__tags-link is-en" href="/articles/tags/github/">GitHub</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-9 col-xs-12">
+      <div class="article__content">
+        <div class="article__header">
+          <h1 class="article__title" itemprop="headline"><a class="article__title-link is-ja" href="/articles/20160709-pasteimage/">
+                        GitHub Issues を使って見た目に関する報告する方法</a>
+          </h1>
+        </div>
+        <div class="article__body post-body js-target-blank" itemprop="articleBody"><p>普段、仕事では HTML や CSS をいじることが多いので、Sass のフレームワークを一新したりなど、全体に影響する大きい変更があった場合は、社内のインターンの方にデザイン崩れがないかを目視で確認をお願いすることがたまにあります。</p>
+
+<p>そういうとき、デザイン崩れを見つけたら、 Github Issues に登録してもらってるのですが、こういうデザイン崩れなど「見た目」についての報告をしてもらう際に、文章だけで報告されるとつらい。報告をされたほうは「どこのことを言ってるんだろう？」ってなります。</p>
+
+<p>なので毎回、</p>
+
+<blockquote>
+<ul>
+<li>該当箇所の画像（必要であれば、画像の中の該当箇所に矢印などのマークを入れる）</li>
+<li>それが起きているページのURL</li>
+<li>必要であれば文章も（例えば、ログインしていて投稿が0の場合、などそれが起こる条件など）</li>
+</ul>
+</blockquote>
+
+<p>をセットで報告してね、と言ってるのですが、毎回言うのも面倒なので、言う代わりにペッとURLを貼り付けるだけで済まそうと思って、こちらのブログに書くことにしました。</p>
+
+<h2>ダメな報告の例</h2>
+
+<p><img alt="ダメな報告の例" src="https://lh3.googleusercontent.com/HU9ZTlAxsHJp5FnEZRsZNppGI3AmYqPSaA__ZEKiWeb--1GPVjqsZ2dmKZjPs0x_KL20gWZnkff72_9K8qRtLz2UXLhCQsfGzyvYUUwvyQerIq3yWhNVWuwMErfA0YQAVW8vbW-2ExXbi7nKJkwibK51ojroMjj_uznzTi6WvRw6wCq8s5bITnobw1g_yMbCdASXjmgZYB7NNRuJIvrBzoaXMSZF5InMIxgdl42Y9amkiQM_LDRC8i4YbUTYbQwCZYpbZffO-_eC8-fdn7LCq-J7LUMspIJNEl5SYWvSU-4Ynx0uANWy2dPdAxyXlLQsY8bZHxZldvilzoWsv8A3pkpfX_BMIl1Kbifx694dQD23Mf7BAE6UVokLNLWBYVIMiczmByaatn9yBs0lHWdSvMM8WjdJkipsjKVL0AypDEhM9a2KOdX72_G4bggk3lz1ymSgPHXAaCN7tVy5zOqYTaucQMrfLNPpiqz1zkB6YTfJzKLxxEBQpNqFzVs6U8yVlJd9qxO43OtFDTwzzfVNAholHAkaq7hM6JtTvDVIk1pBHN4XJc8u13IK7nsV--nNYk_aKf42lJk858kOOMmoFBvfyq4IBADQ=w1582-h452-no" /></p>
+
+<p>これだとどこのページのことを言ってるのか、どのアイコンのことを言ってるのか全然わからないですね。「これってどこのこと？それが起きてる画面を見せて教えてー」なんてやりとりをしてたら報告する側も、報告される側もお互いに無駄に時間がかかってしまいます。それに「なんか変です。」って、そんな文章を付けるんだったら書いてないのと同じ、いや、むしろ読んでも何の足しにもならない文章を書いた、読んだ時間だけ無駄です <img class="gemoji" alt="anger" src="https://assets-cdn.github.com/images/icons/emoji/unicode/1f4a2.png" />。</p>
+
+<p>大体の Web アプリは「一覧ページ」、「個別ページ」があります。例えば、<a href="http://kowabana.jp/">怖話</a>でいったら、怖い話の一覧ページと怖い話の個別ページがあります。「怖い話の」より、「怖い話の一覧ページの」、「怖い話の個別ページの」まで書いてくれるとわかりやすいです。</p>
+
+<h2>いい報告の例</h2>
+
+<p><img alt="いい報告の例" src="https://lh3.googleusercontent.com/Y96sFBT82SEdXZceJKUB-YCJseTcnrAUbPrvHFtbOGRUzJa4tYGL-awCJwY1LABnO_vcpYyJ-P2bje4rEXaJD1AvTaXwk08ptJzxEgSD25QD89NRiM7fOA2yD_XdpLdjsfxgIMSlSYl7cwsXMkYuxv0vt8r1CA4MXRMkUdoAeYDUQOYzBOabOzq_QPM6Fu3m4WD91NqIRRgZvcn5lSmWFSScmKUpHMU60DlJpS63gB-qhAGTl9tsJXAJyyHBUQHdDXbeZFhlhdg0pGvAvBQvhAS8JSvXHaHHi8gIQjrFNasjwH60ZmYA2Mo9zhZj4UeuU-1Jvy5zNTseyRJtWs1s4jXm_pjGHESzPFkee_C0KFGlbH2uI2A4U5SqkwTHcasZWHAVbhwlrYONCDdu0siz02t2eQVIzf7nVbGfVOm9ponOzeWwhwBmHnhnTpgIBMVvQUuF79EYqU7OZfDFoo-67BV8GEaNDzlmTr7fbf1q729Bxbd3CnTyt8Shl0uKIJ7ZQcNzkEZ2I4GT7lMD5bJlG30hj5TN6W-OmIZ9rd4vSCQPngPm6lmb9gMQSi_LezlN6rlxnn3-x1oteBTGzSrIvZVayIIALCTW=w1256-h2004-no" /></p>
+
+<p>ここまで丁寧に書いてくれると報告されたほうも助かります。</p>
+
+<h2>GitHub Issues に画像を貼る方法（Mac のみ）</h2>
+
+<p>「毎回画像貼るの！？ 面倒くせーからインターンやめるわ」って思ったかたもいるかもしれないですが、Github Issues に画像を貼るのってすごく簡単だから大丈夫。</p>
+
+<h3>command + shif + 4 キーを同時に押す</h3>
+
+<p>ちょっと押しにくいですが、 <code>command</code> + <code>shif</code> + <code>4</code> キーを同時に押します。すると、マウスカーソルが「+」に変わります。</p>
+
+<p><img alt="GitHub Issues に画像を貼る方法（Mac のみ） image md" src="https://lh3.googleusercontent.com/wDMocOFy3iC430Sd-6eeoOd-an0Qzt-Rh9IMF-5LwNQ6nWqmVhbp9hlkHBmGowaUtYcWtqSe3nPhoHmISicUL7HRI6oYalf_LhG6vGuO4k-IGAfF1qE3YQKhFWJEIqFqwDtZlam1J7y6Kv0ffnQpQL8VGx14fnh0WRNi_mJe7XaB5fGlduestR_MMoTlA6GT0Tm1vba-Y_Swttgvq8vluz8gX5Rx0JH1AfbxJRhABxHvafqoLKWy1358o-WztAG_ihzG-nVqxYb7Jf4Y8yAQJPQzL5xoSL3ySLBa8g324VHo8R1snB3RM6ja90xIshJOyl4QslSAA1f-6YrmOQYaQrvBRzfF2N60DFY-6HQJWDvYkGLfjAkUnb7N129NKH72M4soV42UfJHa_aivRiVIbChvcuXKoSMiX9O8vQTWnHFp19-oF_CrdKOPAEP58urBktRznI_Sf-fXwKBFjdB-OHYJv_UcWDOcWnI6AmJ2JJPcql9QfCiMsVq_P0pLfjUOHnJd1IVn0ak9qURg4FXjz-JRzW4LSJskk0HcymSxpJTRJZAu8TfzJeHFtqJlGHDJOUHhXA_cONmI3vJ5uxa6t0LpcezzAQZc=w954-h450-no" /></p>
+
+<h3>キャプチャを撮りたい部分を選択</h3>
+
+<p>マウスカーソルが「+」に変わったのを確認してから、画像として貼りたい箇所でマウスやトラックボードのボタンを押し、押した状態をキープしたままカーソルを引っ張って囲います。ボタンから指を離すと「パシャ」っとカメラのシャッター音が鳴ります。すると、クリップボード（一時的にデータを保存できる共有のメモリ領域）に選択したキャプチャが画像として保存されます。</p>
+
+<p><img alt="キャプチャを撮りたい部分を選択 image md" src="https://lh3.googleusercontent.com/2sLpY1bAIUVoTnmhhHAAZUjDBspkChW7iG3V3wEzli1JYfJ1SajMRB_dLtSOc02cgvX0QW51pkLmA9AOpoX4XKcsqShIDa8UaDdQqRisroOn46jyb2tBH-O3l6FDUJpElqDYV31G2be62-gwWzpJH1LBNvi1L19tGQEUB1C780qe6eKwbhoVFiiBB0lFlSdwGkRlGyFncpDIaZUYKNcT-D_7JYrq7X4pUIg-ggbqWHpSF3afuKR5fi8oQX_zaT3mGEpRVBAAYzxcfusI1Oae6LJXuS_q6c4BvjkOHXjcMVJBIMjuwOChlSyPB_ZGX-WiMroZ9RMC1GCash5RMDX2386hx1meKA7A9P0PgkgXEu1zbEttb5fw8TRvdEbIpg94O4QH2KI_diCL6idgsqX2S7W5LlvJTd45js7-nJrsmVaMrpd_m-oa8EDw8uJL4fsX_HUmRqpq43hxDYsolyVeh1IajN8XsUlmMOrebmUD-bGsdmVUL3Tu4KoJyEIAHKNgnQfhK-f69YQI9crYNF0PhaDQPiqZqo9xVePhVXMrsbAd5gn2B4SIV0Vwu63ssggI09Ifq2qbweDQ9T1mi6ZDppXew_5-uv7A=w1632-h1022-no" /></p>
+
+<h3>GitHub Issues にキャプチャを貼り付け</h3>
+
+<p>クリップボードにキャプチャが保存された状態で、GitHub Issues の本文を入力するテキストエリアにペースト（ <code>command</code> + <code>v</code> キーを同時に押す）すると、 <code>![Uploading image.png...]()</code> という文字が出ます。「今、画像をアップロードしてるところだよ」と言ってますね。</p>
+
+<p><img alt="GitHub Issues にキャプチャを貼り付け image md" src="https://lh3.googleusercontent.com/i5hddZyecil17rlx7axFFe4xYUlcusibVpcY6qE_1sJgYd4x4CXkMzbLaZy6aYM-gRkl2Ofx9fKUZ-nafekS1jp3aYta7aMFq-4aEFQK86eWXjC5WQe7trUH-x9SJaJ8a3wULFd17gzGbjnfHWqkhjKgnKSiAcnT1ri9bDiOJm7G1L5gTNI6HaEBULfEbRwvk3LEFhc5qxvf73TVxbssjoZFVyWBpTUX8BUdNZsDyUdHBg4nkQJJq02nmI3WulWd-gPHlSvKqgy_HYEKs-Vk7iaR6S12njyyDbJBHkBWvTnu_eRd7aADkPFMkT9nUSEVLswkYFvrwLNOWQldgWy993EoUyZm3bqRJAT3NoGxkRw6FiuZYqGnm9Ww95UBCScfAq36g28Zo7JGn6YZUgmjphHEbRkE46L3qYUKteiybrJjaI5Kc4O7b5rZz_qRRGtVMSje22zjTPpoaXGRK7n6v5-etS2cMywQZxdpGAUfuUfvaRfzcSQflG1fB6u4H0CpuVAEHPqcMv6EUbj1PBPLIlxbJBvhL4zJAKn4xnuZdl8f5frVOWoK7AC-mb-PB1ya3urf7Wbfl13VMIcXoD6DO0Ju9hQUeJwQ=w1114-h572-no" /></p>
+
+<p>少し待つと画像がアップロードが完了して、<code>![image](https://cloud.githubusercontent.com/assets/xxx/xxx.png)</code> と、markdown記法での画像表示のマークアップに変わります。</p>
+
+<p><img alt="GitHub Issues にキャプチャを貼り付け完了 image md" src="https://lh3.googleusercontent.com/BOvpMXZYg-2yOdEGOyTTVKE4tGjEZ66l-bXr2HBpCKKWdRO3vKWGr1oXHBzMugT8k1i8ESs6WYWGN67k7bQG2QTV9o7i-jXLGWpUGWqHYRewqG0XlLIHIq1vChJrHKS4cFE4oIGfWZHHghIoHAjS8wL4b704w7u7N0ET1E8jfQN3YaFlGrEYbiYA98hSLD0iQJQONTUr8YJDQwu-vTBSoWEDWkNIvJdaT6qbWvtR2ecWZaEtoUtsA5mbvjbgyUvhGPw2jfxRoJjAdwL6p__zTMJEIK1aQzvSelgXozRFxnH1Md0QGiP93HFbzGqu7NjYk5ZhjZphwgNxxjSniVDt6d8DQdjgv1MRqw8DtjdrtY8U4IuTz1mLp_HF34Mvlx0YwHtxAVpTfkDu-Cfn00JSfctyCpRkKUKr77Tf3gpoDYEBVOU3zohCnVMxdrEG1fB6G2DcZQE1AMdu1XGPdjk8osgBCtNy7hApgYhWqp1ZtNmz_tJI66xRdWbEgPq4qPISQO-FlY9cRTbPRd0drVRhI3G3ilmrwDb3wU9K2_sIEr3NFGkeP5L9vX-vfW0o5q1N5nHyJQyhv_C6hL0FgwgXLKewwtziuH0u=w1448-h564-no" /></p>
+
+<p>これで GitHub Issues に画像を貼れました。</p>
+
+<h2>矢印や文字を入れた画像を GitHub Issues に貼る方法</h2>
+
+<p>先ほどのはキャプチャを貼るだけでしたが、場合によっては、キャプチャ内のこの部分を示したいときもあります。そういった場合は矢印や文字を入れたキャプチャを GitHub Issues に貼るとわかりやすくなります。</p>
+
+<h3>Skitch をインストール</h3>
+
+<p>まずは、Skitch というツールをインストール。</p>
+
+<p><img alt="Skitch というツールをインストール image md" src="https://lh3.googleusercontent.com/1C_aV07TNgAR6Nk1nD1DzLe9-f2GaosdWX-9Z6VCiJGrqgDq67ue-2ue1w9PN-OCeoOioZbQws2y6kzyBLTHQEeMrKRCRhVEH8-zuNW9oNy2aaS4hT9BmSj6rs93SmFFU43F-UEqczGu9sjT30X2-m-h4DZwdxKDoKc1MqyEBErQL53x862N7CNkrXw1m0ZHFaBmcRsXyQKqm-NuCQAbWc8kgO3cYwShVaxuYxvLmNqFOQRrCYTXPcn0DTOm0A_g-KrKfiydnPsVq4VmoR2u8U8qDV_caevyHIvCaIwtkwN3WDFXTaNVLWRruLyUMnqCcbNwrI0si_8yVmQwUKKtqF75Y46tL-YBlS8yR4mRP-6ROoRz0lJ1308l8s8E8oeZmVDUNlyLDNLfhHxwoCDhat2ZcHqs5PL6vfXEBYrsvj8xjSfnSKXcGixlZqafqlMRYJ9iBmtkYkClZf8Gh2bVjBZ1xKzqW0Q1vR-jK5TusNi08m1un_FHEXgtd2r-m4v_pgk6WLkA7CKB9Qzw_JsR-8Y_QxKFM6p5VF1oJ_gRpO_tGVVpHZ-h24cULRaI7KFjMfaxwEwbOLDQdWoXzkt0vx51G2Q3HYXj=w2204-h1232-no" /></p>
+
+<p><a href="https://evernote.com/intl/jp/skitch/">https://evernote.com/intl/jp/skitch/</a></p>
+
+<h3>Skitch を立ち上げて Evernote アカウントでログイン</h3>
+
+<p>Skitch を立ち上げると、Skitch は <a href="https://evernote.com/intl/jp/">Evernote</a> のサービスなので Evernote アカウントでログインを求められます。もし Evernote アカウントを持っていなかったら「Evernote 新規ユーザ」から登録をします。Evernote アカウントを持っていたら、「既にアカウントを持っている場合」からそのアカウントでログインをします。ちなみに、Evernote の無料会員で Skitch は使えるのでお金はかかりません（2016年7月9日現在）。</p>
+
+<p><img alt="Skitch を立ち上げて image md" src="https://lh3.googleusercontent.com/4860btJeB5legl5SA_gK2ng-lPiqhLwB7_PUXLsyQcvzJ5jeP8C5AdefEQ27Ok19aXo8WMb9RUnBREGaXya_3gfQd1lyj9A-cXX1zRvcm6tVszXMz4Aot0hRh9kha3i8JuViNUqgdGByd_vFu_V_88NkE7X5UyR2YeyrS54AAsZfFzuwvOG8aGyfMBQqVOwWNa3hl3p-OffGiRhG12fR_hwf2XI9Wz0gszNJV5SpJosZdIy0SjHB5wcNoxXwHvUPVh-9fDiBEcx8HZ42rMDsirD4VMyWyWOiwwR0OFZPHVF0yAjY9BmFpQfp27fAIWndBm_G0P7dXeZfIzKp4keFkxq3i5GZo6Rp2a2aphQlAmOcrEAWRWheFyvr64sXSQOZR3XCdGfwyMMUGqXc3fmEaTa4eCC2tuKFf7LJ8WiOV6XQkwXpTz-waO0fVDJf6BTAWXa8_sK3mzQmFOYfBZUvezunSZksXsETdY6EwvuSrFfbOzgsmMpFSBMuS5f_ZVim2hj1waJQer78a89hPYush6SaqG41zvpd5Hf1qqLzsj5-CK0MDnSp6nDaTM05pVtFZjixo7463NuUXaS_ZJtO1qVJ71O6QCEY=w1954-h1298-no" /></p>
+
+<p>ログインをすると、Skitch がこのような画面になります。</p>
+
+<p><img alt="Skitch ログイン完了 image md" src="https://lh3.googleusercontent.com/rEEscA6ifSs9C21HYtPGFKdpp9vI8FSeb-RzvYfI8LGv7vDfwo_RDf-0qvpodAAXNK5vxw4I3eja92gm-9TEYA5x_2NvU3LpW3zNdqRHSvfyCpSsQRFhD0XKNVfNlcZsnuQrQgypzkZrZMsRwXDUT3Mg2UCceCIbMjhSUFVCurX_HPFf13LejyjE2RwmxrSfwTONp-Bv4mmL_hfDh8a9nZzf6O10ufM1xhFtMNhm7r4TWu0nsPme1B5Z6b19JpvrPZcG_ZuOPAuwLLphTko4A87IMWSjOveZayE80a3qabH6K7i3Bs6rGrATJI9Wg2MsxKrTEghZmjmClkesClSoG3M-iaqrQdtJ2JPYQ0qhnOYYT7LnnVsnTX2ieVcJeIIjeexoa_lGGF5K2IGdvtDV9NlASP3ckBQTVuXAvjhVLi7m3d8nVVSmETnt0pTaV0AFTQlCKIde79Nn2PfbZ4qUaxGPpoKDoSh3-QaPlJnTy9n0jSaV9KQjuh1qWPapxD6xe2At9rcuO0YuC-cimZsu_nhZAZs644UJBRU0P71fx6jQRCHv99ImmD64lqF0T_bCpjm1Zk8Ew0HWVYJK_Q6eJjFA-uE9rnth=w419-h307-no" /></p>
+
+<h3>Skitch でキャプチャを撮る</h3>
+
+<p>ログイン後、Skitch の画面の上部にある「画面キャプチャ」ボタンをクリック。</p>
+
+<p><img alt="Skitch 画面キャプチャ image md" src="https://lh3.googleusercontent.com/e0jj0_kU5thl1ZaWgWD0ssu1kaOcyVFZ-25qiNdBo4csanaLAW0JU0pKgIe_VzE1xdSPJ9GY-HVNcqZjFzbigxWWVeR1hmua4-YZg0kRBMyjbCxz2YNSLTlrT-mWhqAxK2Te_846FxsDZVA1sSN2gujhZUfTO-7hcbf5Z6kBk_nM1FoJRl4OQrDgXrJ8-UoCIBrRaMr8JQBu55K3loq3exNWzHy02yhRB9TzQFzqA9HFuyRQaoKc4cGUj2ddw3Sy6wf3DT0nM9laocG9lAOBflmuCtHzUXRPu3oJe6e44NAOIlvH9llnwKNhxUtx305VUyZgJxBW9wvoFH9qNo3lqjcda9WBCKoOHFiQgLixhibdXgdqOnLLkyZdjeMw8TDHy2j2YHxCjUCKf9Nl4kAC248_oHktdChey277zVaM_EzIn0Ng_Nqlkk4j5SEV414Yz9hCmEeGwvChEhMWvqY66sS9qInwjlW5st68zHFcGpi3lsh6cM4MT_11bQsg3HHV9QjOudYsDdGnUMLqL7hmoFWKnI3h-MFbnYki75HS-DiqaSk1j8zryQznw_rCca6wSSIf7NdfLpUdhskoOhIZDeGwy2w57lP-=w744-h322-no" /></p>
+
+<p>すると、画面にオーバーレイがかかって、カーソルが「+」になります。</p>
+
+<p><img alt="Skitch 画面キャプチャを撮る image md" src="https://lh3.googleusercontent.com/zW5Qu83ZiSQWI_EKDB3z1SnwjYVK7casbDiDJp3h75reIK_aTeJfeGyLMj_v4U8OBtR1Y4Hf8bS02z0AP2mvygc-6elqI5mBoqwcy1kS69XXVK8nP0BXvZ3oyaxQaZaLTBWZOQb9YCeGSKRDlBkDRlNHQT-6v1Qtq6Hk3C62s44mdQN75OFdvPT0u3bbj5R9vEGrNYNcClXSKbkwEjnQVszAeVXqDTwIMcoFwOCJsryo0sJ_ZlWuTEOKgYuVg4sCSYF-lG0tu2V3G9_DwcSYqZ4Yn2QBJ7LrFKXjYSAizYlyJ-GkoW3vFjPeWiKaX-qrFYFlygwDDMUs49ir1_VWI-Ux45dKh8brUQGr2V1RPMQDNZpDyecreT--7Ako0rkKhnQCsQkFwcIrLnQq9Y11QRFspOvylSQ_bsSzKNij3uV0cXDoUCYAHAe9bN7CLEnn-bGd5R2Bd53ouySFfRmDSUuCf0H8JX-i4bztoMhQ3lcdod4N2j-pzRXDtA_3XttMAOd816tOB9qzOZ8PdBPMbWaMOPIWsV7IHSfnugXaQWo4agC8zOtI-9FTZQFVi3mZl2vno30gMaojaUV_kv3DRJz0mqytkclZ=w1298-h1004-no" /></p>
+
+<p>先ほどの  <code>command</code> + <code>shif</code> + <code>4</code>  ときと同じように画像として貼りたい箇所でマウスやトラックボードのボタンを押し、押した状態をキープしたままカーソルを引っ張って囲い、ボタンを離します。</p>
+
+<p>すると、選択した部分のキャプチャが Skitch の画面に表示されます。</p>
+
+<p><img alt="Skitch 画面キャプチャを撮った image md" src="https://lh3.googleusercontent.com/X98Dt72ycxL5sSheaKWTxK7rpyLrK92drwSSYrPzh_LG_qGivFfGBFlZs4YsA5PxTkzFrdGLiKEuwni2LWBb4JfV2W7X1kEK-yFOLKMy2vMMyeECtG9zlaa7wdrUWnXWbPCZfm4c6zCf6wt977KQQJcs7SbE-YtGiirg9Fx5lSNC8qu970i00YmC_3hm8GGnG3LOACvOVNVK2vlohN6S6RYr9NnA-X0H8H4Y9H-VcThRDVGlh-8cio9w-5WY5d7Niz0eomsh5Dv6C0eEvtpeQmzN0ZOcrl1w9LrEB35m9a3On2NglGho999KkA4DBGXu9mSHF23nZJXhwxRHwuXpYUVbYbFqIwqi_Cmx4Qo1Z09JXMCe0JjdL1oLAUdZF8RDR1IoJ-kia1_4zH0R41qH3WkkR4TxE9eteVSDwnyG7DkBvMn0f_2y-n9AOR_ivTRu-JOo6tj4d3kelo2gECaTOWWXnTEeeynqRdPWBIbfYaFyDye9J9gH9Yd2LqaBEL6L6zZd9JiJTiw5QVAK9GpN6Fxm42LB1VIpKVO262TtFgQqrJhmruBW_3f3A_E9Bdb9hTNkOtgikRIDL8o99KxXx5aleEf06Hxw=w1598-h1308-no" /></p>
+
+<p>Skitch の画面の左にあるツールを使ってキャプチャに矢印や文字を書き込みます。</p>
+
+<p><img alt="Skitch 画面キャプチャに書き込みをした  image md" src="https://lh3.googleusercontent.com/07To1ApsMPdNa7aQzwHAhTvhK8W2ASsJKOwl3UTXxKm6wCXsxQWI73u5Y4PKjL3ojzf5rza7rrRAuU4rSomeTR35TuRDXS1nZbh4qbkg3tmKGG5qawLz00V0fLLGg3M1NaaTGVQVkXYutxDAjDnSGpULmQXQgi5gtrnaS5xjV6NwRJ-ghB_dOopBVPjGjecA4NNg7vafLYyrIQgyzGfOd4B-ug3Zyz2rZfNK6F7H_UoHP2w4HkDpmB5xwMVox2llaubgG_X2AdrcveXW24GhJrn0LnrgmcHBFddELcrs8SEq3VEF9yPR6yhgoDhTpyX7PIDSEkQq9Br71unrK5YQ0xPU2nNA2P09OdXkW_7ACGCAGs1COlp296SYTKoTuDap7mcUPNsQXamuIYWcSo_XRPUrNWFx1Xnrt-vprjQcbM4irYM2RZW5YNJdDYTfVKeM3OwnVVbVH_U9q28VTHpD99wLRtnBrozxxlNVda1pGjatXb8oaMs7z3vaNjhE1TcuNtEce5gTpFp3Ituqwx1vqzGmk_8oesMCMzZczUETP83_5NGiVXk3KKsPs3OzeT4VkHJwMBuGw7tH3e2lDpkiWlUPZYDQJw7n=w1600-h1308-no" /></p>
+
+<p>書き込みが完了したらいよいよ Github Issues に貼り付けます。まずは、Skitch の画面の下にある「PNG」と書いてあるファイルの絵のアイコンの上でマウス、トラックパッドのボタンを押します。すると、Skitch の画面の枠がなくなり、キャプチャの部分が小さくなります。</p>
+
+<p><img alt="Skitch pngアイコンをクリック image md" src="https://lh3.googleusercontent.com/RKSES4DhkoQ7l1Cm6jNaBAug-snOMn8H-_o8JHRy3mYhCjG_eJOkKc3xpczywI0IYXQLqHohzj4qrEuJkMUVuNsQ1Bns6gvlNOuQA39MuQFFxtxyn7ee8g1ls4_WbBnw5yiIShPGianQ3fSaTNMhn0b_5l0veLFpckBt1-e_rDSNacQEYmCLcqTAtjtpF_gQNuNopS2a3aBV4D0vjdezk0lLs_t-Q184ZzXhLs4RObUvX_3iKkfKDSmYteTEij3qu2DgHhSh_O1j3PiCUG4xGqB96qyiof9pRC9hyxQpOwgoMWLTmVdVW3O4ZJeIQ5cBM8QjB0xdrbAW_HCKVtGTOFQyTNEaQglPlbmsjgCI5IXMs1DAj3i1iimsXSMxT9ncvjsWobCPLXOnsjNKAUZt0psyfAJY3NBBppwXBqhs-YoKRMzKVr6u3T0aV-SfY_fToH8vZ1KyF5rbkcw9ivSL6iqPsREcGyQ4zye1-9hDdUfZ2wrfnMyMGwbJHmGwofI5UApiHNDIRtC61Im9ruR8jmQC3DaLzQqnxtATQ5L25WpmXd29P1xfUsAdOHMxJL5i3TWaAWYAJMoyWMrz6c1yv6OK-UFpK3NA=w1102-h620-no" /></p>
+
+<p>マウスやトラックボードのボタンを押した状態をキープしたままキャプチャ画像を GitHub Issues のテキストエリアまで持ってきて、ボタンから指を離すと、画像のアップロードが始まります。</p>
+
+<p><img alt="GitHub Issues の textare で離す image md" src="https://lh3.googleusercontent.com/POCLww6191uhH0pMyG4PVTpkzjhno1pA44LVGQT20wwHEqfI16VplDRtCqJbWYAFljL8aoNfzL7VTcjx6XPJtqOEwG5lvnhMuSYtdJ2nzeRCx3NZx6Yo_yNLSeNnQ-rveaIXEcuXUYsriut07Z_r3Lrb-m2vMdwjWSGV6ma9QXxzLh8he_7gIXJSBja_VSqlRdSlrlne9BCPIl5hqetUwU9UqnaCiJIDrkmQl-4h5aNk0AJuUI8cBE96KNbzP8dh1YHkGP_tKV3lfz-Cy1lvnoRBLTPd121HiIyrkHupTmVF5VQcQ7aP9BoeJYPar4JGMVqiyLEOCf8svlGH6nxP8oHpqy0tyuzD7DToA3FlEUh4UzxSLvX3X-04c-Vr_Ty8BKKOK69E7xIeJiAA0-1Phv3JeNROMx2ghEKT7PCPqi6-lx-vZ2tfAqAzgLx9daR7so9ieqRLwl8FGYGB5xCInKDg8WQlti9bP9LnH1WNaarHuayXSVNOYo9ci9j_uT6px-TnQyRhO39qf9wsTdPSNRhRY46OFYmnLYbMVoPO8sppB2gQGj_GM-AHeFVfM1Zl8SBoqUXB51B1SQ9HfpljU7FDc8mcbOgD=w1458-h834-no" /></p>
+
+<p>Skitch からアップロードをすると、markdown ではなく、HTML タグが書き出されますが、問題なく画像が貼り付けられます。</p>
+
+<p><img alt="png でアップロードされた image md" src="https://lh3.googleusercontent.com/lbyEnAvHI9rTI4Advbz36g0QdgU2o7UzWzFgqfQAFb_tu_0m-X9Csdci8W-CNPTs8dIrzHhBEzfjpI52CDjzqDZWCIQB9n0PdryjC57jGbhH5VHVY_0oOPjL1wcPcBks9r0rVVl__-PfY86-3hBA1fZHU_7Elpbg8XcswCvRTVOwDLToiCCBHe3B4EUtrJTSIst_fExyLvNQ4kh_SHPTHWsDy4cn1_nf_iNd1mWvtwP00Fm4Ka5r6RNpklWBp-RR59FA7wi1eGbT2Q4-3z-pviK3z75M3D-Zt_lABsCN1VjWZWJrIsJyXdjJIVJ0AKq6bccQI1_B5f7KmL8DM3wDvZGLB3yA5kFSXJ9UI7KX40ab2AvzvPR6cr8r6REL9dHvafTQInc1FhMFvWdPsd-mDSZu-WLj6Iw6hmqGpaEP12zTv1WjoigJvGqdgR2rI2BvkgbpOnDPOSC-NaynGQwZRjQu1ElrJdQpxMRmwg0maKBWHi6zXxXhPONm3oI1A1K6Q-k9F-NKUPqxt62F6eic564fLc7mLIoV7EZy2FTc_1f_BBRbfzcRHDXcpEVy7C6jqb0lW3rHHe5DoDtcSWv_qX7tMmKaRWmK=w1444-h450-no" /></p>
+
+<p>これで、矢印や文字を入れた画像を GitHub Issues に貼れるようになりました。</p>
+
+<h2>動画を GitHub Issues に貼る方法</h2>
+
+<p>サイト内の動く部分を人に伝えるときは動画を使うと便利。<br>
+例えば、JavaScriptを使って動くところの動きの不具合や、クリックなどアクションをした後に起きる不具合などは、それを再現させる動作を動画で伝えたほうがわかりやすいです。</p>
+
+<h3>キャプチャ動画を撮るツールのインストール</h3>
+
+<p>まずは、Gyazo というツールをインストールします。</p>
+
+<p><a href="https://gyazo.com/ja">https://gyazo.com/ja</a></p>
+
+<p>「今すぐGyazoをはじめる」をクリック。</p>
+
+<p><img alt="「今すぐGyazoをはじめる」をクリック。 image md" src="https://lh3.googleusercontent.com/Ae-ERPoJaYkKtAUBdg_ZxvegaGOcZUF8HO59TvG3eiDXI6-nEkO4hclcBVOUvk-7SRnjuR1-eOwXnPF_97dc43eZDixvGP9T8HLUXcM-KyssBVgP0qkugpXTsHpv-w6W9Ly5bgJ5-XTbUse-BLoCibvW4A-b5HUnT-W-0ItNxocXNt84V6FnAfcNw6_Lx7HG1yVXfNfbwVaycugEtz8WXuB1PADlwYfdjdSYf4jj0gmbuDU-VoNBK_nF_03pzbkEdE6Jemq5VZmtcFgP0jdFfg8WjqITIEWTzH8yu2sIC3WRYwPwdKkM1rR7WxU5Ij9wBZACp3MCKLeI3lPoCJp-r8Z0nwZFAKG9-cWZJgTLNfZFpmjKceTGwnTgs_8GgFddvdrLZK3G46KR6Z5w68JkWzDJeoh4NgaV_mIyGZdkpGr_PSY3WsA_CaEtvM7QY8GdAqW0zZNqgLyDQ9fz3U875wMMwC7kXLgpPBhVjFVhUmuU5cAaNjXTdGl00emuUfZRgzkYMjt5dkIHkQxiMfgbJTPxHvG-o3zENXZI8zhFYEcUISQ84boGz-5sIbU4k3yG6wP1DC8PGDe4oEd84jH3aTB_7xkHiP_-=w678-h364-no" /></p>
+
+<p>「簡易版」の「ダウンロード」をクリック。</p>
+
+<p><img alt="「簡易版」の「ダウンロード」をクリック。 image md" src="https://lh3.googleusercontent.com/2Zpkf62jYzLkDKuGVbgQthKDsmeOuKRVOw-cRUgsgwl6oGL3v5HjPxmX5Rz259zxePP6SCbn7e_sizl9n514OE99rBbcQKzI2anH44seyT4ERIW5VUYHKB72OM-AtuMQbq1HLIY86mOHk98dFrB3oBhYMtUyzUXE-y4kSfPPm6PSXgX9MBCPAE96sDI_JgtW_gDx13lN5YMGYVgv4ZKhJIVHNkLUJgo_0rH1LqOywBZDsFqhU2DEOmF_Cabadz6rze-pJAaHk-az1gEvNTK8PnO1k47VQMVh3ZnD0ftzbF_WxG_bxjgMsPnHhBO8sVH-lvuV8SsrHXIntDRUQ_OSn_-tCWzPzTdA6w-yU9Ju3kfGHe1e8zk5RO12Fxkg9NL2XVUPadSAUUvigpcohZqaoVluI63PWjUrv0AKNB6wBpFtmr4vQsy-7J7sYBqrE99QN4Du7B0-3DNrjbmxPQr371CVBIyzV26oI7ype4k_vDli0MnJ-tm8I2dUcw6WCcXOHojIrlYxK-UNQ2MvvcaQL8CwzZuCHMmhSSCX93auFv7MJoBawiDpq2rTqes7ZSNnzEGIgicrS-OL2GBc1KYvjQUzJz4xHAzG=w2472-h1328-no" /></p>
+
+<p>すると、ファイルがダウンロードが始まり、「Gyazo」と「Gyazo GIF」という2つのアプリのインストール方法が表示されます。そのインストール方法に従って、「Gyazo」と「Gyazo GIF」をインストールします。</p>
+
+<p><img alt="Gyazo と Gyazo GIF をインストールします。" src="https://lh3.googleusercontent.com/1_qgaH-C44LtpW11gHSKLAZ-9oDF3tv7mhI7DuUhx6zjfqhnSDzak2Mc4w5NxdTeekuPYYPhmzOE2qS70Ap2eQN3_UDACdjzd3ipFgAcst13tqTges6JxmRvevXEocXhSYJeAwT6T4ldhDnxQT1FkAQz94D5ugAEpC_WAq7hDllkJG35GA5wgWQxJknfmoq_UkkmfBnADVNY6ML1e31VWwZpQLtJNHxbN4SewVsTUStI3N0khfllLJeiZCr5bWErvrSYDyZ8xWrxo0zIevMOU4OKdHzx-_xc40bF2U6tfrA6tvw1hBlI88phafHI_CpINUSXbyRkaewYAZ4-xsacXw97m0LJbX_FKAR6AprIjbKtHuip6BKhl_3JC_xZkI76Og2bqcfQ3311odyduBwUGZdNtavH5cvkG1S8iWtO80VPK6ILHQKbhmdEHsN2m30TWFuGkfeNvm_YvA1XUZPh0rzTfB5DTuN1nyHcOonlnWxc3-CpQgP3Cpqn5jlEXi8XgkuJBVw_S7GN4r5TQRiEjViUlUlKBBG-jeLYwWS-8UKZG-sZor9PB0z_R1bz2emGvnxtOsb0Tcxwh_etx4MDBrSF5_8Xn3-3=w1764-h1846-no" /></p>
+
+<p>これで、キャプチャ動画を撮る準備ができました。</p>
+
+<h3>キャプチャ動画を撮ってみる</h3>
+
+<p>先ほどインストールした「Gyazo」と「Gyazo GIF」のうちの「Gyazo GIF」のほうを立ちあげます。すると、画面にオーバーレイがかかって、カーソルが「+」になります。</p>
+
+<p>キャプチャ動画を撮りたい箇所でマウスやトラックボードのボタンを押し、押した状態をキープしたままカーソルを引っ張って囲い、ボタンを離します。</p>
+
+<p><img alt="キャプチャ動画を撮りたい箇所 image md" src="https://lh3.googleusercontent.com/ITPHwplv57peRrF_ya_wa_gVgITevV8zhnmRQYNcFIFWqVvBBQTJJ5aNB5m9XI5z6V-itVSXJXnFCOJPZIr77O183Y2EZ22iKYcnrkTeMG0hO1e3kLTiIW1RD_bQB2Y1976FTBvk3q0v-4GHp9-sd2aN1XNLFSIcJPc5byNw1acqNEJPCo8AVIY9TbaUs83BqJavWvuNKNRMhXPrLleieOS5S8tzqnxpHrCr4yahNar1TPfSPZ6xXy0baJyIIlL8VBPVniZ2Xk9_4kmLN9xZ8v2QjPYal4_QCZmCLeF9uvoMgpVkerj_rE-ZWL04xX1Xr7xqYaqtBWBbu2JJyKMByai7SwgAD5eMHyY-BKOjXKQfBo32nYQSI9Y5dsBSBYcHvErWLhYg9tfv8Fbihdyst4pT323FcJHg9e4nXrNlLoAw-B8vbhDyrRLW6_ZBTwGLW7aKCwiDt3dGPSpSs6pDi3TA3mp9QtbiKqYML4xKwKkpS0D-8wW13oq3l-MeRYY3cT8l0LqqalrJnYcpHvXNITauVLBNW6O79MxZAyqvn07lNeua-fb7U8Omo_zpOeNK7m_aC47XtlWT2COZrHxdN-jKJM1plxVS=w1868-h1746-no" /></p>
+
+<p>ボタンを話すと録画が始まりますので、画面を操作して動かします。ちゃんとマウスのカーソルも録画されます。最長7秒間録画することができます。録画が始まると3つのボタンと横棒が表示されるので、それらの操作方法も載せておきます。</p>
+
+<p><img alt="Gyazo GIFの操作方法 image md" src="https://lh3.googleusercontent.com/XdSJBp32XCWTG896goYvdpJZ_bON25w6k64vhNUvxsECvrHuFLuIToCeoBWzItLn7NRBgQ7yzPGJbJK9l6OF2tla0piUX6Mq8dj2mfb0P2s-jqHupvRqejsZZXLvj3y7sSCvovZYkwp1bnz801RZyvnZ-5u95K5K7H1y9zwnJOxPwEHFYKjVBnpdnx4umCtVsiL0g9-A-kibAvm6KVkFyJkHpHKQtOrxoTmFgEabN2iudkV9WCpA9arCA0XB65nLKBBZaVm3iQPgbtjj2BUEazzyZp16DdqO8chudd5rxOn3O7kLy8E_HH3hm1NPowBt-U94TjtrabYjwJ1nLg1rbu1jc6MWmhk-ELEYwneZIZuxVSQFs13RFvPhzHXDCQv61s3bRjIeJrOE9TUk9-5R0_R5lOfrSnRQ1TVWjUGGvzjzZ2cGYATRkV2TxNuXKfBBTlMC6pL02iQ95q3J7FubFJYRyR2Mc-79pGpRrTX8iLixeH4s09Nh9fwV148K1BWxh35BFg5tRCwyGMBHlA7_fyxhkYf8Yv5G4-qoGN8q0v2mbLnzcQuzY-ArKPdneMElPCdmffOIKWvY0nk6fpehTJ9QC_rgQWSh=w1356-h1220-no" /></p>
+
+<p>録画が完了して、キャプチャ動画が Gyazo のサーバにアップロードされると、</p>
+
+<p><img alt="Gyazo GIF アップロード完了 image md" src="https://lh3.googleusercontent.com/c42nfBQ30gHUTFQ7qM_0FjAlkE234acDX4pHQ0mSqvSPegIGCBmCpBxbX0IYMoZYlXtra3zuY6RxldEzBpRtMlaB9jxEwG6d7BuoDR6gxagYmRyyVxM2Zh1FpPYx0PzEC9X6G29KZwdNmye9pgH0ILqt7_oPkw_q4hww6zYSuoar9XuB9LNx4uDTb59k0aPhciTJocMO1_vzyRS0GDSb-MnW2Fidhzkmm9jiAtuQY-T0Uc1c1cfUERIaV2GCM2wasQGlJtg86cFWmgdNR8rAyZUYgR1x7OMW2fgpsAmZ9o76ilxUZvBvtxGFuymAv9KWlabQAOo5K6Sq01S6x9e4iqbqyPyQrzzx8Ickfcnrq0e_tJYu3lc4ZhQtUBbRnsVNDwhDxMazAzgqrhASKZTWQ59_3wLtoMX2KFtnXbjfj-m96cjM4tiiZYAOg0zMgeALqu_LoEil0guhQC5qCQUGEZImmW_I5qe09VoMNIa5wm8-50qZXEEMxE2Cg9p8x_MBC7wJ8fiHPQc5O-yZhcOs0SE61HkHqMaUvbiJBgSsTqsu2IAkCII45XAubw6LHet3GPXfV6In4mtoXimK8tqMmWEejkKXxvp0=w2523-h1773-no" /></p>
+
+<p>こういうページがブラウザで表示されます。ちゃんと動画が撮れました。</p>
+
+<h3>キャプチャ動画を GitHub Issues に貼り付ける</h3>
+
+<p>このページのキャプチャ動画の上で右クリックをし、「名前を付けて画像を保存」を選択します（ブラウザはChrome）。一旦画像をMacに保存します。</p>
+
+<p><img alt="右クリック image md" src="https://lh3.googleusercontent.com/wJ_ZRLFk425Bt3z4_s1vf6moQx8iS9RaJOgigtimyL5yyfojuFTzuVb-njqK6_xfK-tAdBxVfgUQJcp7WgPT0bPwqmt5WmCAE6iqpYdV3h2Ejw96ZUPmTo4CHczC1q5NUX1M-_PM1v0RAOMfTycdjzlgPg_12iQdKU83gNDdJDRWjLPJVGLKzczFDxa6HTCPZF-lZonoOGBWHPRlXVd_2iBLFt0EJ4ttZA2e7S9xR61jB3MzMtHz6P0KY_XxPQ8ik62lukDWC7PjgoalxSFvRvpAm1OGY7VBDiGnbB2QTi_FsgN_gJHRnVuE4eZYU745jDcDzIT9frsq4duwETROwauD_iHoDOEIjAYUX1oaxUMjgbtfJpCNNboA8lrdkUm3cemoDE0dB2o8sCGk1xvJOMhKS0lHx9ADKYPzmmxFIQ2DSRAo_tE6mVGPQTB5cKI9uDHO-YZ3rqXxinkWJ9zowiHE6m2dGgOPyOqTtkWBIrzteIkwZFbMVNSWSl6hi0Lxm5iByF1eJwetzMm74hFz8I80HHk9Yq5xSDhvR8PAy6177D-h0HnbNiNjRSCY0xJni3qf_QeTXAMKKB_x4yM5v-HrOz9XN7qb=w446-h414-no" /></p>
+
+<p>保存をしたら、GitHub Issues のテキストエリアにドラッグ&amp;ドロップ（画像ファイルの上でマウスやトラックボードのボタンを押し、押した状態をキープしたまま GitHub Issues のテキストエリアの上に持って行って指を離す）。</p>
+
+<p><img alt="GitHub Issues のテキストエリアにドラッグ&amp;ドロップ image md" src="https://lh3.googleusercontent.com/59rXChxc7QiYVVdeCjPR7n7XJiWcd1vD6aUj-B52OAaIv08a8ZeRDfTD6crv-QV6YdlZrlC-LpYKi2MAgRhp5witZd1N3JYwSi7X86ooiSL1NA7yvU6p4vcS0uNW21SKiYHol-mdu4MRVwZEJ0tAxPwT7UDrERMSDoGDlB5XruwbF6zxBje0L-PUTyZnJtqRfC7p5KmCG13f5orXOcv7JUfjjLlqG2cyJaAVvYQrQZVTu2UxOUdxO9ug8EsTuDHc_cV9VEk-D4wKT3ENkILAjAQOU57i3t0gWTjtgJ_SUsA1SaMp33fa69abAKaELrFQe9q-NwP_MFqAmD5AwXesS_9AEew2blvzBIDoZyqGZImQeirkP0xE8eHeYkE89FUP8seI7JfJD6nUmh9h8bL3nrhaIqwWbVAljVd7J4oWXZLqWYQDDh25-ZZ8rVqgjq6HjmMVCpEOpeBjnfUO_Z1BgNKcIk5L5c8__IsKu9XElkCdJ9GISCsfFIXBxYwYFM5TeLwoNctLI4P4eRC8_0pEn8QxeLSh6XV-x2Gb7mm9-OCmC4EBxCyq4671iDBcXs0wSSdSJ3xsr7qjga13Z6DO97nqU-KsKRZR=w539-h428-no" /></p>
+
+<p>画像のアップロードが始まって、しばらく待つとアップロードが完了します。動画はGIFアニメなので、拡張子が <code>.gif</code> ならOK。</p>
+
+<p><img alt="Upload中 image md" src="https://lh3.googleusercontent.com/1RKyOsUg1Vxc3w1QJ5MgiGpQaEQI9G-gkU2KPg5cXLoMm6odEbQDD4htYoYsTuU7X8UiyOe61liexZ7KWHDypO1winnfsXzISJLw5PXO5ZDTwlFen0RGzfZ3x8ujc6IvHmCFcvqKCiORY5jyzBNjNCv56rp4sG7a4FjZOGJ2aF4g8a1Wrq6tz2Dkr95E-mlmHt-O5AcglzgFCmpH-B-FJVnwHWe9RI6GeFRUm_bmr78jpBdYgzWvYhjwwDaYy0VjMiILogO9semOwEgpOJSlgb8oaLd9I5JFtiLga_leVqSECalemNenPuAMae3NAsgnXwy2gO4D2hfGXPpdVUYBtJHSwiKVnZpLmA24lQOopF0BhTzYDd2ACrylId9M5zdi7ysTi_jge0vwNJXBtw_k7tOQRwpvhFbOMa_Pak6hcZswlCYEMFHdLPMNVYakeSP4c-NvTH4fqDqZRCL_o0CXnKC4yygQ-EtWMXBwlPzWbbTZQRal7yapViQKtssLS7fCf4e0HnXr39-P-EhJkno5CTkZ6zmD3afLttOv-76f7CsKJPMacPWeGpN2pA8a_eUj_XyaLPFi5xuHFMzUN5bDoIYLepeBCR9o=w394-h201-no" /></p>
+
+<p>アップロードが完了したら GitHub Issues のテキストエリアの上にある、「Write」、「Preview」のタブの「Preview」をクリックしてプレビューを見てみます。</p>
+
+<p><img alt="タブを切り替え image md" src="https://lh3.googleusercontent.com/3d4TBlwq9YIUh84IGhRxBv4_PU7FggxFTNSsMNrQIlvE27FJcjhb44jzeVm4ekjJQNYjH4wMXLgsYwrdSGnpeNrpvkih3UUJSpdPtqvb2LxQo9JAazMPlZNuEdvpoKxcFALP7q11Utsz-mPyjYkdicVdeVu0Zq3jmcNVDIqKFFLCR5AnR7Tiidl5tbT4LXGzeWT0WjO9uTIkISsDaA-bV8t1vvYkmSquu1zfr3q4-AVqHGVbkQa2ctnSf-adYZa1-5ZC-Zve0hvpTUJCr34WEpMmfTJMHxXY_sZXV4LBSIaXxSg6oTAcWTjEO4s5SM1XNqSEdVVYRyR7I5Ne9AvYg0xt57s7rvMZNaOCjjNaBcwh1PEb8B8axPmQXk5Beg3ZG3ZkrIxN5rU6tpfR3cCzxhDOA4-JzKKVgyA-4bqQfeTlS3h7Kx5VILs5RJUy9iJ_TVeP4_kQqap9Gkvm3nqEet6aRcI0XCqA_x5D3LuqX7rmQOBuuhLzZph42fngVxgO1FeXBwrd_qP2-MNl9hufN-ycPTZ8IUW1dSjBl4mFBXvFJ8UySENBZSTSHgA3dhQkOHOblnRdhrs2_JeCxhbVFg6Mt2KLqqdB=w418-h185-no" /></p>
+
+<p>動画によっては表示されるのに時間がかかるときがありますが、少し待ってちゃんと動画が貼り付けられてるのが確認できたら動画貼り付け完了。</p>
+
+<p><img alt="プレビューの確認 image md" src="https://lh3.googleusercontent.com/I4VL5LaZNFwu2OMnLn1BMjYkq6DButFOZk5ARKAf_GQN2UXNPiJmjhzbSCri2dwzw1SikKcqr3Iwm1T3oIGidHHSQ5z5jAyGLBJ_3OBgIZQjdlpo7LT36oIB9y45FCqBeT81fyNF-92z-G6V6UHX5r_XbUyD2VrFka6aHqleBopkY4EC0aP6mdQgO5edWChAVIai0ngst5GRKtdG03PKuSzYLsdEcSD_-lS3qbMhY8ra_HWZX_v6kIwgBRVbyhtL9i5I98BGRJDPjH8P8Lq29oB4M3xTsstob95tubxQzJj45E3zT2cFaaHX0rxsdbyCuxSat9jWoVpcMItREZU0a0zIku-MHyX-RA7YsZqyw5Bi2DdUMd-dzpTjo6TSih6ZN_kMWQO2uEEMurZe-1pkF8FimTrPK2QmSTSOg_pl8FF0J38Yfhd9QpXhkqWZRI6Eq0jpfXE-8lLxQcP-2_dlgizY9Ai4cSiZFQGHOslTYfZX3T3p4Y2amKfgGA0YiDE2qg_OBiXGAEuSa5SMcx5yLcox6OehS326S5QVO6HlRdFjQi-C-FbWr2WVuBX8_JXgSJ24Vayh9wPPpcm0_2b_WtuCwBDm6bp5=w646-h376-no" /></p>
+
+<div class="amazlet-box" style="margin-bottom:0px;"><div class="amazlet-image" style="float:left;margin:0px 12px 1px 0px;"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4309908160/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank"><img src="http://ecx.images-amazon.com/images/I/61bfOLZv0ZL._SL160_.jpg" alt="特殊まんが-前衛の-道" style="border: none;" /></a></div><div class="amazlet-info" style="line-height:120%; margin-bottom: 10px"><div class="amazlet-name" style="margin-bottom:10px;line-height:120%"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4309908160/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank">特殊まんが-前衛の-道</a><div class="amazlet-powered-date" style="font-size:80%;margin-top:5px;line-height:120%">posted with <a href="http://www.amazlet.com/" title="amazlet" target="_blank">amazlet</a> at 16.07.15</div></div><div class="amazlet-detail">根本 敬 <br />東京キララ社 <br />売り上げランキング: 507,282<br /></div><div class="amazlet-sub-info" style="float: left;"><div class="amazlet-link" style="margin-top: 5px"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4309908160/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank">Amazon.co.jpで詳細を見る</a></div></div></div><div class="amazlet-footer" style="clear: left"></div></div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div><div class="container article__container" itemprop="blogPost" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <div class="row">
+    <div class="col-sm-3 col-xs-12">
+      <div class="article__sub">
         <time class="article__created-at is-en" itemprop="dateCreated">2016/03/29</time>
         <div class="article__tags" itemprop="keywords">
           <ul class="article__tags-items">
@@ -85,46 +428,49 @@
     <div class="col-sm-9 col-xs-12">
       <div class="article__content">
         <div class="article__header">
-          <h1 class="article__title" itemprop="headline">
-            <a class="article__title-link is-ja" href="/articles/20160329-scsstosass/">ブラウザ上で「scss記法」を「sass記法」に変換する方法</a>
+          <h1 class="article__title" itemprop="headline"><a class="article__title-link is-ja" href="/articles/20160329-scsstosass/">
+                        ブラウザ上で<span class="is-brackets_ja is-start">「</span>scss 記法<span class="is-brackets_ja is-end">」</span>を<span class="is-brackets_ja is-start">「</span>sass 記法<span class="is-brackets_ja is-end">」</span>に変換する方法</a>
           </h1>
         </div>
-        <div class="article__body post-body js-target-blank" itemprop="articleBody"><p>普段、僕はsass記法を使っています。「sass記法 vs. scss記法」の話は「Vim vs. Emacs」みたいなややこしいことになりそうなので、ここであまり多くを書かないですが、僕はsass記法派というより、なんでscss記法があるのかわからない派、ってくらい圧倒的sass記法派。だって、sass記法の方が短く書けるし、見やすいし、誰が書いてもスペースやインデントは同じになるし&hellip;.。デメリットは、ネット上にあるSassのtipsなんかの例のほとんどがscss記法で書かれてるので、それを毎回脳内でsass記法に変換しなくてはいけない、という手間があるくらい？</p>
+        <div class="article__body post-body js-target-blank" itemprop="articleBody"><p>普段、僕は sass 記法を使っています。「sass 記法 vs. scss 記法」の話は「Vim vs. Emacs」みたいなややこしいことになりそうなので、ここであまり多くを書かないですが、僕は sass 記法派というより、なんで scss 記法があるのかわからない派、ってくらい圧倒的 sass 記法派。だって、sass 記法の方が短く書けるし、見やすいし、誰が書いてもスペースやインデントは同じになるし&hellip;。デメリットは、ネット上にある Sass の tips なんかの例のほとんどが scss 記法で書かれてるので、それを毎回脳内で sass 記法に変換しなくてはいけない、という手間があるくらい？</p>
 
-<p>さてさて、「sass記法 vs. scss記法」の話はどうでもいいんだけど、普段sass記法を使ってるので、<code>.scss</code> を <code>.sass</code> に変換したくなるときがたまにあります。例えば、scss記法で書かれたCSSフレームワークのコードを読むときに、sass記法の方が慣れてるから読みやすいので変換したりなど。</p>
+<p>さてさて、「sass 記法 vs. scss 記法」の話はどうでもいいんだけど、普段 sass 記法を使ってるので、 <code>.scss</code> を <code>.sass</code> に変換したくなるときがたまにあります。例えば、scss 記法で書かれたCSSフレームワークのコードを読むときに、sass記法の方が慣れてるから読みやすいので変換したりなど。</p>
 
 <p>Sassが使える環境でコマンドラインを使って、</p>
 <div class="highlight shell"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="gp">$ </span>sass-convert <span class="o">{</span>変換したいファイル <span class="s2">"例:test.scss"</span><span class="o">}</span> <span class="o">{</span>変換して生成するファイル名 <span class="s2">"例:test.sass"</span><span class="o">}</span>
 </pre></td></tr></tbody></table>
 </div>
 
-<p>とやれば、<code>.scss</code> を <code>.sass</code> に変換することができるんだけど、ブラウザで見てるGithub上のコードなんかをいちいちローカルに持ってきて変換するのは面倒。</p>
+<p>とやれば、 <code>.scss</code> を <code>.sass</code> に変換することができるんだけど、ブラウザで見てる GitHub 上のコードなんかをいちいちローカルに持ってきて変換するのは面倒。</p>
 
-<p>ブラウザからそれを出来るWebサービスはないかなぁ、と探していたところ、ブラウザ上でSassをCSSに変換できるサービス、<a href="http://www.sassmeister.com/">SassMeister</a>で出来ました。SassMeister を使って <code>.scss</code> を <code>.sass</code> に変換するってのはイレギュラーな使い方なのですが、便利なのでその手順を紹介。</p>
+<p>ブラウザからそれを出来るWebサービスはないかなぁ、と探していたところ、ブラウザ上でSassをCSSに変換できるサービス、<a href="http://www.sassmeister.com/">SassMeister</a> で出来ました。 SassMeister を使って <code>.scss</code> を <code>.sass</code> に変換するってのはイレギュラーな使い方なのですが、便利なのでその手順を紹介。</p>
 
 <h2>手順 1</h2>
 
-<p><img alt="image md" src="https://lh3.googleusercontent.com/GCfPkKN26PMSD86YdxLHB758m8GyN1ktfkdiFW6PXTpGglIYNL-btyI04g2yiTdf4W4k942qLJ4UAPsEZ7nk97imPXY79PtNv1UjiSCjbWdt0r0HIl68CCiCfCALwPHp7vqJPfpCdUfQ_cRmV3ocvWk6ZRUDiQWLOFajPqXWbunF1FDUuUJrc03ug082FKzwInPpR6nLOtJ2K9UCP_mwVKCweccSx6TstgZZPo964bTMVSItt_e3i21v2NDY8k-Ib1DLYgRFQZY06OUSLLCoMRFL22flfWMd-hHoQO8LQpsggXU30M4v8zZafKm38e1zbgBHGcjo8A6G3C4_tgHa--nWPDLKRnLy_WTAyY-P1M0-0b3Ya0zB90AlUtCfnKiD-38nF5vXtj4MTa3i3CraO_YUHMtCdazRKn2hBcxstp_EEurUFKoxwjnxNipRwPcf3DC1Tc2ZCwvr5EVGC8H0tesca_a-M7hIZgVvdBjukEMeiLUtoMaGNTYGwjH8mwZyUcAVSoaM0fsF7GM3pgB6rgig113yRyX_USVxVh28vJnuk3imLayFXAOEdKGP1TI--a4J=w970-h589-no" /></p>
-
 <p>Options &gt; Syntax &gt; <strong>SCSS</strong> を選択。</p>
+
+<p><img alt="Options &gt; Syntax &gt; **SCSS** を選択。 image md" src="https://lh3.googleusercontent.com/GCfPkKN26PMSD86YdxLHB758m8GyN1ktfkdiFW6PXTpGglIYNL-btyI04g2yiTdf4W4k942qLJ4UAPsEZ7nk97imPXY79PtNv1UjiSCjbWdt0r0HIl68CCiCfCALwPHp7vqJPfpCdUfQ_cRmV3ocvWk6ZRUDiQWLOFajPqXWbunF1FDUuUJrc03ug082FKzwInPpR6nLOtJ2K9UCP_mwVKCweccSx6TstgZZPo964bTMVSItt_e3i21v2NDY8k-Ib1DLYgRFQZY06OUSLLCoMRFL22flfWMd-hHoQO8LQpsggXU30M4v8zZafKm38e1zbgBHGcjo8A6G3C4_tgHa--nWPDLKRnLy_WTAyY-P1M0-0b3Ya0zB90AlUtCfnKiD-38nF5vXtj4MTa3i3CraO_YUHMtCdazRKn2hBcxstp_EEurUFKoxwjnxNipRwPcf3DC1Tc2ZCwvr5EVGC8H0tesca_a-M7hIZgVvdBjukEMeiLUtoMaGNTYGwjH8mwZyUcAVSoaM0fsF7GM3pgB6rgig113yRyX_USVxVh28vJnuk3imLayFXAOEdKGP1TI--a4J=w970-h589-no" /></p>
 
 <h2>手順 2</h2>
 
-<p><img alt="image md" src="https://lh3.googleusercontent.com/D3sNCvtQCw3cE1lGxyBFaIUwVhNFSTNQQAsWQLWuFKDQ0NIdevOuj2NqBKLJZGxXmxrpyq3VoTqQ6yPGihKTyLnav8kRDGhw0OyN-W8Ekgp4OWX8mm2cH-0aje1iHcp4oOzsxg2dwIJn7MJXTvxZksZGFozfbxn5aCxLBuWGWEC5BjdONlFBbsxKf8935kZD0ioBiDgUW6g0-B4VEcaMQus_fGdwtacZSR6tq-jQIxVKvSfZAOlBwjA3dUC9ma6QxOHrW3pH9tncAkecd5AOUIRvE31C1-GMJKCJtHcIokTTb98EV0Wue2Rb2XSuiG5J2sH9UPiVRYrEuVYZgHjtdilaJ4Bi4fifiRM3tVeysSITKEp3QPb1nOTin2hQ3a08f5mcjvujnf0oHQEj0djptDFeWRWwkGDFmfz6ZvAvAAPshhtmu4jmxO_bS-6DPj-fNHJfZEHXBzPUqnaDsmzzn1MVcsvtzX-EWWRJq0FlKubPQyhyVMql4O833PQAfDK6cClOkORgJupIKaHBfB-XJ6aszsHAz1K_4AZKKr8CJcQmJIn1bH8DezCVy-E3DtkXi5NM=w1228-h551-no" /></p>
-
 <p>左側に変換したい <code>.scss</code> のコードをコピペ。</p>
+
+<p><img alt="左側に変換したい `.scss` のコードをコピペ。 image md" src="https://lh3.googleusercontent.com/D3sNCvtQCw3cE1lGxyBFaIUwVhNFSTNQQAsWQLWuFKDQ0NIdevOuj2NqBKLJZGxXmxrpyq3VoTqQ6yPGihKTyLnav8kRDGhw0OyN-W8Ekgp4OWX8mm2cH-0aje1iHcp4oOzsxg2dwIJn7MJXTvxZksZGFozfbxn5aCxLBuWGWEC5BjdONlFBbsxKf8935kZD0ioBiDgUW6g0-B4VEcaMQus_fGdwtacZSR6tq-jQIxVKvSfZAOlBwjA3dUC9ma6QxOHrW3pH9tncAkecd5AOUIRvE31C1-GMJKCJtHcIokTTb98EV0Wue2Rb2XSuiG5J2sH9UPiVRYrEuVYZgHjtdilaJ4Bi4fifiRM3tVeysSITKEp3QPb1nOTin2hQ3a08f5mcjvujnf0oHQEj0djptDFeWRWwkGDFmfz6ZvAvAAPshhtmu4jmxO_bS-6DPj-fNHJfZEHXBzPUqnaDsmzzn1MVcsvtzX-EWWRJq0FlKubPQyhyVMql4O833PQAfDK6cClOkORgJupIKaHBfB-XJ6aszsHAz1K_4AZKKr8CJcQmJIn1bH8DezCVy-E3DtkXi5NM=w1228-h551-no" /></p>
 
 <h2>手順 3</h2>
 
-<p><img alt="image md" src="https://lh3.googleusercontent.com/Ud4R7yVvytqQe1gbvy82tW6GFoASG61yegUrV-x4eZSbLVeej2UyxvnZWfEJfSlWdDuxQiayyI2CL-1JXoowPBGpLIIbcQtaL173FDQm5kuMlmInjR7w_14hAqI4POOV8YltvivTWJyKT9avmkarDot2CsJwCuTdn-OKX2h_MVP6qrY3eLVqVrHmULMqaRpwGpzYf2Uq4Cuy3_NMV_Kw42xyophpF7lUZ0oIJxF2YvjQw2mB93cYd3FJixhuOHzTa28sb7wdR398j34HYEynIXu_ygc2sbxVc9RGDCPjW9RDr1Jg-mBDP6cHssWqT_ZuQyt_qQywnXVkMS1l1rZ4xQokKq-efljcecSvAIuBD49DULWURTz5FkzDuqW-knB8oY4TCAaEKU9xJ-7NnVLD51GsHKrNjNUMYwhidpSwik89wvkl6geO_Gs3oUXFKp34A1ZJHyNZc2NHi6fQuYuaKLFbvKsLhKFfkvwXjbPHE9LqpkzZTdrVeOL-ooXLgXQ94LTO-62zpWMGVZcvPyciTEG_fhkXP7pUYzy92W2PcNp8cCpFkw-5k50V_zmFcMAGT8AR=w970-h589-no" /></p>
-
 <p>Options &gt; Syntax &gt; <strong>SASS</strong> に変更する。</p>
+
+<p><img alt="Options &gt; Syntax &gt; **SASS** に変更する。 image md" src="https://lh3.googleusercontent.com/Ud4R7yVvytqQe1gbvy82tW6GFoASG61yegUrV-x4eZSbLVeej2UyxvnZWfEJfSlWdDuxQiayyI2CL-1JXoowPBGpLIIbcQtaL173FDQm5kuMlmInjR7w_14hAqI4POOV8YltvivTWJyKT9avmkarDot2CsJwCuTdn-OKX2h_MVP6qrY3eLVqVrHmULMqaRpwGpzYf2Uq4Cuy3_NMV_Kw42xyophpF7lUZ0oIJxF2YvjQw2mB93cYd3FJixhuOHzTa28sb7wdR398j34HYEynIXu_ygc2sbxVc9RGDCPjW9RDr1Jg-mBDP6cHssWqT_ZuQyt_qQywnXVkMS1l1rZ4xQokKq-efljcecSvAIuBD49DULWURTz5FkzDuqW-knB8oY4TCAaEKU9xJ-7NnVLD51GsHKrNjNUMYwhidpSwik89wvkl6geO_Gs3oUXFKp34A1ZJHyNZc2NHi6fQuYuaKLFbvKsLhKFfkvwXjbPHE9LqpkzZTdrVeOL-ooXLgXQ94LTO-62zpWMGVZcvPyciTEG_fhkXP7pUYzy92W2PcNp8cCpFkw-5k50V_zmFcMAGT8AR=w970-h589-no" /></p>
 
 <h2>変換完了！</h2>
 
-<p><img alt="image md" src="https://lh3.googleusercontent.com/8k-TWPUIn9ItMoM2An3-usYaqpNV0m70zuSvvSn4HBsSYAp0SmYUe5H9zwuCqZvhgGAPOMYgQr--FJALkEDoZ8lgAiLN22bvzAE2WwPUGoD_TSDnadIblKGIB5W8FJGBdx6V8HfKCsEGpvqV8E0G8Qop9L1sxF6MF3suXULVwF6NbcZpUs84x7oUGq3NFYEitOaCseVzxWKS0JGacpCTD2XPxSGBez9ajJUE1fcJ-IFBAX-kHqSa8ElfHFHbuaxSjVvTWWyRcno_Ko5S67kni-gqHs56zqUgy5sbNPzrEk_QzVqRkBCSs2Jr29ralXr-cZPjaBS-d6lhaMWTEOfHSvdRHK5t8Zz1f1Dv3ZRYLjaz5H1WpjiU7Y1QjLM1PEt7hZPbtFLjZCDhqNQTSPP-5Rm6tYv512pBWWze0joQcnEsqk5spvgtvaykSMiHPiYgW8wl9IxQZDHdc4pA06qeR7Su-31NAFoRVV1fXfBNMhPWrL1VTW00mHEXy5o26aBvA92PcnycTB1OH9R3oKyfQhOlKsZ8CIpF1DhXEpx_rtbY30qeWy04X5GB2pRdU8nDeYti=w795-h458-no" /></p>
+<p>sass記法に変換されました。<br>
+逆に <code>.sass</code> から <code>.sass</code> に変換もできます。</p>
 
-<p>sass記法に変換されました。</p>
+<p><img alt="sass記法に変換されました。 image md" src="https://lh3.googleusercontent.com/8k-TWPUIn9ItMoM2An3-usYaqpNV0m70zuSvvSn4HBsSYAp0SmYUe5H9zwuCqZvhgGAPOMYgQr--FJALkEDoZ8lgAiLN22bvzAE2WwPUGoD_TSDnadIblKGIB5W8FJGBdx6V8HfKCsEGpvqV8E0G8Qop9L1sxF6MF3suXULVwF6NbcZpUs84x7oUGq3NFYEitOaCseVzxWKS0JGacpCTD2XPxSGBez9ajJUE1fcJ-IFBAX-kHqSa8ElfHFHbuaxSjVvTWWyRcno_Ko5S67kni-gqHs56zqUgy5sbNPzrEk_QzVqRkBCSs2Jr29ralXr-cZPjaBS-d6lhaMWTEOfHSvdRHK5t8Zz1f1Dv3ZRYLjaz5H1WpjiU7Y1QjLM1PEt7hZPbtFLjZCDhqNQTSPP-5Rm6tYv512pBWWze0joQcnEsqk5spvgtvaykSMiHPiYgW8wl9IxQZDHdc4pA06qeR7Su-31NAFoRVV1fXfBNMhPWrL1VTW00mHEXy5o26aBvA92PcnycTB1OH9R3oKyfQhOlKsZ8CIpF1DhXEpx_rtbY30qeWy04X5GB2pRdU8nDeYti=w795-h458-no" /></p>
+
+<div class="amazlet-box" style="margin-bottom:0px;"><div class="amazlet-image" style="float:left;margin:0px 12px 1px 0px;"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4584181519/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51ep0rd8R9L._SL160_.jpg" alt="因果鉄道の旅―根本敬の人間紀行 (ワニの本)" style="border: none;" /></a></div><div class="amazlet-info" style="line-height:120%; margin-bottom: 10px"><div class="amazlet-name" style="margin-bottom:10px;line-height:120%"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4584181519/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank">因果鉄道の旅―根本敬の人間紀行 (ワニの本)</a><div class="amazlet-powered-date" style="font-size:80%;margin-top:5px;line-height:120%">posted with <a href="http://www.amazlet.com/" title="amazlet" target="_blank">amazlet</a> at 16.07.15</div></div><div class="amazlet-detail">根本 敬 <br />ベストセラーズ <br />売り上げランキング: 102,374<br /></div><div class="amazlet-sub-info" style="float: left;"><div class="amazlet-link" style="margin-top: 5px"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4584181519/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank">Amazon.co.jpで詳細を見る</a></div></div></div><div class="amazlet-footer" style="clear: left"></div></div>
 
         </div>
       </div>
@@ -160,6 +506,18 @@
                       <li class="tags-nav__item footer-nav__item">
                         <a class=" tags-nav__link is-en" href="/articles/tags/sass/">sass</a>
                       </li>
+                      <li class="tags-nav__item footer-nav__item">
+                        <a class=" tags-nav__link is-en" href="/articles/tags/github/">GitHub</a>
+                      </li>
+                      <li class="tags-nav__item footer-nav__item">
+                        <a class=" tags-nav__link is-en" href="/articles/tags/rails/">rails</a>
+                      </li>
+                      <li class="tags-nav__item footer-nav__item">
+                        <a class=" tags-nav__link is-en" href="/articles/tags/middleman/">middleman</a>
+                      </li>
+                      <li class="tags-nav__item footer-nav__item">
+                        <a class=" tags-nav__link is-en" href="/articles/tags/google-photo/">Google Photo</a>
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -176,6 +534,9 @@
                       <li class="archives-nav__year-item footer-nav__item">
                         <a class="archives-nav__year-link is-en" href="/articles/2016/">2016</a>
                         <ul class="archives-nav__month-items">
+                          <li class="archives-nav__month-item">
+                            <a class="archives-nav__month-link is-en" href="/articles/2016/07/">07</a>
+                          </li>
                           <li class="archives-nav__month-item">
                             <a class="archives-nav__month-link is-en" href="/articles/2016/03/">03</a>
                           </li>
@@ -217,6 +578,7 @@
       
       ga('create', "UA-58200227-1", 'auto');
       ga('send', 'pageview');
-    </script>
-  </body>
+    </script><!-- Start of Amazon Publisher Studio Loader -->    <script>  window.amznpubstudioTag = "machidateppei-22";  </script>    <!-- Do not modify the following code ! -->  <script async="true" type="text/javascript" src="http://ps-jp.amazon-adsystem.com/domains/machidateppei-22_453592de-ff63-4e4f-b4b9-e581d9119840.js" charset="UTF-8"></script>    <!-- End of Amazon Publisher Studio Loader -->  
+    
+  
 </html>

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" /><script src="/javascripts/application.js"></script><title>machida</title>
+    <meta content="articles" name="description" />
+    <meta content="article" property="og:type" />
+    <meta content="machida" property="og:title" />
+    <meta content="articles" property="og:description" />
+    <meta content="http://machida.github.io//demo/2016-04-21-mixinposition/" property="og:url" />
+    <meta content="shared/og-image.png" property="og:image" />
+    <meta content="machida マチダのブログ" property="og:site_name" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <meta content="@machida" name="twitter:site" />
+    <meta content="@machida" name="twitter:creator" />
+    <meta content="machida" name="twitter:title" />
+    <meta content="articles" name="twitter:description" />
+    <meta content="shared/og-image.png" name="twitter:image:src" />
+  </head>
+  
+    <div class="body"><p>ここ一年ちょいくらい、<a href="https://github.com/oulu/oulu">oulu</a>っていうSassのツールを一人でシコシコ作ってます。</p>
+
+<p>Sassのツールって言うと、<a href="http://getbootstrap.com/">bootstrap</a>や<a href="http://foundation.zurb.com/">Foundation</a>みたいな、「これを使えばCSS（Sass）を書かなくてもデザインが入る！」ってやつを想像されることが多いのですが、ouluはそういうのじゃなくて、Sassを書くのを楽にするツール、要するにSassを短く書くためのmixin集です。<a href="http://bourbon.io/">Bourbon</a>とか<a href="http://compass-style.org/">Compass</a>みたいなやつ。</p>
+
+<p>ただ、BourbonやCompassのmixinは自動でベンダープリフィクスを付けるためのものが多くを占めるんだけど、最近その辺は<a href="https://github.com/postcss/autoprefixer">autoprefixer</a>を使って対応するのが主流なので、ouluにはベンダープリフィクスを付けるためのmixinは含んでないです。単純にSassを短く書くためだけに注力しています。</p>
+
+<p>普段、仕事などで一緒にいる人の大半がエンジニアさんなのですが、割とみんなSassやCSSに興味がないので（だから僕がこの仕事に呼ばれてるんですけどね）、頑張ってcommitしてるouluについて無理やり自慢をしても、何を頑張ってるのかイマイチ伝わらないです。なので、今回は実際どんなものを作ってるのかの例を紹介してみよう、って話。ついでに、ここ最近Sassを触り始めた人にとっても、Sassってこういうことが出来るのかー、ってのの参考になればと思い、詳しく書いてみました。</p>
+
+<h2>positionを一行で書きたい</h2>
+
+<p>sassに <code>position: absolute</code> って書いたらほとんどの場合、<code>left: 2rem</code> だとか、 <code>top: 1.5rem</code> だとかの <code>位置: 値</code> も書くんですよね。ほとんどそれらがセットなのに、そのために3行も使うのが個人的にイヤ（異論は認めますよ）。</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4</pre></td><td class="code"><pre><span class="nc">.absolute-block</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span>
+  <span class="nl">left</span><span class="p">:</span> <span class="m">2rem</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">1</span><span class="mi">.5rem</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>さらにsass-lintなんかを使ってて、「sassのプロパティはアルファベット順に書かないと警告が出る」なんてルールが設定してあったら、</p>
+
+<blockquote>
+<p>えーと、まずは <code>position: absolute</code> にして、<br>
+次にー、左右の位置はこの辺だから <code>left: 2rem</code>、と、<br>
+よーしよーし、それで&hellip; 上下の位置はこの辺だから <code>top: 1.5rem</code>、かなー？&hellip;<br>
+うーん、いいね！</p>
+</blockquote>
+
+<p>&hellip;みたいなことを考えながら位置を合わせてるのですが、考え方の順番と一致しなくなって書きにくいんですよね。書いてから修正するのも面倒だし、コードを読むときも、考え方と同じ順番で書いてないと行ったり来たりしなくちゃなんないので面倒。だったら、それらをまとめて一行に書きたい、ついでに <code>z-index</code> も一緒に一行に書きたい、って思います。</p>
+
+<h2>ざっくりmixinにしてみる</h2>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7</pre></td><td class="code"><pre><span class="nf">=position</span><span class="p">(</span><span class="nv">$position</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$left</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$top</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$right</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$bottom</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$z-index</span><span class="o">:</span> <span class="n">null</span><span class="p">)</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nv">$position</span>
+  <span class="nl">left</span><span class="p">:</span> <span class="nv">$left</span>
+  <span class="nl">right</span><span class="p">:</span> <span class="nv">$right</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="nv">$top</span>
+  <span class="nl">bottom</span><span class="p">:</span> <span class="nv">$bottom</span>
+  <span class="nl">z-index</span><span class="p">:</span> <span class="nv">$z-index</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>実際に使うと、</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre><span class="nc">.absolute-block</span>
+  <span class="nd">+position</span><span class="p">(</span><span class="nb">absolute</span><span class="o">,</span> <span class="m">2rem</span><span class="o">,</span> <span class="m">1</span><span class="mi">.5rem</span><span class="o">,</span> <span class="n">null</span><span class="o">,</span> <span class="n">null</span><span class="o">,</span> <span class="m">100</span><span class="p">)</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>こうSassを書いて、</p>
+<div class="highlight css"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6</pre></td><td class="code"><pre><span class="nc">.absolute-block</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">left</span><span class="p">:</span> <span class="m">2rem</span><span class="p">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">1.5rem</span><span class="p">;</span>
+  <span class="nl">z-index</span><span class="p">:</span> <span class="m">100</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>こういうCSSが生成される。</p>
+
+<p>positionってmixinを作って、ざーっと、愚直に引数を設定。値が <code>null</code> のプロパティはCSSに書き出されないので、引数のdefault値には <code>null</code> を入れておきました。まぁ、これはこれで機能はするかと思うんだけどイマイチ。イマイチなポイントをあげてみます。</p>
+
+<h3>イマイチポイント</h3>
+
+<ul>
+<li><code>$left</code> , <code>$top</code> , <code>$right</code> , <code>$bottom</code> の値が全部必要なことなんて、そうはないから、ほとんどの場合、どこかしらに <code>null</code> って書かなくてはいけなくなる。なんかわからないけど、個人的にmixinを使うときに <code>null</code> って書かせたら負けって思ってしまう。必要ないなら何も書かないで済ませたいじゃん、みたいな。</li>
+<li>カンマが多過ぎて引数の順番を間違えそう。</li>
+</ul>
+
+<h3>改善案</h3>
+
+<p>イマイチな点を解決するため、<code>position</code> 、 <code>left top right bottom</code> 、 <code>z-index</code> のうち必要なものだけを引数として順番関係なく渡すことにします。そうすれば、不要なプロパティに <code>null</code> って書く必要ないし、順番も関係無くすれば引数の順番を間違えることもなくなって問題解消。必要なものを思いついた順番に詰め込んだ引数たちを <code>@each</code> で順番に流し込んで（下の画像のベルトコンベアみたいなイメージ）、 <code>@if</code> 、 <code>@else if</code> たちに仕分けをさせるってイメージのmixinに作り直します。</p>
+
+<h4>@if、@else if の仕分け作業の内容</h4>
+
+<ul>
+<li>プロパティ <code>position</code> の値（ <code>static</code> or <code>relative</code> or <code>absolute</code> or <code>fixed</code>）だったら、<code>position</code> の値にする。</li>
+<li>2つの値の組み合わせだったら、1つ目をプロパティを「位置（ <code>left</code> or <code>top</code> or <code>right</code> or <code>bottom</code> ）」 にして、もう一つを「位置の値」とする（例: <code>left: 2rem</code>）。</li>
+<li>単位を持たない数字だったら、 <code>z-index</code> の値にする。</li>
+</ul>
+
+<h3>こんなイメージ</h3>
+
+<p><img alt="sassのイメージ" src="https://lh3.googleusercontent.com/S4p7M6xYsKuqHhoSjVREf2THarhsgBu0NX55CCMtzL-oVa-1TfQIOWFPuClTjanW0DM_zIGZuegAwXmP181WOdLwlmROYfy3Iv1E8GVqAnaFDIjAbXUtCvDydIihPLEau0YwqoCgRtlweV5yR4mT_o-7A-fALSV2ComHqU7J5i69y0HaLIBRnqSvJhOQ6MeiD9rCPUEDEyJMDvmO3lXifsYYV49_reaNqVHBisUD4j1MShJl4ChgdXovsUjXh7DGZpJQ0atHTnZyv8qXKJjUvUo3FQTVD8UhYDaPUkJNee_TTMBdAKIsE6jiiKi74HAXW3gwtJbeaHRfXt4MAN5EQzf-CJ_k2qnFgHYbe5KzQbQbmgVQnZG-MlAKMcbMIMzrI8_Rt893E_0fWNY3Irn8O0EgZvwFTIEtTQcS0KB-FVPVOS3kU0iW3q4SCIP-kvAF5QrWVMcKooq2bYxMk9T0cmlwlpyufs7zDWKuHI9zxzv6KO3NaOKMJ_qcpEyBkfrRDuzyYmQfb11W-iPgyiLbwm2UFIwRd32T8eWcbKZRQkxZBpLpwHQBclIXK09oZMxBbi99=w1800-h1000-no" /></p>
+
+<p>では、実装していきましょう。</p>
+
+<h2>mixinの仕様</h2>
+
+<p>まずは、mixin の本体。引数 <code>$values</code> にベルトコンベア（@each）に流す引数を詰め込んでいきます。</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="nf">=position</span><span class="p">(</span><span class="nv">$values</span><span class="o">...</span><span class="p">)</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>実際に使う時は、</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre><span class="nc">.absolute-block</span>
+  <span class="nd">+position</span><span class="p">(</span><span class="nb">absolute</span><span class="o">,</span> <span class="nb">left</span> <span class="m">2rem</span><span class="o">,</span> <span class="nb">top</span> <span class="m">1</span><span class="mi">.5rem</span><span class="o">,</span> <span class="m">100</span><span class="p">)</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>と書くと、引数がうまく仕分けされて、</p>
+<div class="highlight css"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6</pre></td><td class="code"><pre><span class="nc">.absolute-block</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">left</span><span class="p">:</span> <span class="m">2rem</span><span class="p">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">1.5rem</span><span class="p">;</span>
+  <span class="nl">z-index</span><span class="p">:</span> <span class="m">100</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>こういうCSSが生成される（イマイチmixinの例と結果は同じになる）。</p>
+
+<h2>mixinに渡す引数</h2>
+
+<p>まずは、イマイチmixinと改善後のmixinのそれぞれに渡す引数を見比べてみましょう。</p>
+
+<p>イマイチmixin</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="nf">=position</span><span class="p">(</span><span class="nv">$position</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$left</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$top</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$right</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$bottom</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$z-index</span><span class="o">:</span> <span class="n">null</span><span class="p">)</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p><code>$position: null, $left: null, $top: null, $right: null, $bottom: null, $z-index: null</code> こんな風に異様に長い引数を渡してました。</p>
+
+<p>一方、改善後のmixinは、</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="nf">=position</span><span class="p">(</span><span class="nv">$values</span><span class="o">...</span><span class="p">)</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>引数は、 <code>$values...</code> としか書いてません。しかも <code>...</code> とピリオドが3つ打たれてます。これって何？って解説をここでしておきます。</p>
+
+<h3>可変長引数</h3>
+
+<p>今回、イマイチな点を解決するため、position 、 left top right bottom 、 z-index のうち必要なものだけを引数として順番関係なく渡すことにしました。ということで、引数がいくつ渡されるかはシチュエーションによって異なります。</p>
+
+<p>例えば、</p>
+<div class="highlight css"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6</pre></td><td class="code"><pre><span class="nc">.block</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">absolute</span><span class="p">;</span>
+  <span class="nl">left</span><span class="p">:</span> <span class="m">2rem</span><span class="p">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">1.5rem</span><span class="p">;</span>
+  <span class="nl">z-index</span><span class="p">:</span> <span class="m">100</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>というCSSを生成したい場合、</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre><span class="nc">.block</span>
+  <span class="nd">+position</span><span class="p">(</span><span class="nb">absolute</span><span class="o">,</span> <span class="nb">left</span> <span class="m">2rem</span><span class="o">,</span> <span class="nb">top</span> <span class="m">1</span><span class="mi">.5rem</span><span class="o">,</span> <span class="m">100</span><span class="p">)</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p><code>absolute, left 2rem, top 1.5rem, 100</code> 4つの引数を渡します。</p>
+
+<p>ところが、</p>
+<div class="highlight css"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8</pre></td><td class="code"><pre><span class="nc">.block</span> <span class="p">{</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nb">fixed</span><span class="p">;</span>
+  <span class="nl">left</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">top</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">right</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">bottom</span><span class="p">:</span> <span class="m">0</span><span class="p">;</span>
+  <span class="nl">z-index</span><span class="p">:</span> <span class="m">100</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>このようなCSSを生成したい場合、</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre><span class="nc">.block</span>
+  <span class="nd">+position</span><span class="p">(</span><span class="nb">fixed</span><span class="o">,</span> <span class="nb">left</span> <span class="m">0</span><span class="o">,</span> <span class="nb">top</span> <span class="m">0</span><span class="o">,</span> <span class="nb">right</span> <span class="m">0</span><span class="o">,</span> <span class="nb">bottom</span> <span class="m">0</span><span class="o">,</span> <span class="m">100</span><span class="p">)</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p><code>fixed, left 0, top 0, right 0, bottom 0, 100</code> 6つの引数を渡します。</p>
+
+<p>こんな場合もあります。</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4</pre></td><td class="code"><pre><span class="nc">.block</span>
+  <span class="nd">+position</span><span class="p">(</span><span class="nb">absolute</span><span class="o">,</span> <span class="nb">left</span> <span class="m">-20rem</span><span class="o">,</span> <span class="nb">top</span> <span class="m">0</span><span class="o">,</span> <span class="m">100</span><span class="p">)</span>
+  <span class="k">&amp;</span><span class="nc">.is-slide-in</span>
+    <span class="nd">+position</span><span class="p">(</span><span class="nb">left</span> <span class="m">0</span><span class="p">)</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>というように、引数がいくつ渡されるかはシチュエーションによって異なります。これの何が問題かというと、例えば、5つの引数の入れ物（ <code>$value1</code> 〜 <code>$value5</code> ）を用意した場合、</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="nf">=position</span><span class="p">(</span><span class="nv">$value1</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$value2</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$value3</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$value4</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$value5</span><span class="o">:</span> <span class="n">null</span><span class="p">)</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>それぞれデフォルト値は <code>null</code> を持っているので、下の例の用に5つを使い切らず、4つの引数を渡しても問題なくmixinが使えます。</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre><span class="nc">.block</span>
+  <span class="nd">+position</span><span class="p">(</span><span class="nb">absolute</span><span class="o">,</span> <span class="nb">left</span> <span class="m">2rem</span><span class="o">,</span> <span class="nb">top</span> <span class="m">1</span><span class="mi">.5rem</span><span class="o">,</span> <span class="m">100</span><span class="p">)</span>
+  <span class="c1">// 引数の入れ物は5つだけど、デフォルト値に null が入ってるので、渡す引数が5つ未満でもOK。
+</span></pre></td></tr></tbody></table>
+</div>
+
+<p>ところが、5つの引数の入れ物しかないのに、それを超える個数の引数（下記の例では6つの引数）を渡した場合、エラーが出てしまいます。</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre><span class="nc">.block</span>
+  <span class="nd">+position</span><span class="p">(</span><span class="nb">fixed</span><span class="o">,</span> <span class="nb">left</span> <span class="m">0</span><span class="o">,</span> <span class="nb">top</span> <span class="m">0</span><span class="o">,</span> <span class="nb">right</span> <span class="m">0</span><span class="o">,</span> <span class="nb">bottom</span> <span class="m">0</span><span class="o">,</span> <span class="m">100</span><span class="p">)</span>
+  <span class="c1">// 引数の入れ物が5つしかないので、エラーが出る。
+</span></pre></td></tr></tbody></table>
+</div>
+
+<p>じゃあ、いくつ引数が渡されてもエラーが出ないように、引数の入れ物をたくさん用意しとけばいいじゃん、と、</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="nf">=position</span><span class="p">(</span><span class="nv">$value1</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$value2</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$value3</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$value4</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$value5</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$value6</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$value7</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$value8</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$value9</span><span class="o">:</span> <span class="n">null</span><span class="o">,</span> <span class="nv">$value10</span><span class="o">:</span> <span class="n">null</span><span class="p">)</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>こんな風にしたら、これはこれでちゃんと動きはするのですが、すごく格好悪いし、mixinを作るのが面倒になります。</p>
+
+<p>ここで、使うのが <code>...</code> という「ドット3つ」の記号。これを引数名の書くと、ここにはいくつでも引数が入れられるようになります。</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="nf">=position</span><span class="p">(</span><span class="nv">$values</span><span class="o">...</span><span class="p">)</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>これをvariadic function（可変長引数）というそうです。</p>
+
+<h2>@each</h2>
+
+<p>続いて、上記「こんなイメージ」の画像のベルトコンベアの部分、<code>@each</code> を書いてみると、</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre><span class="nf">=position</span><span class="p">(</span><span class="nv">$values</span><span class="p">)</span>
+  <span class="k">@each</span> <span class="o">@</span><span class="n">value</span> <span class="n">in</span> <span class="o">@</span><span class="n">values</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>こうなります。<code>$values</code> の中の引数たちを一つずつ、<code>$value</code> という箱（「こんなイメージ」の画像だと青い箱）に入れて、<code>@each</code> というベルトコンベアに流すイメージ。</p>
+
+<p>ちなみに、Sassの <code>@if</code> 、 <code>@for</code> 、 <code>@each</code>、 <code>@while</code> について詳しく知りたいかたは<a href="http://thesassway.com/intermediate/if-for-each-while">こちらの記事（Sass control directives: @if, @for, @each and @while）</a>がオススメ。</p>
+
+<h2>@if プロパティpositionの値だったら</h2>
+
+<p>次は仕分け作業。最初の仕分け作業は「もし、<code>$value</code> がプロパティ <code>position</code> の値だったら」という条件で、「<code>$value</code> はプロパティ <code>position</code> の値にする」っていう仕分けを行います。「<code>$value</code> がプロパティ <code>position</code> の値だったら」、とは具体的にはどういう条件なのか？を考えてみます。</p>
+
+<p>プロパティ <code>position</code> に使える値は、</p>
+
+<ul>
+<li><code>static</code></li>
+<li><code>relative</code></li>
+<li><code>absolute</code></li>
+<li><code>fixed</code></li>
+</ul>
+
+<p>の4種類ですね。なので、具体的には、<code>$value</code> が <code>static</code> 、 <code>relative</code> 、 <code>absolute</code> 、 <code>fixed</code> のいずれかだったら、 <code>position: $value</code> とする、という条件になります。</p>
+
+<p>実際にSassで書いてみると、</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre><span class="k">@if</span> <span class="nv">$value</span> <span class="o">==</span> <span class="s1">'satatic'</span> <span class="ow">or</span> <span class="nv">$value</span> <span class="o">==</span> <span class="s1">'relative'</span> <span class="ow">or</span> <span class="nv">$value</span> <span class="o">==</span> <span class="s1">'absolute'</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="s1">'fixed'</span>
+  <span class="nl">position</span><span class="p">:</span> <span class="nv">$value</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>と、なります。ひとつ目の仕分け条件のSass化完了。</p>
+
+<h2>@else if 2つの値の組み合わせだったら、1つ目をプロパティ「位置」 にして、もう一つを「位置の値」とする</h2>
+
+<p>次の仕分け作業は、「もし、 <code>$value</code> が2つの値の組み合わせだったら」という条件で、「<code>$value</code> の1つ目の値をプロパティを「位置（ <code>left</code> or <code>top</code> or <code>right</code> or <code>bottom</code> ）」 にして、<code>$value</code> のもう一つの値を「位置の値」とする」という仕分けをします。まずは条件の部分、「2つの値の組み合わせだったら」ってところから。</p>
+
+<h3>Sassのfunctionの使い方</h3>
+
+<p>「もし、 <code>$value</code> が2つの値の組み合わせだったら」という条件には、Sassのfunctionを使います。ちょっとここで、Sassのfunctionの使い方の簡単な説明を。</p>
+
+<p>Sassのfunctionは、functionの後ろにカッコを書いて、その中にfunctionに渡したい値を入れます。すると、functionがその値を変換して別のものにして返してくれます。</p>
+
+<p>例えば、 <code>round</code> という小数点第一位を四捨五入するfunctionがあります。これを使うには、<code>round</code> の後ろにカッコを書いて、その中に数字を入れます。すると、カッコの中に入れた数字が変換されて、小数点第一位が四捨五入された数字が返ってきます。</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8</pre></td><td class="code"><pre><span class="nt">round</span><span class="o">(</span><span class="nt">71</span><span class="nc">.1</span><span class="o">)</span>
+<span class="c1">// 71が返ってくる。
+</span>
+<span class="nt">round</span><span class="o">(</span><span class="nt">71</span><span class="nc">.5</span><span class="o">)</span>
+<span class="c1">// 72が返ってくる。
+</span>
+<span class="nt">round</span><span class="o">(</span><span class="nt">71</span><span class="o">)</span>
+<span class="c1">// 71が返ってくる。
+</span></pre></td></tr></tbody></table>
+</div>
+
+<p>こうやって使います。</p>
+
+<h3>Sassのfunctionをコマンドラインで試す</h3>
+
+<p>ちなみに、Sassはコマンドラインで動かす機能が入ってます。Sassが使える環境で、</p>
+<div class="highlight shell"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="gp">$ </span>sass -i
+</pre></td></tr></tbody></table>
+</div>
+
+<p>と、打つと、</p>
+
+<p><img alt="ターミナル md" src="https://lh3.googleusercontent.com/Htn7eaKyCb7MfOtJsNxim9zv0gBWjjvFy3XOt9wol4FQeMWJmlBf1tfoGnI-w8CDVdLP_hzsNE7gpZBC9V-nKCPUaTAukXGQf72rfseF68gxYFLRoH-UAJAsF9iBcuF6_K4Eq8Cly9sh7exZqDGZqmQU81d-wejKE41isSN0qeswf399Q5M0RYqEK_exS2d9oazeZdDRttyFdcq3bVmPg5x8KWNgVNoO3DPpWK-kYgHiwpbrYjy8_P7BGo_6o-7E_TdOSqisxit99EUmYMG9GbfYhoawjtFxGUsXgi94K3CA8RYzaSUKbYAXOWHSSv88L_jMwx8RYZ6H6D_2RV90TxCntMikex9s3KMBn-r26Kh1j8FSzD6JH6_5Dnmn_hUxfugK8KQDULdvjma_rOPs5pxfx8KjoUIRn99kkRpCsf10-Q5YGkBigqSIW1RxD8-C5AOpE3YYPvh1bhNAJM85IChAVqbyYLG5mpHFrpaHjfC7gSO67amA1UV72fkSnfTRN2xU3we3AO8-tvj-9CYeXtufJK27sE5J-F0HC5PC6-GX0RXTQT5Uf9sZsSxy2I2q74Xk=w571-h396-no" /></p>
+
+<p>って感じで、<code>&gt;&gt;</code> と出るので、そこに例えば上記のfunctionの例、<code>round(71.1)</code> と入力してみると、</p>
+
+<p><img alt="ターミナル md" src="https://lh3.googleusercontent.com/qakoJ4oq6tJVr3toUazb0yjuG1sQNixWsnfAIktPVC5FyL0TyHp_tMFNG9LW557RcBhWvHzUoSIBMNYtKowuXpEneZP5ZA46bBJRgLDcKBZZMkIXbof4iFhMN2UIrgYaYkNYmdpLdn3tChaxLpKEjxk-_wjQKatGr7wOZ9kVY6UeMVELjsxVw5f0qP-hNO4mxsyx-AgLWP9to9roEvHPLGtnmwnC0QX4ZyPpo5txtNRZJNk_G8zSNKEjEHL4mt5ZK_tQeg46KGwCSlYoirl2m2xJhg2SvGur11Jsj03ELNAaDspxgV6SOL-5xCSmXRjjDLnWxnXnsbUQj19TwXsRIFbX8YAhGag4iVbe9h9cnpThhRCEhfR7lEF4vJem1gP-KuST6kB2WrsTDZeVSXzauktTrWcpc3reGCnylgK3GZ-t-Pqahi0hRM09IsDUpG8PA8V4608dL9Q22WBGF5yWRavY3n7ECfQSRcZSX7ObVryBKoSD4JExk7ABAcQNKLvSmEpvt0FkrR80SMx4nyw8iljNYiHkFsD-Zw-KYP_s5eeIGtTBoeZXqvueE14vTtty77ge=w571-h396-no" /></p>
+
+<p>この様に結果を表示してくれます。便利！</p>
+
+<h3>functionを自作してみよう</h3>
+
+<p>functionが出てきたところで、</p>
+
+<h3>Sassのfunction、length</h3>
+
+<p>だいぶ脱線しましたが、話を戻して、「もし、 <code>$value</code> が2つの値の組み合わせだったら」という条件をSassでどうやって実装するのか、の話。</p>
+
+<p>この条件は、Sassに始めから用意されているfunction <code>length</code> を使って実装します。 <code>length</code> とはどんなfunctionかというと、リストを渡すと、そのリストにある値の数を返すというfunction。言葉で説明してもわかりづらいので、例を用意しました。<code>$ sass -i</code> で試してみてください。</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12</pre></td><td class="code"><pre>length(Emerson Lake Palmer)
+// 3が返ってくる。
+
+length(Emerson Lake)
+// 2が返ってくる。
+
+length(Emerson)
+// 1が返ってくる。
+
+length((Emerson, Lake, Palmer))
+// 3が返ってくる。
+// カンマ区切りのリストの場合、リスト全体をカッコで囲わないとSyntaxErrorになる。
+</pre></td></tr></tbody></table>
+</div>
+
+<p>こういうfunctionです。</p>
+
+<h3>lengthを使って、Sassを書いてみる</h3>
+
+<p>「2つの値の組み合わせだったら」は、</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="k">@else</span> <span class="n">if</span> <span class="nf">length</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span> <span class="o">==</span> <span class="m">2</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>と、なります。うん、簡単。</p>
+
+<h2>1つ目をプロパティ「位置」 にして、もう一つを「位置の値」とする</h2>
+
+<p>続いて、「1つ目をプロパティ「位置」 にして、もう一つを「位置の値」とする」の仕分け作業の実装。</p>
+
+<h3>nth</h3>
+
+<p>「1つ目」、「2つ目」をSassで表現するには、<code>nth</code> というfunctionを使います。 <code>nth</code> とは、今回のような2つ以上値があるときに、それのn番目の値だけを抜き出すっていうfunction。またもや言葉じゃ説明しづらいので、<code>length</code> と同様に例を用意。</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9</pre></td><td class="code"><pre>nth(Emerson Lake Palmer, 1)
+// リスト [Emerson Lake Palmer] の1番目である Emerson が返ってくる。
+
+nth(Emerson Lake Palmer, 2)
+// リスト [Emerson Lake Palmer] の2番目である Lake が返ってくる。
+
+nth((Emerson, Lake, Palmer), 3)
+// リスト [(Emerson, Lake, Palmer)] の3番目である Palmer が返ってくる。
+// カンマ区切りのリストの場合、リスト全体をカッコで囲わないとSyntaxErrorになる。
+</pre></td></tr></tbody></table>
+</div>
+
+<p>こういうfunctionです。</p>
+
+<h3>nthを使って、Sassを書いてみる</h3>
+
+<p>「1つ目をプロパティ「位置」 にして、もう一つを「位置の値」とする」 は、</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="si">#{</span><span class="nf">nth</span><span class="p">(</span><span class="nv">$value</span><span class="o">,</span> <span class="m">1</span><span class="p">)</span><span class="si">}</span><span class="p">:</span> <span class="nf">nth</span><span class="p">(</span><span class="nv">$value</span><span class="o">,</span> <span class="m">2</span><span class="p">)</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>と、なります。「lengthを使って、Sassを書いてみる」のときは、CSSの値のほうにしか、 <code>$value</code> が入ってこなかったけど、今回はプロパティのほうにも <code>$value</code> が入ってきます。プロパティで引数の値を使う場合は、<code>#{}</code> で囲う必要があります。なので、 <code>#{nth($value, 1)}</code> と書きます。「@else if 2つの値の組み合わせだったら、1つ目をプロパティ「位置」 にして、もう一つを「位置の値」とする」全部をつなげると、</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2</pre></td><td class="code"><pre><span class="k">@else</span> <span class="n">if</span> <span class="nf">length</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span> <span class="o">==</span> <span class="m">2</span>
+  <span class="si">#{</span><span class="nf">nth</span><span class="p">(</span><span class="nv">$value</span><span class="o">,</span> <span class="m">1</span><span class="p">)</span><span class="si">}</span><span class="p">:</span> <span class="nf">nth</span><span class="p">(</span><span class="nv">$value</span><span class="o">,</span> <span class="m">2</span><span class="p">)</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>こうなります。</p>
+
+<p>ここまで作ったmixinをつなげると、</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6</pre></td><td class="code"><pre><span class="nf">=position</span><span class="p">(</span><span class="nv">$values</span><span class="p">)</span>
+  <span class="k">@each</span> <span class="o">@</span><span class="n">value</span> <span class="n">in</span> <span class="o">@</span><span class="n">values</span>
+    <span class="k">@if</span> <span class="nv">$value</span> <span class="o">==</span> <span class="s1">'satatic'</span> <span class="ow">or</span> <span class="nv">$value</span> <span class="o">==</span> <span class="s1">'relative'</span> <span class="ow">or</span> <span class="nv">$value</span> <span class="o">==</span> <span class="s1">'absolute'</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">==</span> <span class="s1">'fixed'</span>
+      <span class="nl">position</span><span class="p">:</span> <span class="nv">$value</span>
+    <span class="k">@else</span> <span class="n">if</span> <span class="nf">length</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span> <span class="o">==</span> <span class="m">2</span>
+      <span class="si">#{</span><span class="nf">nth</span><span class="p">(</span><span class="nv">$value</span><span class="o">,</span> <span class="m">1</span><span class="p">)</span><span class="si">}</span><span class="p">:</span> <span class="nf">nth</span><span class="p">(</span><span class="nv">$value</span><span class="o">,</span> <span class="m">2</span><span class="p">)</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>こうなります。なんかプログラムっぽい感じの見た目になってきた！</p>
+
+<h2>@else if 単位を持たない数字だったら、z-indexの値にする</h2>
+
+<p>いよいよ最後の仕分け作業、「 <code>$value</code> が単位を持たない数字だったら」という条件で、 「<code>z-index</code> の値にする」、という仕分けを行います。ここまで来ると、「単位を持たない数字だったら」も、それを判別するfunctionが用意されてるんでしょ、って思われるかもしれないですが、期待通り、ちゃんとSassが用意してくれてます。</p>
+
+<h3>unitless</h3>
+
+<p><code>unitless</code> というfunctionがあって、これに数字を渡すと、その数字が単位（unit）を持っていたら <code>false</code> を返し、その数字が単位を持っていなかったら <code>true</code> を返します。今回は言葉でもそこまでわかりにくくなかったけど、念のため例を用意しました。</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8</pre></td><td class="code"><pre>unitless(1)
+// 1に単位はないのでtrueが返ってくる。
+
+unitless(1px)
+// 1pxは、単位pxを持っているので、falseが返ってくる。
+
+unitless(red)
+// 数字ではない値を渡しているのでSyntaxErrorになる。
+</pre></td></tr></tbody></table>
+</div>
+
+<p>こういうfunctionです。</p>
+
+<h3>unitlessを使って、Sassを書いてみる</h3>
+
+<p>「 <code>$value</code> が単位を持たない数字だったら」をSassで書くと、function <code>unitless</code> に渡して <code>true</code> が返ってきたら、となるので、</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="k">@else</span> <span class="n">if</span> <span class="nf">unitless</span><span class="p">(</span><span class="nv">$vlue</span><span class="p">)</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>と、書きます。「<code>true</code> が返ってきたら」という条件は、 <code>@else if unitless($vlue) == true</code> と書く必要はなくて、 <code>@else if unitless($vlue)</code> だけでOKです。</p>
+
+<p>ただ、ここで心配なのが、<code>unitless</code> に数字ではない値を渡すとSyntaxErrorになってしまいます。SyntaxErrorにならないように、条件をもっと厳密にして、「<code>$value</code> が数字で、なおかつ単位を持たない数字だったら」と、します。つまり、数字以外の値が <code>unitless</code> に渡されることを防ぐようにします。</p>
+
+<h3>type_of</h3>
+
+<p>「<code>$value</code> が数字で」という条件をSassで書くには、 <code>type_of</code> というfunctionを使います。 <code>type_of</code> は、渡された値のtypeを返すfunctionです。Sassにはdata typeってものがあって、まぁ要するに値のカテゴリー分けです。</p>
+
+<p>種類を一覧すると、</p>
+
+<ul>
+<li>number</li>
+<li>string</li>
+<li>bool</li>
+<li>color</li>
+<li>list</li>
+<li>map</li>
+<li>null</li>
+</ul>
+
+<p>7種類のdata typeがあります。</p>
+
+<p>ではでは、<code>type_of</code> の例を見てみましょう。<code>type_of</code> は mixin や 自作の function を作るときにかなりよく使うので、ぜひ <code>$ sass -i</code> で色々試してどんな値が返ってくるか知っておくのがオススメ。</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43</pre></td><td class="code"><pre>type-of(100px)
+// 100pxは数字なのでnumberが返ってくる。
+
+type-of(left)
+// leftは文字列なので、stringが返ってくる。
+
+type-of("left")
+// クオートで囲ってもstringが返ってくる。
+
+type-of(true)
+// true、falseを渡した場合は、boolが返ってくる。
+
+type-of(false)
+// true、falseを渡した場合は、boolが返ってくる。
+
+type-of(#fff)
+// #fffは色なので、colorが返ってくる。
+
+type-of(blue)
+// blueは色なので、colorが返ってくる。
+
+type-of(blue red)
+// 渡した値が複数あるので、listが返ってくる。
+
+type-of((blue, red))
+// カンマ区切りのリストはカッコで囲わないとSyntaxErrorになる。
+
+type_of((color: blue))
+// コロン区切りの「key: value」は、mapが返ってくる。
+// mapもカッコで囲わないとSyntaxErrorになる。
+
+type_of((danger: blue, safe: red))
+// コロン区切りの「key: value」は、mapが返ってくる。
+// mapもカッコで囲わないとSyntaxErrorになる。
+
+type_of((color: blue, color: red))
+// keyが重複しているとSyntaxErrorになる。
+
+type_of(null)
+// nullを渡すとnullが返ってくる。
+
+type_of(null null)
+// nullしかないリストを渡すと、listが返ってくる。
+</pre></td></tr></tbody></table>
+</div>
+
+<p>こんな風にtypeを返すfunctionです。</p>
+
+<h3>type_ofを使って数字だったら、と実装する</h3>
+
+<p><code>type_of</code> を使ってSassで書くと、</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="k">@else</span> <span class="n">if</span> <span class="nf">type_of</span><span class="p">(</span><span class="nv">$value</span><span class="p">)</span> <span class="o">==</span> <span class="n">number</span> <span class="ow">and</span> <span class="nf">unitless</span><span class="p">(</span><span class="nv">$vlue</span><span class="p">)</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>こうなります。</p>
+
+    </div>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', "UA-58200227-1", 'auto');
+      ga('send', 'pageview');
+    </script>
+  
+</html>

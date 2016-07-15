@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" /><script src="/javascripts/application.js"></script><title>machida</title>
+    <meta content="articles" name="description" />
+    <meta content="article" property="og:type" />
+    <meta content="machida" property="og:title" />
+    <meta content="articles" property="og:description" />
+    <meta content="http://machida.github.io//demo/2016-04-19-aboutmixin/" property="og:url" />
+    <meta content="shared/og-image.png" property="og:image" />
+    <meta content="machida マチダのブログ" property="og:site_name" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <meta content="@machida" name="twitter:site" />
+    <meta content="@machida" name="twitter:creator" />
+    <meta content="machida" name="twitter:title" />
+    <meta content="articles" name="twitter:description" />
+    <meta content="shared/og-image.png" name="twitter:image:src" />
+  </head>
+  
+    <div class="body"><p>僕の所属してる合同会社フィヨルドっていう会社では、「作業週」と「学習」が交互にやってくるちょっと変わったインターン制度をやってて、まぁ、要するにWebサービスを一人で作れるまでのカリキュラムを用意してて、給料を払わない代わりに勉強ができるというやつです。</p>
+
+<h2>mixinって何？</h2>
+
+<p>「詳しく書く」と宣言したので、「mixinって何？」から書いておきたいと思います。</p>
+
+<p>一言でいうと、「Sassで書いたcssの設定をまとめて、それに名前を付けておくと、その名前を呼べぶだけで、まとめたcssの設定が挿入されるやつ」。</p>
+
+<p>はい、全然意味がわからないと思うので、例をあげながら説明したいと思います。</p>
+
+<p>例えば、</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12</pre></td><td class="code"><pre><span class="nc">.default-sentence</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">1rem</span>
+  <span class="nl">line-height</span><span class="p">:</span> <span class="m">1</span><span class="mi">.8</span>
+  <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">1</span><span class="mi">.4em</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="no">black</span>
+
+<span class="nc">.important-sentence</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">1rem</span>
+  <span class="nl">line-height</span><span class="p">:</span> <span class="m">1</span><span class="mi">.8</span>
+  <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">1</span><span class="mi">.4em</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="no">red</span>
+  <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>という、Sassファイルがあったとします。</p>
+
+<p>この場合、 <code>.default-sentence</code> 、 <code>.important-sentence</code> では、</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre>  <span class="nl">font-size</span><span class="p">:</span> <span class="m">1rem</span>
+  <span class="nl">line-height</span><span class="p">:</span> <span class="m">1</span><span class="mi">.8</span>
+  <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">1</span><span class="mi">.4em</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>この部分が共通してます。この共通している部分に名前を付けて mixin にします。</p>
+
+<h3>mixinのつくり方</h3>
+
+<p>mixin の書き方は、</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5</pre></td><td class="code"><pre><span class="o">=[</span><span class="nt">mixin</span><span class="err">の名前</span><span class="o">]</span>
+  <span class="c1">// 以下に共通しているcssプロパティ、値
+</span>  <span class="nl">font-size</span><span class="p">:</span> <span class="m">1rem</span>
+  <span class="nl">line-height</span><span class="p">:</span> <span class="m">1</span><span class="mi">.8</span>
+  <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">1</span><span class="mi">.4em</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>と、書きます。 <code>=</code> (イコール)を使うところがポイントですね。</p>
+
+<p>名前を <code>paragraph-setting</code> としました。</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4</pre></td><td class="code"><pre><span class="nf">=paragraph-setting</span>
+  <span class="nl">font-size</span><span class="p">:</span> <span class="m">1rem</span>
+  <span class="nl">line-height</span><span class="p">:</span> <span class="m">1</span><span class="mi">.8</span>
+  <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">1</span><span class="mi">.4em</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>これで、 <code>paragraph-setting</code> という名前のmixinの完成です。</p>
+
+<p>ちなみに、scss記法では <code>=</code> ではなく、 <code>@mixin</code> と書くのですが、sass記法でも <code>@mixin</code> と書くこともできます（文字数多くて面倒だから使わないけど）。</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5</pre></td><td class="code"><pre><span class="k">@mixin</span> <span class="nf">paragraph-setting</span>
+  <span class="c1">// 共通部分
+</span>  <span class="nl">font-size</span><span class="p">:</span> <span class="m">1rem</span>
+  <span class="nl">line-height</span><span class="p">:</span> <span class="m">1</span><span class="mi">.8</span>
+  <span class="nl">margin-bottom</span><span class="p">:</span> <span class="m">1</span><span class="mi">.4em</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<h3>mixinの呼び出し方</h3>
+
+<p>続いて、今作ったmixinを使う方の書き方の解説。</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8</pre></td><td class="code"><pre><span class="nc">.default-sentence</span>
+  <span class="c1">// ここに共通分が入る
+</span>  <span class="nl">color</span><span class="p">:</span> <span class="no">black</span>
+
+<span class="nc">.important-sentence</span>
+  <span class="c1">// ここに共通分が入る
+</span>  <span class="nl">color</span><span class="p">:</span> <span class="no">red</span>
+  <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p><code>// ここに共通分が入る</code> ってところで mixin を呼びます。呼び方はこう、</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8</pre></td><td class="code"><pre><span class="nc">.default-sentence</span>
+  <span class="nd">+paragraph-setting</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="no">black</span>
+
+<span class="nc">.important-sentence</span>
+  <span class="nd">+paragraph-setting</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="no">red</span>
+  <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p><code>+paragraph-setting</code> と書いて mixin を呼び出します。 <code>+[mixinの名前]</code> と書きます。ポイントは、mixinを作るときは <code>=</code> でしたが、呼び出す時は <code>+</code> （プラス）になるところですね。</p>
+
+<p>ちなみに、scss記法では <code>+</code> ではなく、 <code>@include</code> と書くのですが、sass記法でも <code>@include</code> と書くこともできます（文字数多くて面倒だから使わないけど）。</p>
+<div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8</pre></td><td class="code"><pre><span class="nc">.default-sentence</span>
+  <span class="k">@include</span> <span class="nd">paragraph-setting</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="no">black</span>
+
+<span class="nc">.important-sentence</span>
+  <span class="k">@include</span> <span class="nd">paragraph-setting</span>
+  <span class="nl">color</span><span class="p">:</span> <span class="no">red</span>
+  <span class="nl">font-weight</span><span class="p">:</span> <span class="nb">bold</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>これでmixinの基本はこれだけです。mixinを使えば、何度も同じことを書いてたcssが一行書くだけで済みますね。次回は応用の説明をしたいと思います。</p>
+
+    </div>
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', "UA-58200227-1", 'auto');
+      ga('send', 'pageview');
+    </script>
+  
+</html>
