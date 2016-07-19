@@ -5,10 +5,127 @@
   <id>http://blog.url.com/articles</id>
   <link href="http://blog.url.com/articles"/>
   <link href="http://blog.url.com/articles/feed.xml" rel="self"/>
-  <updated>2016-07-14T00:00:00+09:00</updated>
+  <updated>2016-07-18T00:00:00+09:00</updated>
   <author>
     <name>Blog Author</name>
   </author>
+  <entry>
+    <title>Rails で静的ページを作る簡単な方法</title>
+    <link rel="alternate" href="http://blog.url.com/articles/20160718-rails-prototyping/"/>
+    <id>http://blog.url.com/articles/20160718-rails-prototyping/</id>
+    <published>2016-07-18T00:00:00+09:00</published>
+    <updated>2016-07-19T12:04:41+09:00</updated>
+    <author>
+      <name>Article Author</name>
+    </author>
+    <content type="html">&lt;p&gt;これから Rails で作る予定の Web アプリや、すでに出来てる Rails 製の Web アプリに新機能を追加するときなんかに、デザイナだけで「見た目」と「動き」だけがわかる、特にプログラムが入っていない静的な HTML を作ってプロトタイピングしたいときがあります。始めにこういうのを作って、それをチームで共有して議論して作るものが決まったら、エンジニアもデザイナもがっつり手を動かすって流れ。&lt;/p&gt;
+
+&lt;p&gt;例えば、&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://www.adobe.com/jp/products/experience-design.html"&gt;Adobe Experience Design CC&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.invisionapp.com/"&gt;in vison&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;などのプロトタイピングツールを使って、プロトタイピングする場合もあるんですが、今しているのはアクションボタンの位置と画面遷移の確認だけでなくて、その後のもっと具体的な、このボタンをクリックすると、モーダルがこんな風に開いて、とか、この数字がこんなアニメーションしながら増減する、とか、実際のデザインに近いものを確認するときの話。デザイナがチームに「こんな感じでいきたいけど、どう？」っていうのを確認する段階。&lt;/p&gt;
+
+&lt;p&gt;以前は Assets の中身をそのまま持ってくれば Rails でも使えるので Middleman を使って静的な HTML のプロトタイプを作ってたのですが、よく考えたら最初っから Rails でHTML のプロトタイプを作っても手間は全然変わらないことに気付き、ここ一年くらいは Rails でHTML のプロトタイプを作ってます。「XXX という条件で絞り込んだら結果が XX件でる」みたいなものを画面で出したいときなんかは、もう静的なものではなくて DB を使って seed にデータを入れてしまったほうが楽だったりもするし。&lt;/p&gt;
+
+&lt;p&gt;ただ、Middleman は routes ファイルに何も書かなくても、ファイルを置けば静的ページが作られるってところが便利で、Rails でもそういう機能が欲しいって思うときがあります。&lt;/p&gt;
+
+&lt;p&gt;その機能を実現するのが &lt;a href="https://thoughtbot.com/"&gt;thoughtbot&lt;/a&gt; が作った「&lt;a href="https://github.com/thoughtbot/high_voltage"&gt;high_voltage&lt;/a&gt;」っていう Gem。&lt;/p&gt;
+
+&lt;p&gt;thoughtbot は他にも bourbon や paperclip 、factory_girl など、デザイナでもよく聞く有名な Gem を作ってます。&lt;/p&gt;
+
+&lt;h2&gt;high_voltage のインストール&lt;/h2&gt;
+
+&lt;p&gt;まずは Rails アプリの &lt;code&gt;Gemfile&lt;/code&gt; に、&lt;/p&gt;
+&lt;div class="highlight plaintext"&gt;&lt;table style="border-spacing: 0"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl" style="text-align: right"&gt;&lt;pre class="lineno"&gt;1&lt;/pre&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;pre&gt;gem 'high_voltage'
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;を追加して、&lt;/p&gt;
+&lt;div class="highlight plaintext"&gt;&lt;table style="border-spacing: 0"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl" style="text-align: right"&gt;&lt;pre class="lineno"&gt;1&lt;/pre&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;pre&gt;$ bundle
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;コマンドを打ちます。&lt;/p&gt;
+
+&lt;p&gt;これで high_voltage が使えるようになりました。&lt;/p&gt;
+
+&lt;h2&gt;ページの作成&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;app/views&lt;/code&gt; のディレクトリの中に &lt;code&gt;pages&lt;/code&gt; というディレクトリを作ります。&lt;/p&gt;
+
+&lt;p&gt;コマンドラインで作る場合はこう。&lt;/p&gt;
+&lt;div class="highlight plaintext"&gt;&lt;table style="border-spacing: 0"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl" style="text-align: right"&gt;&lt;pre class="lineno"&gt;1&lt;/pre&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;pre&gt;$ mkdir app/views/pages
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;で、試しに &lt;code&gt;about&lt;/code&gt; ってページを作ってみましょう。&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;app/views/pages/&lt;/code&gt; のディレクトリの中に &lt;code&gt;about.html.erb&lt;/code&gt;（もしくは、&lt;code&gt;about.html.haml&lt;/code&gt;、&lt;code&gt;about.html.slim&lt;/code&gt; など）を作ります。&lt;/p&gt;
+
+&lt;p&gt;コマンドラインで作る場合はこう。&lt;/p&gt;
+&lt;div class="highlight plaintext"&gt;&lt;table style="border-spacing: 0"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl" style="text-align: right"&gt;&lt;pre class="lineno"&gt;1&lt;/pre&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;pre&gt;$ touch app/views/pages/about.html.erb
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;適当に &lt;code&gt;about.html.erb&lt;/code&gt; （もしくは、&lt;code&gt;about.html.haml&lt;/code&gt;、&lt;code&gt;about.html.slim&lt;/code&gt; など）に何か書いておきます。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="about.html.erb" src="https://lh3.googleusercontent.com/2j--8z84ZqWOwSBSxUNlLPoxzf02JgLq1loxywQ3Ym3YebUYBYHJd1YllSJv2e4Wd5qwGuiRBkxwqz2x5vRtLQ6SIbBFcbIkxAY5qo27-gg1FjxdgGmMfvHVnBBNajfSiX6WB1lxoeGRWzjFhO0yDwMLL6UBzdkPe41cR7zo6YaOQJf8yfmASTgdP4-yz7JOnRY-kuyPl5-o5QC6N8JCllzaqP3amyouYn3QmI8MpxQPidYIcmGWZlpQRom4WyyvghvFSQtIlTxRukB5YhIVuSnFDPpkphE4qlSOS8VB1eHnz_idyGeKkoLXxdL65pNt2_8XjWdO6ZI5Ho4WEq1bqY4bi7l18ISgnfIVHwqoLAwQctsoBZW9xnuD9Z-yB3pFMgk0ImBH9Xg-1RB1_ZbcaV16r7QpKVjzoB3MvVkOyfCVDMgxpDGjB9PYdx8w5EJmHUZY10CN3igtFsFXp0f8uvfq5kWopzGY1vLuWYxf1xMHPN0N-TsbPiJ8i4oS4_XJ67pr1gIXgD89E9sSSRF5EKDPOognBIrmS22AafyRGOFwuuPylBsuG5_T89icxC_FX1oPK9v__wBaya89LUXgpCbMcvd_l_FQ=w878-h494-no" /&gt;&lt;/p&gt;
+
+&lt;h2&gt;作成したページの確認&lt;/h2&gt;
+
+&lt;p&gt;Rails を立ちあげて、&lt;/p&gt;
+&lt;div class="highlight plaintext"&gt;&lt;table style="border-spacing: 0"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl" style="text-align: right"&gt;&lt;pre class="lineno"&gt;1&lt;/pre&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;pre&gt;$ rails s
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;作成したページにアクセス（&lt;a href="http://localhost:3000/pages/about"&gt;http://localhost:3000/pages/about&lt;/a&gt;）。&lt;/p&gt;
+
+&lt;p&gt;確認できました。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="作成したページにアクセス" src="https://lh3.googleusercontent.com/0xs-62lu8JnjCB5kJfoWTMrES-kbAdr3oOT60BJ8MRM_SKE-xLhgSWtgq7irGaKec8p8-dUzWsyFajJ6az4mKtYifIhAzjxms3mmiE_HznXVxRAtXHX1ebGrVkTpqNnpxtEcV4dfc4-oaB2LfqxZo-B4RV1WnZQY6mqs3SWn6Rc85RBDwUgvmgIYX55SKwsC05I5cBuQZL40vAEj7r27vZPDWAzS5Xa_ZGVyGA-vMPHwQEsNHySqhJlNaCWHvxdXXWZPTG31AYuH9q0zwggXZnPb-RYI33xQWUWuOxu5PZebxiij91_AYxpunBRFP086yHL08ShTHvpmK1GXkQia_yTtI4hfolzh6V54KOGEsvSYfDk6wRSXYIbe8QQRSlJOKHoL2DY4TtMAUYghiVxaaSqw6_NYvsfc2JV6jv56H522GU4RMZ5aCUrmlA-kzQ0E5E_U6Him27B6JRR9kpKbaZsNui3dZsmaB1eTRsTM-RurdMo9XRGCWtYw4TLE0V5a--lemEbKxIfqnV8yRZwsuJ-mnx-rtIROHrquG4XDzFKNH_61t8De2fl-GIADUT0BzLDnXXEx904XpRL4X3FvgIOlJyD13jYR=w735-h429-no" /&gt;&lt;/p&gt;
+
+&lt;h2&gt;作成したページへリンクを貼る&lt;/h2&gt;
+
+&lt;p&gt;作成したページのパスは &lt;code&gt;page_path(&amp;#39;about&amp;#39;)&lt;/code&gt; となります。なのでリンクは、&lt;/p&gt;
+
+&lt;h3&gt;erb&lt;/h3&gt;
+&lt;div class="highlight plaintext"&gt;&lt;table style="border-spacing: 0"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl" style="text-align: right"&gt;&lt;pre class="lineno"&gt;1&lt;/pre&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;pre&gt;&amp;lt;%= link_to 'about', page_path('about') %&amp;gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;h3&gt;haml、slim&lt;/h3&gt;
+&lt;div class="highlight plaintext"&gt;&lt;table style="border-spacing: 0"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl" style="text-align: right"&gt;&lt;pre class="lineno"&gt;1&lt;/pre&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;pre&gt;= link_to 'about', page_path('about')
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;と、書きます。&lt;/p&gt;
+
+&lt;h2&gt;作成したページの URL を変える&lt;/h2&gt;
+
+&lt;p&gt;今のままだと &lt;code&gt;http://localhost:3000/pages/about&lt;/code&gt; という URL になってますが、この &lt;code&gt;pages&lt;/code&gt; がいらない！ &lt;code&gt;http://localhost:3000/about&lt;/code&gt; がいい、ってこともあります。&lt;/p&gt;
+
+&lt;p&gt;その場合、&lt;code&gt;config/initializers/&lt;/code&gt; ディレクトリの中に &lt;code&gt;high_voltage.rb&lt;/code&gt; というファイルを作成して、そこに&lt;/p&gt;
+&lt;div class="highlight ruby"&gt;&lt;table style="border-spacing: 0"&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class="gutter gl" style="text-align: right"&gt;&lt;pre class="lineno"&gt;1
+2
+3&lt;/pre&gt;&lt;/td&gt;&lt;td class="code"&gt;&lt;pre&gt;&lt;span class="no"&gt;HighVoltage&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;configure&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt;&lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="o"&gt;|&lt;/span&gt;
+  &lt;span class="n"&gt;config&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nf"&gt;route_drawer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="no"&gt;HighVoltage&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;RouteDrawers&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="no"&gt;Root&lt;/span&gt;
+&lt;span class="k"&gt;end&lt;/span&gt;
+&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+
+&lt;p&gt;と、書きます。&lt;/p&gt;
+
+&lt;p&gt;それから Rails を再起動すると、&lt;code&gt;http://localhost:3000/about&lt;/code&gt; に URL が変わります。&lt;/p&gt;
+
+&lt;p&gt;&lt;img alt="http://localhost:3000/about" src="https://lh3.googleusercontent.com/tfcOs89JOQpZDum16Y8BZmvcpeVb9twAXIZkWJREc9aWUghySAYrZ9yTXy3QdW2RQA_arwKtjMFsl9V-omqcA00syZq64_8ulbuuFkrJaPpRpqVMeJN8zt1IwyeZpiDN3zEoGi4HlwSnXc-omTlF1KSEaTcFs2DEQva3t1wumjAKTzHqhq4IP8E9Sp6-1fXvab8bfiivv09XOZ0zlNGBYhpbChk9c8AIU8ZOHA7lurJWcHnX1y8wT_8TM6dvXh2pz_cEje0NuFQvFFfj4AFtAv2cZJV1jxpvuOuYRNQvxek8pL_ytBOjCLnWs0VO8Datiw8xaa5EoSv1VOd4XwGvXEXAUNm4oOuYVoO9HSKsgEm9T2oS9WraP84K8rdELTsqtFDqbzMkCjc5EsBlc2stRCTSY0islL5SM8-H9v1QoygOP9BFB4NhYAo8Ab06Us9UwWTQx9Rnwf_5nCXdt8eZFpMKH1plM_z0v6OXfnstpuWBgaEhVgpA7sJxrzWNzCIKjZsFVPFA1vK0PQ7JjwC_hfjpzvtDXwy3EEEnsYEB3E5HUxcZIkdNDROsreKkMaWodOI0M_a35ARnzO_akSuanNjIzzTpyY5W=w735-h429-no" /&gt;&lt;/p&gt;
+
+&lt;div class="amazlet-box" style="margin-bottom:0px;"&gt;&lt;div class="amazlet-image" style="float:left;margin:0px 12px 1px 0px;"&gt;&lt;a href="http://www.amazon.co.jp/exec/obidos/ASIN/4902800128/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank"&gt;&lt;img src="http://ecx.images-amazon.com/images/I/51WJT3gZ7rL._SL160_.jpg" alt="映像夜間中学講義録 イエスタディ・ネヴァー・ノウズ(DVD付）" style="border: none;" /&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class="amazlet-info" style="line-height:120%; margin-bottom: 10px"&gt;&lt;div class="amazlet-name" style="margin-bottom:10px;line-height:120%"&gt;&lt;a href="http://www.amazon.co.jp/exec/obidos/ASIN/4902800128/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank"&gt;映像夜間中学講義録 イエスタディ・ネヴァー・ノウズ(DVD付）&lt;/a&gt;&lt;div class="amazlet-powered-date" style="font-size:80%;margin-top:5px;line-height:120%"&gt;posted with &lt;a href="http://www.amazlet.com/" title="amazlet" target="_blank"&gt;amazlet&lt;/a&gt; at 16.07.19&lt;/div&gt;&lt;/div&gt;&lt;div class="amazlet-detail"&gt;根本敬 &lt;br /&gt;K&amp;Bパブリッシャーズ &lt;br /&gt;売り上げランキング: 303,534&lt;br /&gt;&lt;/div&gt;&lt;div class="amazlet-sub-info" style="float: left;"&gt;&lt;div class="amazlet-link" style="margin-top: 5px"&gt;&lt;a href="http://www.amazon.co.jp/exec/obidos/ASIN/4902800128/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank"&gt;Amazon.co.jpで詳細を見る&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class="amazlet-footer" style="clear: left"&gt;&lt;/div&gt;&lt;/div&gt;
+</content>
+  </entry>
   <entry>
     <title>Google Photo の画像が middleman で作ったブログのローカルで表示されなくなった</title>
     <link rel="alternate" href="http://blog.url.com/articles/20160714-middleman-googlephoto/"/>
