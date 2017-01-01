@@ -3,7 +3,7 @@
   clear: both
   &:last-child
     margin-bottom: 0
-  +media-breakpoint-down(xs)
+  +media-breakpoint-down(sm)
     margin-bottom: .5rem
 .footer-nav__title
   +text-block(1rem 1.6 .5rem)
@@ -16,14 +16,14 @@
   +inline-block(bottom)
 .tags-nav__link
   margin-right: 1.5rem
-  +text-block(.9rem 1.6, $fix-text-color)
+  +text-block(.9rem 1.6, $text-color)
   +hover-link
   +tag-font
-  color: $fix-text-color
+  color: $text-color
   &:hover
-    color: $article-link-color
+    color: $accent-color
   &.is-current
-    +text-color-select($base-color, $main-color, $accent-color)
-  +media-breakpoint-down(xs)
+    color: $accent-color
+  +media-breakpoint-down(sm)
     margin-bottom: .5rem
     display: block

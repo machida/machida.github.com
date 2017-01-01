@@ -2,8 +2,13 @@
   margin-bottom: 2rem
   overflow-x: auto
   lineno
-    +text-block(.9rem 1.8)
+    +text-block(.875rem 1.8)
   pre
-    +text-block(.9rem 1.8)
+    +text-block(.875rem 1.8)
+    +media-breakpoint-down(sm)
+      font-size: .75rem
   .gutter
     border-right: 1px solid rgba(255, 255, 255, .1)
+  .err
+    color: inherit !important
+    background-color: inherit !important

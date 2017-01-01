@@ -2,7 +2,7 @@
   clear: both
   padding-bottom: 2.5rem
   +clearfix
-  +media-breakpoint-down(xs)
+  +media-breakpoint-down(sm)
     margin-top: -1rem
     padding-bottom: 1.5rem
 .previous-next-nav__item
@@ -16,7 +16,7 @@
 .previous-next-nav__link
   +block-link
   +text-block(.9rem 1.5rem, $text-color)
-  +media-breakpoint-down(xs)
+  +media-breakpoint-down(sm)
     background-color: $text-color
     +text-block(1rem 2rem, $base-color center)
     +size(36px)
@@ -24,11 +24,11 @@
   font-size: 14px
   &.is-previous
     margin-right: .5rem
-    +media-breakpoint-down(xs)
+    +media-breakpoint-down(sm)
       margin: 0
   &.is-next
     margin-left: .5rem
-    +media-breakpoint-down(xs)
+    +media-breakpoint-down(sm)
       margin: 0
 .previous-next-nav__label
   display: none
@@ -36,5 +36,5 @@
   width: 2rem
   padding-top: 6px
   +pagenate-font
-  +media-breakpoint-down(xs)
+  +media-breakpoint-down(sm)
     display: block

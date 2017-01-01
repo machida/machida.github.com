@@ -1,0 +1,9 @@
+=position($values...)
+  @each $value in $values
+    @if $value == 'satatic' or $value == 'relative' or $value == 'absolute' or value == 'fixed'
+      position: $value
+    @else if length($value) == 2
+      #{nth($value, 1)}: nth($value, 2)
+
+.absolute-block
+  +position(absolute, left 0, top 0)

@@ -4,49 +4,60 @@
 //settings
 //////////////
 
-// oulu
+@import oulu-functions-before-variables
+
+// oulu-variables
+@import oulu-variables
+
+// variables
 @import settings/variables/oulu
-@import settings/mixins
+@import themes/default
 
 //////////////
 //themes
 //////////////
 
-@import themes/default
-// @import themes/sininen
-// @import themes/musta
-// @import themes/saigon
-// @import themes/mono
-// @import themes/tumma
-// @import themes/ruoho
-// @import themes/japanese-summer
-// @import themes/mrmrs-colors
-// @import themes/flat-ui-colors
-// @import themes/a-girl
-// @import themes/forest
-// @import themes/material-colors
+//@import themes/sininen
+//@import themes/musta
+//@import themes/saigon
+//@import themes/mono
+//@import themes/tumma
+//@import themes/ruoho
+//@import themes/japanese-summer
+//@import themes/mrmrs-colors
+//@import themes/flat-ui-colors
+//@import themes/a-girl
+//@import themes/forest
+//@import themes/material-colors
 
-@import oulu
-@import settings/variables/nolla
 
-// oulu
+// oulu-functions-after-variables (functions need variables)
+@import oulu-functions-after-variables
 
+// oulu-mixins
+@import oulu-mixins
+
+// oulu-initializers
+@import oulu-initializers
+
+// oulu-helpers
+@import oulu-helpers
+
+
+// oulu-modules
 @import modules/web-fonts/font-awsome
 @import modules/web-fonts/tauri
 @import modules/web-fonts/lato
 @import modules/web-fonts/open-sans
 @import modules/web-fonts/montserrat
 @import modules/web-fonts/source-code-pro
-
 @import modules/amazlet/amazlet
-
 
 //////////////
 //blocks
 //////////////
 
 @import blocks/base
-@import blocks/layout
 @import blocks/header
 @import blocks/footer
 @import blocks/article

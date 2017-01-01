@@ -1,6 +1,6 @@
 .sns-buttons
   margin-bottom: 1.5rem
-  +media-breakpoint-down(xs)
+  +media-breakpoint-down(sm)
     margin-bottom: -36px
     margin-left: 7.5rem
 .sns-buttons__item
@@ -12,13 +12,13 @@
 $button-size: 1.75rem
 .sns-buttons__entry-link
   +inline-block(bottom)
-  background-color: $fix-text-color
+  background-color: $text-color
   +text-block(round($button-size/2.2) $button-size, $base-color center)
   +size($button-size)
   +border-radius(50%)
-  background-color: $fix-text-color
+  background-color: $text-color
   &:hover
-    background-color: $article-link-color
+    background-color: $accent-color
 .sns-buttons__search-link
-  +text-block(.7rem 1rem, center $fix-text-color)
+  +text-block(.7rem 1rem, center $text-color)
   +block-link

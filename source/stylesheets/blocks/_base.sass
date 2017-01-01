@@ -1,7 +1,23 @@
+html
+  &.is-slided
+    margin-left: 300px
+    overflow: hidden
+
 body
-  overflow-x: hidden
-  width: 100%
   background-color: $base-color
   &.is-slided
     margin-left: 300px
     overflow: hidden
+
+*::selection
+  background: $text-color
+  color: $base-color
+*::-moz-selection
+  background: $text-color
+  color: $base-color
+
+body
+  color: $text-color
+  background-color: $base-color
+  a
+    transition: color .2s

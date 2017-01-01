@@ -147,7 +147,7 @@ helpers do
     end
   end
 
-    def meta_image
+  def meta_image
     if is_blog_article? && current_article.data.eyecatch_image_path
       current_article.data.eyecatch_image_path
     elsif is_blog_article? && current_article.data.tag == 'Information'
@@ -164,6 +164,15 @@ helpers do
       'shared/og-image.png'
     end
   end
+
+  def brackets_ja(s)
+    if s.include?("「") || s.include?("」")
+      Sanitize.clean(s).gsub!(/「|」/, '「' => '<span class="is-brackets_ja is-start">「</span>', '」' => '<span class="is-brackets_ja is-end">」</span>')
+    else
+      s.to_s
+    end
+  end
+
 end
 
 activate :syntax, line_numbers: true
@@ -184,7 +193,6 @@ activate :blog do |blog|
   blog.default_extension = ".markdown"
   blog.tag_template = "tag.html"
   blog.calendar_template = "calendar.html"
-
   blog.paginate = true
   blog.per_page = 10
   blog.page_link = "page/:num"
@@ -213,6 +221,8 @@ page "/feed.xml", layout: false
 #     "Helping"
 #   end
 # end
+
+activate :gemoji
 
 activate :deploy do |deploy|
   deploy.deploy_method = :git

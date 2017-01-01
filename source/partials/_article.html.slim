@@ -15,7 +15,8 @@
       .article__content
         .article__header
           h1.article__title(itemprop="headline")
-            = link_to article.title, article, class: "article__title-link #{lang_class(article.title)}"
+            = link_to article, class: "article__title-link #{lang_class(article.title)}" do
+              = brackets_ja(article.title)
         .article__body.post-body.js-target-blank(itemprop="articleBody")
           = article.body
         - if data.site.disqus && article?

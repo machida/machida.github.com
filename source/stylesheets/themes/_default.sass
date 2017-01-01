@@ -17,6 +17,7 @@ $main-color: $white
 $accent-color: $blue
 $text-color: $black
 $header-image: false
+$shade-color: mix($text-color, $base-color, 8%)
 
 ///////////////////////
 // setup fonts
@@ -33,6 +34,7 @@ $header-image: false
     +lato(700)
 
 =main-bold-font
+  +bold-ja
   &.is-ja
     +bold-ja
   &.is-en

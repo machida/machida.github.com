@@ -1,22 +1,22 @@
 .sns-links
   text-align: right
-  +media-breakpoint-down(xs)
+  +media-breakpoint-down(sm)
     text-align: center
 .sns-links__item
   +inline-block(bottom)
   margin-right: .5rem
   +relative
-  +media-breakpoint-down(xs)
+  +media-breakpoint-down(sm)
     margin-right: 4px
   &:last-child
     margin-right: 0
-    +media-breakpoint-down(xs)
+    +media-breakpoint-down(sm)
       margin-right: 4px
 .sns-links__link
   display: block
   +text-block(.9rem 29px, $base-color center)
   +size(1.75rem)
   +border-radius(50%)
-  background-color: $fix-text-color
+  background-color: $text-color
   &:hover
-    background-color: $article-link-color
+    background-color: $accent-color
