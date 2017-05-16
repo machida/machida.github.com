@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html class="is-layout">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <link href="/stylesheets/application.css" rel="stylesheet" /><link href="/stylesheets/highlight.css" rel="stylesheet" /><link href="//fonts.googleapis.com/earlyaccess/notosansjapanese.css" rel="stylesheet" /><link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" /><script src="/javascripts/application.js"></script><title>Rails で静的ページを作る簡単な方法 - machida</title>
+    <meta content="例えば、「利用規約」や「プライバシーポリシー」、ヘルプページなど、毎回サービスをリリースするときに必要になる静的ページがありますが、そういうページを作るときに、Rails の controller や routes をいじるのが面倒。..." name="description" />
+    <meta content="article" property="og:type" />
+    <meta content="Rails で静的ページを作る簡単な方法 - machida" property="og:title" />
+    <meta content="例えば、「利用規約」や「プライバシーポリシー」、ヘルプページなど、毎回サービスをリリースするときに必要になる静的ページがありますが、そういうページを作るときに、Rails の controller や routes をいじるのが面倒。..." property="og:description" />
+    <meta content="http://machida.github.io//articles/20160718-rails-high-voltage/" property="og:url" />
+    <meta content="shared/og-image.png" property="og:image" />
+    <meta content="machida マチダのブログ" property="og:site_name" />
+    <meta content="summary_large_image" name="twitter:card" />
+    <meta content="@machida" name="twitter:site" />
+    <meta content="@machida" name="twitter:creator" />
+    <meta content="Rails で静的ページを作る簡単な方法 - machida" name="twitter:title" />
+    <meta content="例えば、「利用規約」や「プライバシーポリシー」、ヘルプページなど、毎回サービスをリリースするときに必要になる静的ページがありますが、そういうページを作るときに、Rails の controller や routes をいじるのが面倒。..." name="twitter:description" />
+    <meta content="shared/og-image.png" name="twitter:image:src" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-9194910818016440",
+        enable_page_level_ads: true
+      });
+    </script>
+    
+  </head>
+  
+    <header class="header">
+      <div class="container">
+        <div class="header__container">
+          <h1 class="header__site-title"><a data-text="machida" class="header__site-title-link is-en is-md " href="/">
+                    machida</a>
+          </h1>
+          <h2 class="header__site-copy is-ja">
+            マチダのブログ
+          </h2>
+          <i class="fa fa-bars header__open-global-nav-icon js-open-slide-nav is-visible-xs-down-block"></i>
+          <nav class="header__global-nav js-slide-nav">
+            <i class="fa fa-times js-open-slide-nav is-visible-xs-down-block header__global-nav-close-icon"></i>
+            <ul class="header__global-nav-items">
+              <li class="header__global-nav-item"><a class="header__global-nav-link false" href="/">
+                            <i class="fa fa-home fa-lg"></i></a>
+              </li>
+              <li class="header__global-nav-item">
+                <a class="header__global-nav-link false is-en" href="/pages/about/">About</a>
+              </li>
+              <li class="header__global-nav-item">
+                <a class="header__global-nav-link false   is-en" href="/pages/tags/">Tags</a>
+              </li>
+              <li class="header__global-nav-item">
+                <a class="header__global-nav-link false is-current is-en" href="/pages/archives/">Archives</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    <div class="body"><div class="container article__container" itemprop="blogPost" itemscope="" itemtype="http://schema.org/BlogPosting">
+  <div class="row">
+    <div class="col-sm-3 col-xs-12">
+      <div class="article__sub">
+        <time class="article__created-at is-en" itemprop="dateCreated">2016/07/18</time><div class="sns-buttons"></div>
+        <div class="article__tags" itemprop="keywords">
+          <ul class="article__tags-items">
+            <li class="article__tags-item">
+              <a class="article__tags-link is-en" href="/articles/tags/rails/">Rails</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-9 col-xs-12">
+      <div class="article__content">
+        <div class="article__header">
+          <h1 class="article__title" itemprop="headline"><a class="article__title-link is-ja" href="/articles/20160718-rails-high-voltage/">
+                        Rails で静的ページを作る簡単な方法</a>
+          </h1>
+        </div>
+        <div class="article__body post-body js-target-blank" itemprop="articleBody"><p>例えば、「利用規約」や「プライバシーポリシー」、ヘルプページなど、毎回サービスをリリースするときに必要になる静的ページがありますが、そういうページを作るときに、Rails の <code>controller</code> や <code>routes</code> をいじるのが面倒。</p>
+
+<p>Middleman はファイルを置けば静的ページが作られるってところが便利で、Rails でもそういう機能が欲しいって思うときがあります。</p>
+
+<p>その機能を実現するのが <a href="https://thoughtbot.com/">thoughtbot</a> が作った「<a href="https://github.com/thoughtbot/high_voltage">high_voltage</a>」っていう Gem。thoughtbot は他にも bourbon や paperclip 、factory_girl など、デザイナでもよく聞く有名な Gem を作ってる会社。</p>
+
+<h2>high_voltage のインストール</h2>
+
+<p>まずは Rails アプリの <code>Gemfile</code> に、</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>gem 'high_voltage'
+</pre></td></tr></tbody></table>
+</div>
+
+<p>を追加して、</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>$ bundle
+</pre></td></tr></tbody></table>
+</div>
+
+<p>コマンドを打ちます。</p>
+
+<p>これで high_voltage が使えるようになりました。</p>
+
+<h2>注意</h2>
+
+<p><code>pages</code> という <code>controller</code> をすでに使ってる場合、high_voltage は使えないです。</p>
+
+<h2>ページの作成</h2>
+
+<p><code>app/views</code> のディレクトリの中に <code>pages</code> というディレクトリを作ります。</p>
+
+<p>コマンドラインで作る場合はこう。</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>$ mkdir app/views/pages
+</pre></td></tr></tbody></table>
+</div>
+
+<p>で、試しに <code>about</code> ってページを作ってみましょう。</p>
+
+<p><code>app/views/pages/</code> のディレクトリの中に <code>about.html.erb</code>（もしくは、<code>about.html.haml</code>、<code>about.html.slim</code> など）を作ります。</p>
+
+<p>コマンドラインで作る場合はこう。</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>$ touch app/views/pages/about.html.erb
+</pre></td></tr></tbody></table>
+</div>
+
+<p>適当に <code>about.html.erb</code> （もしくは、<code>about.html.haml</code>、<code>about.html.slim</code> など）に何か書いておきます。</p>
+
+<p><img alt="about.html.erb" src="https://i.gyazo.com/580314db20f377cbc18dab747a9ff4e0.png" /></p>
+
+<h2>作成したページの確認</h2>
+
+<p>Rails を立ちあげて、</p>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>$ rails s
+</pre></td></tr></tbody></table>
+</div>
+
+<p>作成したページにアクセス（<a href="http://localhost:3000/pages/about">http://localhost:3000/pages/about</a>）。</p>
+
+<p>確認できました。</p>
+
+<p><img alt="作成したページにアクセス" src="https://i.gyazo.com/c666c3f208d99cf503e4f72021b1c2ae.png" /></p>
+
+<h2>作成したページへリンクを貼る</h2>
+
+<p>作成したページのパスは <code>page_path(&#39;about&#39;)</code> となります。なのでリンクは、</p>
+
+<h3>erb</h3>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>&lt;%= link_to 'about', page_path('about') %&gt;
+</pre></td></tr></tbody></table>
+</div>
+
+<h3>haml、slim</h3>
+<div class="highlight plaintext"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre>= link_to 'about', page_path('about')
+</pre></td></tr></tbody></table>
+</div>
+
+<p>と、書きます。</p>
+
+<h2>作成したページの URL から /pages を削除</h2>
+
+<p>今のままだと <code>http://localhost:3000/pages/about</code> という URL になってますが、この <code>pages</code> がいらない！ <code>http://localhost:3000/about</code> がいい、ってこともあります。</p>
+
+<p>その場合、<code>config/initializers/</code> ディレクトリの中に <code>high_voltage.rb</code> というファイルを作成して、そこに</p>
+<div class="highlight ruby"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3</pre></td><td class="code"><pre><span class="no">HighVoltage</span><span class="p">.</span><span class="nf">configure</span> <span class="k">do</span> <span class="o">|</span><span class="n">config</span><span class="o">|</span>
+  <span class="n">config</span><span class="p">.</span><span class="nf">route_drawer</span> <span class="o">=</span> <span class="no">HighVoltage</span><span class="o">::</span><span class="no">RouteDrawers</span><span class="o">::</span><span class="no">Root</span>
+<span class="k">end</span>
+</pre></td></tr></tbody></table>
+</div>
+
+<p>と、書きます。</p>
+
+<p>それから Rails を再起動すると、<code>http://localhost:3000/about</code> に URL が変わります。</p>
+
+<p>URL が変わっても、パスの書き方は <code>page_path(&#39;about&#39;)</code> のまま。</p>
+
+<h2>階層を作る</h2>
+
+<p>例えば、<code>http://localhost:3000/help/post</code> や、<code>http://localhost:3000/help/read</code> のような階層を作る場合、静的ページを入れている <code>app/views/pages/</code> の中に <code>help</code> ディレクトリを作って、その中に <code>post.html.erb</code>（もしくは、<code>post.html.haml</code>、<code>post.html.slim</code> など）、 <code>read.html.erb</code>（もしくは、<code>read.html.haml</code>、<code>read.html.slim</code> など）を入れます。</p>
+
+<p>すると、<code>http://localhost:3000/help/post</code> 、<code>http://localhost:3000/help/read</code> にアクセスできるようになります。</p>
+
+<p>リンクを貼るときのパスの書き方は <code>page_path(&#39;help/post&#39;)</code> 、 <code>page_path(&#39;help/read&#39;)</code> となります。</p>
+
+<div class="amazlet-box" style="margin-bottom:0px;"><div class="amazlet-image" style="float:left;margin:0px 12px 1px 0px;"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4902800128/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51WJT3gZ7rL._SL160_.jpg" alt="映像夜間中学講義録 イエスタディ・ネヴァー・ノウズ(DVD付）" style="border: none;" /></a></div><div class="amazlet-info" style="line-height:120%; margin-bottom: 10px"><div class="amazlet-name" style="margin-bottom:10px;line-height:120%"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4902800128/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank">映像夜間中学講義録 イエスタディ・ネヴァー・ノウズ(DVD付）</a><div class="amazlet-powered-date" style="font-size:80%;margin-top:5px;line-height:120%">posted with <a href="http://www.amazlet.com/" title="amazlet" target="_blank">amazlet</a> at 16.07.19</div></div><div class="amazlet-detail">根本敬 <br />K&Bパブリッシャーズ <br />売り上げランキング: 303,534<br /></div><div class="amazlet-sub-info" style="float: left;"><div class="amazlet-link" style="margin-top: 5px"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4902800128/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank">Amazon.co.jpで詳細を見る</a></div></div></div><div class="amazlet-footer" style="clear: left"></div></div>
+
+        </div>
+        <div id="disqus_thread" itemprop="headline"></div>
+          <script type="text/javascript">
+            window.disqus_shortname = "machidagithubio";
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = disqus_shortname; // required: replace example with your forum shortname
+        
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+              var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+              dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+              (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+          </script>
+          <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+          <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        
+      </div>
+    </div>
+    <div class="col-sm-12 col-xs-12">
+      <nav class="previous-next-nav">
+        <ul class="previous-next-nav__items">
+          <li class="previous-next-nav__item is-previous"><a rel="prev" title="Previous article: プライベート IP アドレスでローカルで立ち上げてる Rails、middleman にアクセスする方法" class="previous-next-nav__link" href="/articles/20160714-ip-middleman-rails/">
+                  <i class="fa fa-angle-left previous-next-nav__icon is-previous"></i><span class="hidden-xs">プライベート IP アドレスでローカルで立ち上げてる Rails、middleman にアクセスする方法</span></a><span class="previous-next-nav__label is-en">PREV</span>
+          </li>
+          <li class="previous-next-nav__item is-next"><a rel="next" title="Next article: Rails で icomoon で作った icon font を使う" class="previous-next-nav__link" href="/articles/20160725-rails-icomoon/">
+                  <span class="hidden-xs">Rails で icomoon で作った icon font を使う</span><i class="fa fa-angle-right previous-next-nav__icon is-next"></i></a><span class="previous-next-nav__label is-en">NEXT</span>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+    </div>
+    <footer class="footer" id="footer">
+      <div class="container">
+        <div class="footer__container">
+          <div class="row">
+            <div class="col-sm-8 col-xs-12">
+              <nav class="tags-nav footer-nav hidden-xs">
+                <div class="row">
+                  <div class="col-sm-3 col-xs-12">
+                    <h2 class="tags-nav__title footer-nav__title is-en">
+                      <i class="fa fa-tag tags-nav__title-icon footer-nav__title-icon"></i>Tags
+                    </h2>
+                  </div>
+                  <div class="col-sm-9 col-xs-12">
+                    <ul class="tags-nav__items footer-nav__items">
+                      <li class="tags-nav__item footer-nav__item">
+                        <a class=" tags-nav__link is-en" href="/articles/tags/sass/">sass</a>
+                      </li>
+                      <li class="tags-nav__item footer-nav__item">
+                        <a class=" tags-nav__link is-en" href="/articles/tags/github/">GitHub</a>
+                      </li>
+                      <li class="tags-nav__item footer-nav__item">
+                        <a class="is-current tags-nav__link is-en" href="/articles/tags/rails/">rails</a>
+                      </li>
+                      <li class="tags-nav__item footer-nav__item">
+                        <a class=" tags-nav__link is-en" href="/articles/tags/middleman/">middleman</a>
+                      </li>
+                      <li class="tags-nav__item footer-nav__item">
+                        <a class=" tags-nav__link is-en" href="/articles/tags/rails/">Rails</a>
+                      </li>
+                      <li class="tags-nav__item footer-nav__item">
+                        <a class=" tags-nav__link is-en" href="/articles/tags/git/">git</a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+              <nav class="archives-nav footer-nav hidden-xs">
+                <div class="row">
+                  <div class="col-sm-3 col-xs-12">
+                    <h2 class="archives-nav__title footer-nav__title is-en">
+                      <i class="fa fa-calendar-o archives-nav__title-icon footer-nav__title-icon"></i>Archives
+                    </h2>
+                  </div>
+                  <div class="col-sm-9 col-xs-12">
+                    <ul class="archives-nav__year-items footer-nav__items">
+                      <li class="archives-nav__year-item footer-nav__item">
+                        <a class="archives-nav__year-link is-en" href="/articles/2016/">2016</a>
+                        <ul class="archives-nav__month-items">
+                          <li class="archives-nav__month-item">
+                            <a class="archives-nav__month-link is-en" href="/articles/2016/12/">12</a>
+                          </li>
+                          <li class="archives-nav__month-item">
+                            <a class="archives-nav__month-link is-en" href="/articles/2016/07/">07</a>
+                          </li>
+                          <li class="archives-nav__month-item">
+                            <a class="archives-nav__month-link is-en" href="/articles/2016/03/">03</a>
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </nav>
+            </div>
+            <div class="col-sm-4 col-xs-12">
+              <div class="footer__about-author">
+                <small class="footer__copyright"><span class="footer__copyright-copy is-en">&copy;</span><span class="footer__copyright-year is-en">2017</span><span class="footer__copyright-author is-en">machida</span><span class="footer__copyright-reserved is-en">All rights reserved.</span></small><nav class="sns-links">
+                  <ul class="sns-links__items">
+                    <li class="sns-links__item"><a class="sns-links__link" href="https://twitter.com/machida">
+                            <i class="fa fa-twitter"></i></a>
+                    </li>
+                    <li class="sns-links__item"><a class="sns-links__link" href="https://www.facebook.com/teppeimachida">
+                            <i class="fa fa-facebook"></i></a>
+                    </li>
+                    <li class="sns-links__item"><a class="sns-links__link" href="https://github.com/machida">
+                            <i class="fa fa-github-alt"></i></a>
+                    </li>
+                    <li class="sns-links__item"><a class="sns-links__link" href="http://www.amazon.co.jp/registry/wishlist/3CR7OJLSG01ZV/">
+                            <i class="fa fa-amazon"></i></a>
+                    </li>
+                  </ul>
+                </nav>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer><script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      
+      ga('create', "UA-58200227-1", 'auto');
+      ga('send', 'pageview');
+    </script><!-- Start of Amazon Publisher Studio Loader -->    <script>  window.amznpubstudioTag = "machidateppei-22";  </script>    <!-- Do not modify the following code ! -->  <script async="true" type="text/javascript" src="http://ps-jp.amazon-adsystem.com/domains/machidateppei-22_453592de-ff63-4e4f-b4b9-e581d9119840.js" charset="UTF-8"></script>    <!-- End of Amazon Publisher Studio Loader -->  
+    
+  
+</html>

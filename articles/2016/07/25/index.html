@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="is-layout">
   <head>
     <meta charset="utf-8" />
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible" />
@@ -18,7 +18,14 @@
     <meta content="machida" name="twitter:title" />
     <meta content="aaa" name="twitter:description" />
     <meta content="shared/og-image.png" name="twitter:image:src" />
-    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" />
+    <link rel="alternate" type="application/atom+xml" title="Atom Feed" href="/feed.xml" /><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-9194910818016440",
+        enable_page_level_ads: true
+      });
+    </script>
+    
   </head>
   
     <header class="header">
@@ -89,37 +96,37 @@
                         Rails で icomoon で作った icon font を使う</a>
           </h1>
         </div>
-        <div class="article__body post-body js-target-blank" itemprop="articleBody"><p>よく icon font が欲しいときに、 <a href="https://icomoon.io/">icomoon</a> というブラウザから icon font が作れるサービスを使ってます。icomoon の有料会員になると、CDN から自作した icon font を使えるようになるのですが、その CDN は確認用で、本番で使うときはダウンロードしてプロジェクトの中に入れないといけないです。で、久々に Rails で icomoon で作った icon font を使うとしたら色々設定を忘れてたのでメモ。</p>
+        <div class="article__body post-body js-target-blank" itemprop="articleBody"><p>よく icon font が欲しいときに、 <a href="https://icomoon.io/">icomoon</a> というブラウザから icon font が作れるサービスを使ってます。icomoon で icon font を作ると、icomoon が用意した CDN から自作した icon font を使えるようになるのですが、その CDN は確認用で、本番で使うときはダウンロードしてプロジェクトの中に入れないといけないです。で、久々に Rails で icomoon で作った icon font を使うとしたら色々設定を忘れてたのでメモ。</p>
 
-<p>ちなみに、icomoon ってすごく便利なのですが、初めて使う場合はどう使うものなのか全然わかりません（画面に説明が無さ過ぎ！）。初めての方は <a href="http://blog.ruedap.com/2013/09/17/ligature-icon-fonts">リガチャなアイコンフォントをお手軽に作成する</a> こちらの記事を一読されることをおすすめします。使い方が丁寧に説明してあるので一回読めば使えるようになります。</p>
+<p>ちなみに、icomoon ってすごく便利なんだけど、どう使うものなのか全然わかりません（画面に説明が無さ過ぎ！）。初めての方は <a href="http://blog.ruedap.com/2013/09/17/ligature-icon-fonts">リガチャなアイコンフォントをお手軽に作成する</a> こちらの記事を一読されることをおすすめします。使い方が丁寧に説明してあるので一回読めば使えるようになります。</p>
 
 <h2>icomoon で font を生成</h2>
 
-<p><img alt="icomoonでfontを生成 image md" src="https://lh3.googleusercontent.com/zXL-c8zQYbxqFxPRa09wCn80_rPAX4KX73GqucXmpIDOC7d-TSIykhQoWXYJ8qoucCk-C7r9qiOmYFC8K92x_n97Qd6pOSv1j-V2d-cvowcP6nH2hsuhHdVUu0ZgGPZaDb8Wu5LOELRHT7t3PYct3oA_iWsA0Y7cMFHESppCoCtEablBMIZTxfsSsDW5_rWPxtB59drL_MzGPQdBTbeGi6SPjoX4ur8IUyU8FlGy6Ip8AYRuchc_1S0we3QxKMVdH10X4_hpu87DblVpZuOGSV0oaxyzOFFW7RzDfxI5AyWi9V4ASCcZa21zfGEfoE1MBNlHo05lC1y6HV-iWKD9NV127_4mBUNgNT2E5WhMCjESLaxl43lb7VQKxb2XguExXntIzxrhkTQxEIfp38uZa_mczEOCPgBxkW-sb-YJeJn0ZI8r6deaV6mxVqRoSChnFPS_O2PCXNS076x65My2_nP7-FuUP0pvB4mhb68-duEzUN-AFp_lFb2t8q0QqOhXMCmA_2s8t7now0G_pqIt2FDn8gR_28zQFKiL90uqeCIpsVFfqbgsUIilTvNUHRyNkFkFHVrPaaouIELH6Xb6qq1GkuinjPUi=w954-h637-no" /></p>
+<p><img alt="icomoonでfontを生成 image md" src="https://i.gyazo.com/d3d3f835a99b1b409d777f3d4bd98164.png" /></p>
 
 <h2>font ファイルをダウンロード</h2>
 
-<p><img alt="fontファイルをダウンロード image md" src="https://lh3.googleusercontent.com/u168HW0scpvO2jeOY9A_att3qpgFD4kvRyJ0uwCBWk4esTDGh9Ki-nskiza7a5vrGCGwtb_H7Hvff2gn4pDmPHHwSobkB4-CzPA6qXQK__TAxZ-AyP971GVhYqZ6iDE8_rANk-kscvTFRMybGSbKGuswBrtjUr2Ml5E_1YnCwhvmGnEzzpwF5jYKxpCxYeyXiiOEdVn2fcjUTzS02tmsEr19RMy-I6PNpdG7iuk0A-pvwwJ8yBYgZnA7Hp5SKTznstRW52pQc8sFXz6ClBLsvYs3vR4fEUjQQp6HPtxylNfPt0Tz2QZxo8QErKoP6PEAyPkpMsyp63ujHfqyAV3yUH7f_t8BeeZaY80PcS2-f-Oh-3WiSW3FKH0OCF9dhnL1uHNLu5OKXzaLyxpqOfq_7IuoVcLt8BFoUvhTzi3SbDq8685ab1naO5U2ucY4q5RtOq4J5I872x9zmGzFLY9WQoWcA3p_Ba-PcI-y8Oe7QP_cniDzn-syiAS-zJJnHs7lgG7j-T2TE1ZjHCIFDgU2_K9kjgIj_cejlj2zPNbaPQgDLaQCV4BRrZ--_pU71x0pEIlRMZ7nWJYmT6Qx_0siDKKniJL103EH=w1085-h777-no" /></p>
+<p><img alt="fontファイルをダウンロード image md" src="https://i.gyazo.com/d08041a6919fb560bd248f910b2b4e02.png" /></p>
 
 <h2>ダウンロードしたファイルから font ファイルを移動</h2>
 
 <p>その中に icomoon でダウンロードしたファイルを解凍すると、中身がこんな感じになってます。</p>
 
-<p><img alt="ダウンロードしたファイルを解凍すると、中身がこんな感じ" src="https://lh3.googleusercontent.com/1YND06nhflelhY7n28GQOYlGxkX0kl5TXeW9uvKfpNbotq9Yaxw1TcCBMuQ2PyUipeJsYfKHjyi5QpdkOcKMYuTXUPJrCVxYEb7Xr2YUkTkvTtAtxZSe8QyVqdCo_voO8clgWMNCCnHhWOJ90FIxhNlxnJ2m-DsJi2FnWDlWkw1bYC5q8QNf-ymjqSe-7Fpziz-p0Hwkx-8isqC_Sba1MGxTIRCO2rtCmEMpWaM4UbwTWkpKZWslOYtV-LH7-R2Uoj-4wDHyPKln4HVrD5pHhRdI_FojOp5GBs_uyFgWPPrUrWu-GnqKaImyUHqRpDXOvxRPvjEfmIrYBnHMfUW_N-rfgtbBrQj-EpwU2OLKZwDH304Md6MJnDS2MPcDIuv_Fx8ATWF1xmzWoiOQjr7_O2xMJfu3OFzwCYZ4JF1sExz_vNIKa6mbwjPuEKSgG7_CDcxp4xYU7eW0wK784idCAbjAsSNt4aG2PG6UdELFg4NS59n1sHcCftsJbm1RBtOlwL1fZ_y3K1x2dCbOVUo-oSQcMMZhGT_K9zkg8PM2Qxq7xQZf89qUHJzklv2Mm3kinKiE8wtwHSGYauLa4MZb0iZaM1dyVPjP=w673-h225-no" /></p>
+<p><img alt="ダウンロードしたファイルを解凍すると、中身がこんな感じ" src="https://i.gyazo.com/baa7420f1f0bd12574e2e4c10ae24bf7.png" /></p>
 
 <p>Rails アプリの <code>vender/assets/</code> の中に <code>fonts</code> ディレクトリを作成し、</p>
 
-<p><img alt="Rails アプリの `vender/assets/` の中に `fonts` ディレクトリを作成" src="https://lh3.googleusercontent.com/yiXe-cZ2WWaoDQfK1ht3vgXdW8_x8cLwK4tWv7oFmscp4mg31IX5o0uHWj8IxZYhLP61EEQXW7R-o6e_ZCX3dNm4Ic1FsTk6n_uE7TeIJazYoAthWcLcMhyYotzveqY0nv1rBhQ6Wt_qcc40O6M4-oO4Nx7W8_J22jb2TpfkBWQTbmZ3k4PQhF2UndLICoW7b1gbrnGJkw39dGEguPIwG7TSDmzWN9J0s_neMexT5Irjit7hKraG39Zuymn1ghZDGFYNVCJea53faSlleeMT4cEb97jt-_5fyhN8lbULqI1JtkB-e8utmIZLr9Tt-y18wYovYf1SrAFufLe4IZip3pdgxN42GKP2RrLQ7-xLoaJRPHYZYYCeVit0xsfrbvR9Ua0nnFRGLT4MHTnPOXJ3Une1w6SSq8VDnKktpaXGsnQuCtDZ1Mxa2nIQSGXJIkgq_Z4WS-IiPMmSPDEKSkTDOnhAh8zS4_N8eaOeQX2OH--gqhZHHbwJA9c13uBOr18ZHXet3XKn3QSDtLQSPm7gVoGypjL8wd8OerTZ7XNj_tzjV7ZeUmaNoNXKs5NWJZUKsPCkk9la-pwg5_FxJ3eVoiGyWnOwWvk9=w601-h373-no" /></p>
+<p><img alt="Rails アプリの `vender/assets/` の中に `fonts` ディレクトリを作成" src="https://i.gyazo.com/03b38a5397a50166f4298a7a6f210829.png" /></p>
 
 <p>icomoon でダウンロードしたファイルの中の fonts の中身を移動。</p>
 
-<p><img alt="ダウンロードしたファイルから font ファイルを移動" src="https://lh3.googleusercontent.com/uZ7adiW3SUfzISx6cy5MgNkCjyxnBr9531Ms78krHwF9TFAkQ4-I_uVeURv60PjxWL7wFROV_DHJaDc06gYBRSVL6jXgb98m4xe9miq2tCDJIJpuveNwQRlOYd-e_eDR-m48w7SXkGsqZaChDfb2OvKYydZ4h35_28jL3elYUDAke1dkgHpvYaamYmjE_NPQegKGKs5pssRmO1MLM5iV5C3CM-7uITZ1L70YaVQSdG1vE4KE9y2EMyR8IVMlF2Hnu0vpSei_tNLXzwqppHQGjvEbkKOeB_CZQ17beP-xy1KxqzrsjcKKJfdJdeMo8vCs8gsNPlC-ZCLA50sCiQuRRSoW0UzWmvbnNgaEwAFFJjsc2tGdhY8PeGAwtD1s2B-5bxkU84bybr65s7up0VKMmtJF2sZOY7REGQT359kIfjkuzdRxjgwBdIKUamgKT7v-JTyem9tVSEOMd44cYxtS_97q-PrgmuEEWYMECEX1xlSJdX0Q1jVgOtqcy0840Kz5gOxGGw6c9XKuwr0pnhxhjCLyRpjRVeQfRTUnxXuEYEUviXxTmFvMlNtmH7NQkfC6YB2zNJtGp_03P_0lbILd5Rc_CbtupNBD=w673-h225-no" /></p>
+<p><img alt="ダウンロードしたファイルから font ファイルを移動" src="https://i.gyazo.com/630d41fa88835cbe3259dd300a3eb116.png" /></p>
 
 <h2>ダウンロードしたファイルから css ファイルを移動</h2>
 
 <p>icomoon でダウンロードしたファイルの中の <code>style.css</code> を <code>vender/assets/stylesheets</code> の中に移動。</p>
 
-<p><img alt="icomoon でダウンロードしたファイルの中の `style.css` を `vender/assets/stylesheets` の中に移動。" src="https://lh3.googleusercontent.com/W84dMGbW5Mx0qnSin0y9NFkq8XZahupZqJmnKmwGT9u6MLIMScCKR7tdmmOTa0CvWw9fVsLIZyaHMHdlvRfn5j22cS6Uj5XNiACRrGQVDG3I4SXZZMdp4Bw3cdlE03tE5yR3Kco8ihcHunD39f_tk3wAji8NXPdwDiWK1w0eFNc5PlRvBAchaduHvLICPCVyGGw4rbBYRadz6fRQLwrcrnjq84y9cnyVZipbSQ_49RiRKd0RoXdqxF_li7rZrWcwHBwbhiRciEeBq1-ToDzsISWA42EcA0JzJTVK4uMumhS8wWdZUPfenOqXELytU2KD2avXS76cGaX20IYFj3B8q9ynnrGt4klYrK-vlOXMPQG3YpnHbwntzJFSn1VnIc_dshCL1-x_u1wKNtd-7QS7S9Ei7_C0Klq5XKRIOc8nO9Pa-uSdC1IYEWbkftIEB-nIvWDZTWti9CbMODhvz3MBlKEfeAU4BLvYwesWGM8ulwi3GXEetOt4kZYXy4KD92vzLMcEf4yoIaUHRJ-LcvAU2G2YRtz440avd7w14xLnM0Z6JBzLPa4hpn0IRloaNzM6L8_RuQJuCmHSKTIxt8rBMonVl24c6UvA=w673-h225-no" /></p>
+<p><img alt="icomoon でダウンロードしたファイルの中の `style.css` を `vender/assets/stylesheets` の中に移動。" src="https://i.gyazo.com/2fb6213449287809df7de331fa10a12e.png" /></p>
 
 <h2>ダウンロードしたファイルから css ファイルを移動</h2>
 
@@ -179,17 +186,21 @@
 
 <h2>application から import して完了</h2>
 
-<p>最後に、 <code>application.sass</code> もしくは <code>application.scss</code> 、もしくは <code>application.css</code> （ここは人によってファイル名が違います ちなみに僕は <code>application.sass</code> 派）から <code>icomoon.css</code> を import して作業完了。</p>
+<p>最後に、 <code>application.sass</code> もしくは <code>application.scss</code> 、もしくは <code>application.css</code> （ここは人によってファイル名が違います ちなみに僕は <code>application.sass</code> 派）から <code>icomoon.css</code> を import して作業完了（ファイルの一番最後でOK）。</p>
 
 <h3>application.sass</h3>
 <div class="highlight sass"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="k">@import</span> <span class="s">icomoon</span>
 </pre></td></tr></tbody></table>
 </div>
 
+<p>application.css の場合は <code>*= require icomoon.css</code> を追加。</p>
+
 <h3>application.scss</h3>
 <div class="highlight scss"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1</pre></td><td class="code"><pre><span class="k">@import</span> <span class="s2">"icomoon"</span> <span class="p">;</span>
 </pre></td></tr></tbody></table>
 </div>
+
+<p>application.css の場合は <code>*= require icomoon.css</code> を追加。</p>
 
 <h3>application.css</h3>
 <div class="highlight css"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
@@ -203,6 +214,8 @@
  */</span>
 </pre></td></tr></tbody></table>
 </div>
+
+<p>application.css の場合は <code>*= require icomoon.css</code> を追加。</p>
 
 <div class="amazlet-box" style="margin-bottom:0px;"><div class="amazlet-image" style="float:left;margin:0px 12px 1px 0px;"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B0034KM04M/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank"><img src="http://ecx.images-amazon.com/images/I/51e0LFIaHkL._SL160_.jpg" alt="さむくないかい [DVD]" style="border: none;" /></a></div><div class="amazlet-info" style="line-height:120%; margin-bottom: 10px"><div class="amazlet-name" style="margin-bottom:10px;line-height:120%"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B0034KM04M/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank">さむくないかい [DVD]</a><div class="amazlet-powered-date" style="font-size:80%;margin-top:5px;line-height:120%">posted with <a href="http://www.amazlet.com/" title="amazlet" target="_blank">amazlet</a> at 16.07.25</div></div><div class="amazlet-detail">アップリンク (2010-03-05)<br />売り上げランキング: 135,386<br /></div><div class="amazlet-sub-info" style="float: left;"><div class="amazlet-link" style="margin-top: 5px"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B0034KM04M/machidateppei-22/ref=nosim/" name="amazletlink" target="_blank">Amazon.co.jpで詳細を見る</a></div></div></div><div class="amazlet-footer" style="clear: left"></div></div>
 
@@ -250,10 +263,10 @@
                         <a class=" tags-nav__link is-en" href="/articles/tags/middleman/">middleman</a>
                       </li>
                       <li class="tags-nav__item footer-nav__item">
-                        <a class=" tags-nav__link is-en" href="/articles/tags/google-photo/">Google Photo</a>
+                        <a class=" tags-nav__link is-en" href="/articles/tags/rails/">Rails</a>
                       </li>
                       <li class="tags-nav__item footer-nav__item">
-                        <a class=" tags-nav__link is-en" href="/articles/tags/rails/">Rails</a>
+                        <a class=" tags-nav__link is-en" href="/articles/tags/git/">git</a>
                       </li>
                     </ul>
                   </div>
@@ -272,6 +285,9 @@
                         <a class="archives-nav__year-link is-en" href="/articles/2016/">2016</a>
                         <ul class="archives-nav__month-items">
                           <li class="archives-nav__month-item">
+                            <a class="archives-nav__month-link is-en" href="/articles/2016/12/">12</a>
+                          </li>
+                          <li class="archives-nav__month-item">
                             <a class="archives-nav__month-link is-en" href="/articles/2016/07/">07</a>
                           </li>
                           <li class="archives-nav__month-item">
@@ -286,7 +302,7 @@
             </div>
             <div class="col-sm-4 col-xs-12">
               <div class="footer__about-author">
-                <small class="footer__copyright"><span class="footer__copyright-copy is-en">&copy;</span><span class="footer__copyright-year is-en">2016</span><span class="footer__copyright-author is-en">machida</span><span class="footer__copyright-reserved is-en">All rights reserved.</span></small><nav class="sns-links">
+                <small class="footer__copyright"><span class="footer__copyright-copy is-en">&copy;</span><span class="footer__copyright-year is-en">2017</span><span class="footer__copyright-author is-en">machida</span><span class="footer__copyright-reserved is-en">All rights reserved.</span></small><nav class="sns-links">
                   <ul class="sns-links__items">
                     <li class="sns-links__item"><a class="sns-links__link" href="https://twitter.com/machida">
                             <i class="fa fa-twitter"></i></a>
